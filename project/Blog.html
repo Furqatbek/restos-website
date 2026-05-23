@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blog — RestOS</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f2d24'/%3E%3Ctext x='32' y='48' font-family='Georgia,serif' font-style='italic' font-size='48' font-weight='400' text-anchor='middle' fill='%23e8b84d'%3ER%3C/text%3E%3C/svg%3E"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="application/json" id="i18n-data">
+  {
+    "en": {"nav":{"product":"Product","modules":"Modules","pricing":"Pricing","customers":"Customers","resources":"Resources","signin":"Sign in","trial":"Start free","demo":"Book demo","about":"About","clients":"Clients","vacancy":"Careers","blog":"Blog"},"hero":{"trust":"No card · Live in 48h · Your hardware"}},
+    "ru": {"nav":{"product":"Продукт","modules":"Модули","pricing":"Цены","customers":"Клиенты","resources":"Ресурсы","signin":"Войти","trial":"Попробовать","demo":"Демо","about":"О нас","clients":"Клиенты","vacancy":"Карьера","blog":"Блог"},"hero":{"trust":"Без карты · Запуск за 48 ч · На вашем железе"}},
+    "uz": {"nav":{"product":"Mahsulot","modules":"Modullar","pricing":"Narxlar","customers":"Mijozlar","resources":"Resurslar","signin":"Kirish","trial":"Bepul","demo":"Demo","about":"Biz haqimizda","clients":"Mijozlar","vacancy":"Karyera","blog":"Blog"},"hero":{"trust":"Kartasiz · 48 soatda · O'z uskunangizda"}},
+    "uz-cyr": {"nav":{"product":"Маҳсулот","modules":"Модуллар","pricing":"Нархлар","customers":"Мижозлар","resources":"Ресурслар","signin":"Кириш","trial":"Бепул","demo":"Демо","about":"Биз ҳақимизда","clients":"Мижозлар","vacancy":"Карьера","blog":"Блог"},"hero":{"trust":"Картасиз · 48 соатда · Ўз ускунангизда"}},
+    "kaa": {"nav":{"product":"Ónim","modules":"Modulller","pricing":"Baha","customers":"Klientler","resources":"Resurslar","signin":"Kiriw","trial":"Tegin","demo":"Demo","about":"Biz haqımızda","clients":"Klientler","vacancy":"Kareyra","blog":"Blog"},"hero":{"trust":"Kartasız · 48 saatta · Óz úskenińizde"}}
+  }
+  </script>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" data-presets="react" src="components/locale-extras.jsx"></script>
+  <script type="text/babel" data-presets="react" src="components/icons.jsx"></script>
+  <script type="text/babel" data-presets="react" src="components/sections.jsx"></script>
+  <script type="text/babel" data-presets="react" src="components/demo-modal.jsx"></script>
+  <script type="text/babel" data-presets="react" src="components/page-chrome.jsx"></script>
+  <script type="text/babel" data-presets="react" src="components/page-blog.jsx"></script>
+</body>
+</html>
