@@ -53,9 +53,7 @@ export default function Footer() {
           <div>
             <h4>{f.contact}</h4>
             <ul>
-              <li><a href="mailto:sales@restos.app">sales@restos.app</a></li>
-              <li><a href="tel:+998712000000">+998 71 200 0000</a></li>
-              <li><a href="https://maps.google.com/?q=Tashkent" target="_blank" rel="noreferrer">Tashkent · Almaty</a></li>
+              <li><a href="tel:+998941143232">+998 94 114 3232</a></li>
             </ul>
           </div>
         </div>
