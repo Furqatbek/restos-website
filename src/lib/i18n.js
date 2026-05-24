@@ -1,5 +1,6 @@
 export const I18N = {
   en: {
+    siteTitle: "RestOS — The operating system for modern hospitality",
     nav: { product:"Product", modules:"Modules", pricing:"Pricing", customers:"Customers", resources:"Resources", signin:"Sign in", trial:"Start free", demo:"Book demo", about:"About", clients:"Clients", vacancy:"Careers", blog:"Blog" },
     hero: {
       eyebrow:"OS for hospitality",
@@ -25,6 +26,7 @@ export const I18N = {
     cta_band:{ title:"Open in 48 hours.", subtitle:"One tablet. One menu import. You're live.", cta:"Start free" }
   },
   ru: {
+    siteTitle: "RestOS — Операционная система для современного гостеприимства",
     nav:{ product:"Продукт", modules:"Модули", pricing:"Цены", customers:"Клиенты", resources:"Ресурсы", signin:"Войти", trial:"Попробовать", demo:"Демо", about:"О нас", clients:"Клиенты", vacancy:"Карьера", blog:"Блог" },
     hero:{
       eyebrow:"ОС для HoReCa",
@@ -50,6 +52,7 @@ export const I18N = {
     cta_band:{ title:"Запуск за 48 часов.", subtitle:"Один планшет. Импорт меню. Вы работаете.", cta:"Начать" }
   },
   uz: {
+    siteTitle: "RestOS — Zamonaviy mehmondo'stlik uchun operatsion tizim",
     nav:{ product:"Mahsulot", modules:"Modullar", pricing:"Narxlar", customers:"Mijozlar", resources:"Resurslar", signin:"Kirish", trial:"Bepul", demo:"Demo", about:"Biz haqimizda", clients:"Mijozlar", vacancy:"Karyera", blog:"Blog" },
     hero:{
       eyebrow:"Mehmondo'stlik OS",
@@ -75,6 +78,7 @@ export const I18N = {
     cta_band:{ title:"48 soatda ochilasiz.", subtitle:"Bir planshet. Menyu import. Ishlaysiz.", cta:"Boshlash" }
   },
   "uz-cyr": {
+    siteTitle: "RestOS — Замонавий меҳмондўстлик учун операцион тизим",
     nav:{ product:"Маҳсулот", modules:"Модуллар", pricing:"Нархлар", customers:"Мижозлар", resources:"Ресурслар", signin:"Кириш", trial:"Бепул", demo:"Демо", about:"Биз ҳақимизда", clients:"Мижозлар", vacancy:"Карьера", blog:"Блог" },
     hero:{
       eyebrow:"Меҳмондўстлик ОС",
@@ -100,6 +104,7 @@ export const I18N = {
     cta_band:{ title:"48 соатда очиласиз.", subtitle:"Бир планшет. Меню импорт. Ишлайсиз.", cta:"Бошлаш" }
   },
   kaa: {
+    siteTitle: "RestOS — Zamanagóy mehmandoslıq ushın operatsiyalıq sistema",
     nav:{ product:"Ónim", modules:"Modulller", pricing:"Baha", customers:"Klientler", resources:"Resurslar", signin:"Kiriw", trial:"Tegin", demo:"Demo", about:"Biz haqımızda", clients:"Klientler", vacancy:"Kareyra", blog:"Blog" },
     hero:{
       eyebrow:"Mehmandosliq OS",
