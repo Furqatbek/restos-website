@@ -1,0 +1,12 @@
+node_modules
+.next
+.git
+data
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+.env*.local
+src/__tests__
+coverage
+.nyc_output
+*.log

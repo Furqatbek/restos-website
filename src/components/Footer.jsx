@@ -1,0 +1,69 @@
+'use client';
+import Link from 'next/link';
+import { useLang } from '@/context/AppContext';
+import { LOCALE } from '@/lib/locale-extras';
+import Icon from './Icon';
+
+export default function Footer() {
+  const lang = useLang();
+  const L = LOCALE[lang] || LOCALE.en;
+  const f = L.footer;
+
+  return (
+    <footer className="footer">
+      <div className="wrap">
+        <div className="footer-grid">
+          <div className="brand-block">
+            <div className="logo"><span className="logo-mark">R</span>RestOS</div>
+            <p>{f.tagline}</p>
+            <div className="social-links">
+              <a href="https://instagram.com/restos" target="_blank" rel="noreferrer" aria-label="Instagram">
+                <Icon name="instagram" size={18}/>
+              </a>
+              <a href="https://t.me/restos" target="_blank" rel="noreferrer" aria-label="Telegram">
+                <Icon name="telegram" size={18}/>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4>{f.product}</h4>
+            <ul>
+              {f.productLinks.map((x, i) => (
+                <li key={i}><a href="/#modules">{x}</a></li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h4>{f.company}</h4>
+            <ul>
+              {f.companyLinks.map((x, i) => {
+                const hrefs = ['/about', '/clients', '/careers', '/blog'];
+                return <li key={i}><Link href={hrefs[i] || '/'}>{x}</Link></li>;
+              })}
+            </ul>
+          </div>
+          <div>
+            <h4>{f.resources}</h4>
+            <ul>
+              {f.resourcesLinks.map((x, i) => (
+                <li key={i}><a href="/#modules">{x}</a></li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h4>{f.contact}</h4>
+            <ul>
+              <li><a href="mailto:sales@restos.app">sales@restos.app</a></li>
+              <li><a href="tel:+998712000000">+998 71 200 0000</a></li>
+              <li><a href="https://maps.google.com/?q=Tashkent" target="_blank" rel="noreferrer">Tashkent · Almaty</a></li>
+            </ul>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <span>{f.copyright}</span>
+          <span>{f.legal}</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
