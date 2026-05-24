@@ -1,5 +1,38 @@
 import { generatePostImage } from './image-gen';
 
+export async function notifyLead(lead) {
+  const TOKEN = process.env.TELEGRAM_LEADS_BOT_TOKEN;
+  const CHAT  = process.env.TELEGRAM_LEADS_CHAT_ID;
+  if (!TOKEN || !CHAT) {
+    console.warn('[telegram] TELEGRAM_LEADS_BOT_TOKEN or TELEGRAM_LEADS_CHAT_ID not set — skipping lead notification');
+    return;
+  }
+
+  const lines = [
+    '📲 <b>New demo request</b>',
+    '',
+    `👤 <b>${esc(lead.name)}</b>`,
+    `📞 <code>${esc(lead.phone)}</code>`,
+    `🏢 ${esc(lead.company)}`,
+  ];
+  if (lead.lang && lead.lang !== 'en') lines.push(`🌐 ${esc(lead.lang)}`);
+  if (lead.source) lines.push(`🔗 ${esc(lead.source)}`);
+
+  try {
+    const res = await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: CHAT, text: lines.join('\n'), parse_mode: 'HTML' }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => res.text());
+      console.error('[telegram] sendMessage (lead) failed:', JSON.stringify(err));
+    }
+  } catch (err) {
+    console.error('[telegram] error notifying lead', lead, err);
+  }
+}
+
 function esc(text) {
   return String(text)
     .replace(/&/g, '&amp;')

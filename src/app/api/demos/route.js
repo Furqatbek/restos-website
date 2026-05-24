@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import db from '@/lib/db';
+import { notifyLead } from '@/lib/telegram';
 
 export async function POST(req) {
   const body = await req.json();
@@ -17,6 +18,8 @@ export async function POST(req) {
   const result = db
     .prepare('INSERT INTO demo_requests (name, phone, company, lang, source, ip, user_agent) VALUES (?, ?, ?, ?, ?, ?, ?)')
     .run(name.trim(), phone.trim(), company.trim(), lang, source || null, ip, ua);
+
+  notifyLead({ name: name.trim(), phone: phone.trim(), company: company.trim(), lang, source: source || null }).catch(() => {});
 
   return NextResponse.json({ ok: true, id: result.lastInsertRowid });
 }
