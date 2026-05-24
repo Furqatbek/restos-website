@@ -1,8 +1,8 @@
 services:
   app:
     build: .
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     volumes:
       - sqlite_data:/app/data
     environment:
@@ -16,5 +16,20 @@ services:
       start_period: 30s
       retries: 3
 
+  nginx:
+    image: nginx:1.27-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/restos.conf:/etc/nginx/conf.d/restos.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - certbot_webroot:/var/www/certbot:ro
+    depends_on:
+      app:
+        condition: service_healthy
+    restart: unless-stopped
+
 volumes:
   sqlite_data:
+  certbot_webroot:
