@@ -9,6 +9,14 @@ import FAQ from '@/components/FAQ';
 import CtaBand from '@/components/CtaBand';
 import Footer from '@/components/Footer';
 
+export const metadata = {
+  alternates: { canonical: 'https://restos.uz' },
+  openGraph: {
+    url: 'https://restos.uz',
+    type: 'website',
+  },
+};
+
 export default function Home() {
   return (
     <>
