@@ -117,10 +117,8 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* To add Google Analytics: replace XX-XXXXXXXXX with your G- measurement ID
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" />
-        <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');` }} />
-        */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-2992TGBM5Y" />
+        <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-2992TGBM5Y');` }} />
       </head>
       <body style={{ fontFamily: 'var(--font-sans, Inter, sans-serif)' }}>
         <Providers>
