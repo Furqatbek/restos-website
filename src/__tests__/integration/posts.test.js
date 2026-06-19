@@ -1,5 +1,6 @@
 import { GET as LIST, POST as CREATE } from '@/app/api/posts/route';
 import { GET, PUT, DELETE } from '@/app/api/posts/[id]/route';
+import { POST as TG } from '@/app/api/posts/[id]/telegram/route';
 import { clearAll } from '../helpers/db';
 import { req } from '../helpers/request';
 
@@ -183,6 +184,33 @@ describe('PUT /api/posts/:id — Telegram trigger logic', () => {
       req('/api/posts/99999', { method: 'PUT', body: { title: 'X' } }),
       { params: { id: '99999' } }
     );
+    expect(res.status).toBe(404);
+  });
+});
+
+describe('POST /api/posts/:id/telegram — manual re-post', () => {
+  test('triggers Telegram for a published post', async () => {
+    const { id } = await create({ ...VALID, status: 'published' });
+    publishToTelegram.mockClear();
+
+    const res = await TG(req(`/api/posts/${id}/telegram`, { method: 'POST' }), { params: { id: String(id) } });
+    expect(res.status).toBe(200);
+    expect((await res.json()).ok).toBe(true);
+    expect(publishToTelegram).toHaveBeenCalledTimes(1);
+    expect(publishToTelegram).toHaveBeenCalledWith(expect.objectContaining({ id, status: 'published' }));
+  });
+
+  test('400 — refuses a draft post', async () => {
+    const { id } = await create(); // draft
+    publishToTelegram.mockClear();
+
+    const res = await TG(req(`/api/posts/${id}/telegram`, { method: 'POST' }), { params: { id: String(id) } });
+    expect(res.status).toBe(400);
+    expect(publishToTelegram).not.toHaveBeenCalled();
+  });
+
+  test('404 for unknown id', async () => {
+    const res = await TG(req('/api/posts/99999/telegram', { method: 'POST' }), { params: { id: '99999' } });
     expect(res.status).toBe(404);
   });
 });
