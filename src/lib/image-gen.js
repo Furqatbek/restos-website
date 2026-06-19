@@ -27,18 +27,23 @@ function loadFonts() {
       name: 'Inter', weight: 700, style: 'normal',
       data: fs.readFileSync(path.join(dir, 'inter-latin-700-normal.woff')),
     },
-    // Cyrillic subset — required for ru / uz-cyr / kaa posts
+    // Cyrillic subset — distinct family name so satori doesn't dedupe it
+    // against the Latin fonts (same name+weight+style would be dropped).
+    // Listed as a fallback family for per-glyph fallback on ru/uz-cyr/kaa.
     {
-      name: 'Inter', weight: 400, style: 'normal',
+      name: 'Inter Cyrillic', weight: 400, style: 'normal',
       data: fs.readFileSync(path.join(dir, 'inter-cyrillic-400-normal.woff')),
     },
     {
-      name: 'Inter', weight: 700, style: 'normal',
+      name: 'Inter Cyrillic', weight: 700, style: 'normal',
       data: fs.readFileSync(path.join(dir, 'inter-cyrillic-700-normal.woff')),
     },
   ];
   return fonts;
 }
+
+// Font stack: Latin first, Cyrillic as glyph-level fallback.
+const FONT_FAMILY = 'Inter, "Inter Cyrillic"';
 
 export async function generatePostImage(post) {
   const theme = THEMES[post.color] || THEMES.b2;
@@ -53,7 +58,7 @@ export async function generatePostImage(post) {
       width: 1200, height: 630,
       background: `linear-gradient(135deg, ${theme.bg1} 0%, ${theme.bg2} 100%)`,
       display: 'flex', flexDirection: 'column',
-      padding: '64px 80px', fontFamily: 'Inter', position: 'relative', overflow: 'hidden',
+      padding: '64px 80px', fontFamily: FONT_FAMILY, position: 'relative', overflow: 'hidden',
     },
   },
     // Decorative background glyph
