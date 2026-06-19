@@ -79,6 +79,19 @@ describe('publishToTelegram — API call', () => {
     expect(caption).toMatch(/<i>Food cost · 7 min read<\/i>/);
   });
 
+  test('caption links to the full blog article by id', async () => {
+    await publishToTelegram(POST);
+    const caption = mockFetch.mock.calls[0][1].body.get('caption');
+    expect(caption).toContain('href="https://restos.uz/blog/1"');
+  });
+
+  test('caption links to the Instagram page', async () => {
+    await publishToTelegram(POST);
+    const caption = mockFetch.mock.calls[0][1].body.get('caption');
+    expect(caption).toContain('href="https://instagram.com/restos.uz"');
+    expect(caption).toContain('@restos.uz');
+  });
+
   test('escapes HTML special chars in title', async () => {
     await publishToTelegram({ ...POST, title: 'P&L < Budget > Forecast' });
     const caption = mockFetch.mock.calls[0][1].body.get('caption');

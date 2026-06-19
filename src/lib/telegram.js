@@ -40,6 +40,9 @@ function esc(text) {
     .replace(/>/g, '&gt;');
 }
 
+const SITE_URL = 'https://restos.uz';
+const INSTAGRAM_URL = 'https://instagram.com/restos.uz';
+
 function buildCaption(post) {
   const parts = [];
 
@@ -58,6 +61,11 @@ function buildCaption(post) {
     .filter(Boolean)
     .join(' · ');
   if (sub) parts.push(`<i>${esc(sub)}</i>`);
+
+  // Links — read full article + Instagram
+  parts.push('');
+  parts.push(`📖 <a href="${SITE_URL}/blog/${post.id}">Читать полностью</a>`);
+  parts.push(`📷 <a href="${INSTAGRAM_URL}">@restos.uz</a>`);
 
   return parts.join('\n');
 }
