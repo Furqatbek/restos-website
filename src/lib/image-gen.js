@@ -27,6 +27,15 @@ function loadFonts() {
       name: 'Inter', weight: 700, style: 'normal',
       data: fs.readFileSync(path.join(dir, 'inter-latin-700-normal.woff')),
     },
+    // Cyrillic subset — required for ru / uz-cyr / kaa posts
+    {
+      name: 'Inter', weight: 400, style: 'normal',
+      data: fs.readFileSync(path.join(dir, 'inter-cyrillic-400-normal.woff')),
+    },
+    {
+      name: 'Inter', weight: 700, style: 'normal',
+      data: fs.readFileSync(path.join(dir, 'inter-cyrillic-700-normal.woff')),
+    },
   ];
   return fonts;
 }
