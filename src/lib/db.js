@@ -53,6 +53,7 @@ function initDb() {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       title TEXT NOT NULL,
       excerpt TEXT,
+      body TEXT,
       category TEXT,
       glyph TEXT DEFAULT 'R',
       color TEXT DEFAULT 'b1',
@@ -64,6 +65,13 @@ function initDb() {
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
   `);
+
+  // Migration: add body column to posts table if upgrading an existing DB
+  const cols = db.prepare("PRAGMA table_info(posts)").all();
+  if (!cols.some(c => c.name === 'body')) {
+    db.exec('ALTER TABLE posts ADD COLUMN body TEXT');
+  }
+
   return db;
 }
 

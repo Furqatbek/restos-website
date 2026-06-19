@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useLang } from '@/context/AppContext';
 
 const BLOG_I18N = {
@@ -132,7 +133,7 @@ export default function BlogContent() {
           {loading ? (
             <div style={emptyStyle}>…</div>
           ) : featured ? (
-            <div className="featured-post">
+            <Link href={`/blog/${featured.id}`} className="featured-post">
               <div className="pcover">
                 <div className="glyph">{featured.glyph}</div>
               </div>
@@ -142,7 +143,7 @@ export default function BlogContent() {
                 <p className="pexcerpt">{featured.excerpt}</p>
                 <div className="pmeta">{featured.read_time} min read</div>
               </div>
-            </div>
+            </Link>
           ) : (
             <div style={emptyStyle}>{B.noFeatured}</div>
           )}
@@ -162,7 +163,7 @@ export default function BlogContent() {
           ) : (
             <div className="blog-grid">
               {posts.map(p => (
-                <article className="blog-card" key={p.id}>
+                <Link href={`/blog/${p.id}`} className="blog-card" key={p.id}>
                   <div className={`pthumb ${p.color}`}>
                     <div className="glyph">{p.glyph}</div>
                   </div>
@@ -171,7 +172,7 @@ export default function BlogContent() {
                     <h4>{p.title}</h4>
                     <div className="pmeta">{p.read_time} min</div>
                   </div>
-                </article>
+                </Link>
               ))}
             </div>
           )}

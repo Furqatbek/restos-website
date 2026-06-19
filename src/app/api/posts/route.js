@@ -25,7 +25,7 @@ export async function GET(req) {
 
 export async function POST(req) {
   const {
-    title, excerpt, category, glyph = 'R', color = 'b1',
+    title, excerpt, body, category, glyph = 'R', color = 'b1',
     read_time = 5, lang = 'en', featured = false,
     status = 'draft', published_at,
   } = await req.json();
@@ -42,10 +42,10 @@ export async function POST(req) {
     : null;
 
   const result = db.prepare(
-    `INSERT INTO posts (title, excerpt, category, glyph, color, read_time, lang, featured, status, published_at)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+    `INSERT INTO posts (title, excerpt, body, category, glyph, color, read_time, lang, featured, status, published_at)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
   ).run(
-    title.trim(), excerpt?.trim() || null, category?.trim() || null,
+    title.trim(), excerpt?.trim() || null, body?.trim() || null, category?.trim() || null,
     glyph, color, read_time, lang, featured ? 1 : 0, status, pubAt
   );
 
