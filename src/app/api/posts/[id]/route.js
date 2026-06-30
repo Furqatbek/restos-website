@@ -38,7 +38,7 @@ export async function PUT(req, { params }) {
 
   db.prepare(
     `UPDATE posts SET title=?, excerpt=?, body=?, category=?, glyph=?, color=?, read_time=?,
-     lang=?, featured=?, status=?, published_at=? WHERE id=?`
+     lang=?, featured=?, status=?, published_at=?, updated_at=CURRENT_TIMESTAMP WHERE id=?`
   ).run(title, excerpt, body, category, glyph, color, read_time, lang, featured, status, published_at, params.id);
 
   const updated = db.prepare('SELECT * FROM posts WHERE id = ?').get(params.id);

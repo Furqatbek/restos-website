@@ -62,14 +62,20 @@ function initDb() {
       featured INTEGER DEFAULT 0,
       status TEXT DEFAULT 'draft',
       published_at DATETIME,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
   `);
 
-  // Migration: add body column to posts table if upgrading an existing DB
+  // Migrations: add columns to posts table when upgrading an existing DB
   const cols = db.prepare("PRAGMA table_info(posts)").all();
   if (!cols.some(c => c.name === 'body')) {
     db.exec('ALTER TABLE posts ADD COLUMN body TEXT');
+  }
+  if (!cols.some(c => c.name === 'updated_at')) {
+    // No dynamic default allowed in ALTER; seed from created_at, maintained by app.
+    db.exec('ALTER TABLE posts ADD COLUMN updated_at DATETIME');
+    db.exec('UPDATE posts SET updated_at = COALESCE(published_at, created_at) WHERE updated_at IS NULL');
   }
 
   return db;

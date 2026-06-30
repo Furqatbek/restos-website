@@ -19,11 +19,15 @@ function safeUrl(url) {
   return '#';
 }
 
-// Inline: bold, italic, code, links. Input is already HTML-escaped.
+// Inline: images, bold, italic, code, links. Input is already HTML-escaped.
 function inline(text) {
   let t = text;
   // inline code first so its contents aren't further formatted
   t = t.replace(/`([^`]+)`/g, (_, c) => `<code>${c}</code>`);
+  // images ![alt](url) — before links, since syntax overlaps. alt is required
+  // for accessibility/image SEO; lazy-loaded to avoid hurting page load.
+  t = t.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (_, alt, url) =>
+    `<img src="${esc(safeUrl(url))}" alt="${alt}" loading="lazy" />`);
   // links [text](url)
   t = t.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, label, url) =>
     `<a href="${esc(safeUrl(url))}" target="_blank" rel="noopener noreferrer">${label}</a>`);

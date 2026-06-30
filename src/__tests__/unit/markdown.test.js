@@ -47,4 +47,17 @@ describe('renderMarkdown', () => {
     expect(renderMarkdown('> quote')).toBe('<blockquote>quote</blockquote>');
     expect(renderMarkdown('---')).toBe('<hr/>');
   });
+
+  it('renders images with alt text, lazy-loaded', () => {
+    const out = renderMarkdown('![a chef plating food](https://restos.uz/img/chef.jpg)');
+    expect(out).toContain('<img src="https://restos.uz/img/chef.jpg"');
+    expect(out).toContain('alt="a chef plating food"');
+    expect(out).toContain('loading="lazy"');
+  });
+
+  it('neutralizes javascript: image sources', () => {
+    const out = renderMarkdown('![x](javascript:alert(1))');
+    expect(out).toContain('src="#"');
+    expect(out).not.toContain('javascript:');
+  });
 });

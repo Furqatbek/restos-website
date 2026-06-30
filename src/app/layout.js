@@ -1,6 +1,9 @@
 import { Instrument_Serif, Inter, JetBrains_Mono } from 'next/font/google';
+import Script from 'next/script';
 import { Providers } from '@/components/Providers';
 import './globals.css';
+
+const GA_ID = 'G-2992TGBM5Y';
 
 const instrumentSerif = Instrument_Serif({
   subsets: ['latin'],
@@ -85,7 +88,17 @@ const jsonLd = {
         '@type': 'ImageObject',
         url: `${BASE}/opengraph-image`,
       },
-      sameAs: [],
+      sameAs: [
+        'https://instagram.com/restos.uz',
+        'https://t.me/restos',
+      ],
+      contactPoint: {
+        '@type': 'ContactPoint',
+        telephone: '+998941143232',
+        contactType: 'sales',
+        areaServed: 'UZ',
+        availableLanguage: ['ru', 'uz', 'en'],
+      },
     },
     {
       '@type': 'WebSite',
@@ -109,10 +122,12 @@ const jsonLd = {
         'Restaurant management platform with POS, kitchen display, inventory, delivery, loyalty, and finance modules.',
       url: BASE,
       offers: {
-        '@type': 'Offer',
-        price: '0',
-        priceCurrency: 'USD',
-        description: 'Free trial available',
+        '@type': 'AggregateOffer',
+        priceCurrency: 'UZS',
+        lowPrice: '280000',
+        highPrice: '600000',
+        offerCount: '3',
+        description: 'Per venue, per month. Free trial available; custom pricing for groups.',
       },
       publisher: { '@id': `${BASE}/#organization` },
     },
@@ -123,17 +138,26 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${instrumentSerif.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-2992TGBM5Y" />
-        <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-2992TGBM5Y');` }} />
       </head>
       <body style={{ fontFamily: 'var(--font-sans, Inter, sans-serif)' }}>
         <Providers>
           {children}
         </Providers>
+        {/* Google Analytics — loaded after the page is interactive so it
+            doesn't block render / hurt Core Web Vitals */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga-init" strategy="afterInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${GA_ID}');`}
+        </Script>
       </body>
     </html>
   );

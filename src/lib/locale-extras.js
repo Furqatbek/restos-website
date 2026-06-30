@@ -37,7 +37,7 @@ export const LOCALE = {
     },
     ui:{ module:"Module", of:"/", liveDemo:"Live demo" },
     footer:{
-      tagline:"Built for modern hospitality.",
+      tagline:"The all-in-one restaurant & café management system for modern hospitality — Tashkent, Uzbekistan.",
       product:"Product", company:"Company", resources:"Resources", contact:"Contact",
       productLinks:["POS & KDS","Self-service","Delivery","Analytics"],
       companyLinks:["About","Customers","Careers","Press"],
@@ -84,7 +84,7 @@ export const LOCALE = {
     },
     ui:{ module:"Модуль", of:"из", liveDemo:"Живое демо" },
     footer:{
-      tagline:"Создано для современной HoReCa.",
+      tagline:"Система автоматизации ресторанов и кафе для современного бизнеса — Ташкент, Узбекистан.",
       product:"Продукт", company:"Компания", resources:"Ресурсы", contact:"Контакты",
       productLinks:["POS и KDS","Самообслуживание","Доставка","Аналитика"],
       companyLinks:["О нас","Клиенты","Карьера","Пресса"],
@@ -131,7 +131,7 @@ export const LOCALE = {
     },
     ui:{ module:"Modul", of:"/", liveDemo:"Jonli demo" },
     footer:{
-      tagline:"Zamonaviy mehmondo'stlik uchun.",
+      tagline:"Restoran va kafelar uchun zamonaviy boshqaruv tizimi — Toshkent, O'zbekiston.",
       product:"Mahsulot", company:"Kompaniya", resources:"Resurslar", contact:"Aloqa",
       productLinks:["POS va KDS","O'zi xizmat","Yetkazib berish","Analitika"],
       companyLinks:["Biz haqimizda","Mijozlar","Karyera","Press"],
@@ -178,7 +178,7 @@ export const LOCALE = {
     },
     ui:{ module:"Модул", of:"/", liveDemo:"Жонли демо" },
     footer:{
-      tagline:"Замонавий меҳмондўстлик учун.",
+      tagline:"Ресторан ва кафелар учун замонавий бошқарув тизими — Тошкент, Ўзбекистон.",
       product:"Маҳсулот", company:"Компания", resources:"Ресурслар", contact:"Алоқа",
       productLinks:["POS ва KDS","Ўзи хизмат","Етказиб бериш","Аналитика"],
       companyLinks:["Биз ҳақимизда","Мижозлар","Карьера","Пресс"],
@@ -225,7 +225,7 @@ export const LOCALE = {
     },
     ui:{ module:"Modul", of:"/", liveDemo:"Janlı demo" },
     footer:{
-      tagline:"Zamanágóy mehmandosliq ushın.",
+      tagline:"Restoran hám kafeler ushın zamanagóy basqarıw sistemasy — Tashkent, Ózbekstan.",
       product:"Ónim", company:"Kompaniya", resources:"Resurslar", contact:"Baylanıs",
       productLinks:["POS hám KDS","Óz xızmet","Jetkeriw","Analitika"],
       companyLinks:["Biz haqımızda","Klientler","Kareyra","Press"],

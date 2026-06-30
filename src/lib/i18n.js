@@ -3,7 +3,7 @@ export const I18N = {
     siteTitle: "RestOS — The operating system for modern hospitality",
     nav: { product:"Product", modules:"Modules", pricing:"Pricing", customers:"Customers", resources:"Resources", signin:"Sign in", trial:"Start free", demo:"Book demo", about:"About", clients:"Clients", vacancy:"Careers", blog:"Blog" },
     hero: {
-      eyebrow:"OS for hospitality",
+      eyebrow:"Restaurant management system",
       title_1:"Sell more.",
       title_2:"Waste less.",
       title_3:"Go home early.",
@@ -29,7 +29,7 @@ export const I18N = {
     siteTitle: "RestOS — Операционная система для современного гостеприимства",
     nav:{ product:"Продукт", modules:"Модули", pricing:"Цены", customers:"Клиенты", resources:"Ресурсы", signin:"Войти", trial:"Попробовать", demo:"Демо", about:"О нас", clients:"Клиенты", vacancy:"Карьера", blog:"Блог" },
     hero:{
-      eyebrow:"ОС для HoReCa",
+      eyebrow:"Система автоматизации ресторана",
       title_1:"Продавай больше.",
       title_2:"Теряй меньше.",
       title_3:"Уходи раньше.",
@@ -55,7 +55,7 @@ export const I18N = {
     siteTitle: "RestOS — Zamonaviy mehmondo'stlik uchun operatsion tizim",
     nav:{ product:"Mahsulot", modules:"Modullar", pricing:"Narxlar", customers:"Mijozlar", resources:"Resurslar", signin:"Kirish", trial:"Bepul", demo:"Demo", about:"Biz haqimizda", clients:"Mijozlar", vacancy:"Karyera", blog:"Blog" },
     hero:{
-      eyebrow:"Mehmondo'stlik OS",
+      eyebrow:"Restoran boshqaruv tizimi",
       title_1:"Ko'proq soting.",
       title_2:"Kamroq isrof qiling.",
       title_3:"Erta uyga boring.",
@@ -81,7 +81,7 @@ export const I18N = {
     siteTitle: "RestOS — Замонавий меҳмондўстлик учун операцион тизим",
     nav:{ product:"Маҳсулот", modules:"Модуллар", pricing:"Нархлар", customers:"Мижозлар", resources:"Ресурслар", signin:"Кириш", trial:"Бепул", demo:"Демо", about:"Биз ҳақимизда", clients:"Мижозлар", vacancy:"Карьера", blog:"Блог" },
     hero:{
-      eyebrow:"Меҳмондўстлик ОС",
+      eyebrow:"Ресторан бошқарув тизими",
       title_1:"Кўпроқ сотинг.",
       title_2:"Камроқ исроф қилинг.",
       title_3:"Эрта уйга боринг.",
@@ -107,7 +107,7 @@ export const I18N = {
     siteTitle: "RestOS — Zamanagóy mehmandoslıq ushın operatsiyalıq sistema",
     nav:{ product:"Ónim", modules:"Modulller", pricing:"Baha", customers:"Klientler", resources:"Resurslar", signin:"Kiriw", trial:"Tegin", demo:"Demo", about:"Biz haqımızda", clients:"Klientler", vacancy:"Kareyra", blog:"Blog" },
     hero:{
-      eyebrow:"Mehmandosliq OS",
+      eyebrow:"Restoran basqarıw sisteması",
       title_1:"Kóbirek satıń.",
       title_2:"Azıraq zayaǵa shıǵarıń.",
       title_3:"Erterek úyge barıń.",
