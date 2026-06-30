@@ -30,14 +30,14 @@ export default function sitemap() {
   let postRoutes = [];
   try {
     const rows = db
-      .prepare("SELECT id, lang, published_at, created_at, updated_at FROM posts WHERE status = 'published'")
+      .prepare("SELECT id, slug, lang, published_at, created_at, updated_at FROM posts WHERE status = 'published'")
       .all();
     postRoutes = rows.map((p) => {
       const mod = new Date(p.updated_at || p.published_at || p.created_at);
       if (!latest || mod > latest) latest = mod;
       const l = isLocale(p.lang) ? p.lang : DEFAULT_LOCALE;
       return {
-        url: `${BASE}/${l}/blog/${p.id}`,
+        url: `${BASE}/${l}/blog/${p.slug || p.id}`,
         lastModified: mod,
         changeFrequency: 'monthly',
         priority: 0.6,

@@ -42,6 +42,13 @@ function esc(text) {
 
 const SITE_URL = 'https://restos.uz';
 const INSTAGRAM_URL = 'https://instagram.com/restos.uz';
+const LOCALES = ['en', 'ru', 'uz', 'uz-cyr', 'kaa'];
+
+// Locale + slug aware canonical URL for a post.
+function postUrl(post) {
+  const lang = LOCALES.includes(post.lang) ? post.lang : 'en';
+  return `${SITE_URL}/${lang}/blog/${post.slug || post.id}`;
+}
 
 function buildCaption(post) {
   const parts = [];
@@ -64,7 +71,7 @@ function buildCaption(post) {
 
   // Links — read full article + Instagram
   parts.push('');
-  parts.push(`📖 <a href="${SITE_URL}/blog/${post.id}">Читать полностью</a>`);
+  parts.push(`📖 <a href="${postUrl(post)}">Читать полностью</a>`);
   parts.push(`📷 <a href="${INSTAGRAM_URL}">@restos.uz</a>`);
 
   return parts.join('\n');

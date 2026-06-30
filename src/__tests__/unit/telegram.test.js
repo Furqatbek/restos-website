@@ -79,10 +79,10 @@ describe('publishToTelegram — API call', () => {
     expect(caption).toMatch(/<i>Food cost · 7 min read<\/i>/);
   });
 
-  test('caption links to the full blog article by id', async () => {
-    await publishToTelegram(POST);
+  test('caption links to the full blog article (locale + slug)', async () => {
+    await publishToTelegram({ ...POST, slug: 'how-we-cut-food-cost' });
     const caption = mockFetch.mock.calls[0][1].body.get('caption');
-    expect(caption).toContain('href="https://restos.uz/blog/1"');
+    expect(caption).toContain('href="https://restos.uz/en/blog/how-we-cut-food-cost"');
   });
 
   test('caption links to the Instagram page', async () => {

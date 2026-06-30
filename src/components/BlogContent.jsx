@@ -134,7 +134,7 @@ export default function BlogContent() {
           {loading ? (
             <div style={emptyStyle}>…</div>
           ) : featured ? (
-            <Link href={localePath(lang, `/blog/${featured.id}`)} className="featured-post">
+            <Link href={localePath(lang, `/blog/${featured.slug || featured.id}`)} className="featured-post">
               <div className="pcover">
                 <div className="glyph">{featured.glyph}</div>
               </div>
@@ -164,7 +164,7 @@ export default function BlogContent() {
           ) : (
             <div className="blog-grid">
               {posts.map(p => (
-                <Link href={localePath(lang, `/blog/${p.id}`)} className="blog-card" key={p.id}>
+                <Link href={localePath(lang, `/blog/${p.slug || p.id}`)} className="blog-card" key={p.id}>
                   <div className={`pthumb ${p.color}`}>
                     <div className="glyph">{p.glyph}</div>
                   </div>

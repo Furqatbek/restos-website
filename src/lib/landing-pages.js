@@ -137,6 +137,30 @@ export function getLandingPage(lang, slug) {
   return LANDING_PAGES[lang]?.[slug] || null;
 }
 
+// Pick the most relevant landing page for a blog post, by matching the post's
+// category / keywords / title against theme words. Falls back to the first
+// landing page in that language. Returns { slug, ...page } or null.
+const THEME_RULES = [
+  { slug: 'programma-skladskogo-ucheta-dlya-restorana', words: ['склад', 'фудкост', 'себестоим', 'инвентар', 'ombor', 'tannarx'] },
+  { slug: 'pos-sistema-dlya-kafe-i-restoranov', words: ['pos', 'касса', 'kassa', 'продаж', 'savdo', 'чек'] },
+  { slug: 'kafe-va-restoranlar-uchun-pos-tizimi', words: ['pos', 'kassa', 'savdo', 'kafe'] },
+  { slug: 'avtomatizatsiya-restorana', words: ['автоматизац', 'маркетинг', 'лояльн', 'отчет', 'avtomat', 'boshqaruv', 'операц', 'marketing'] },
+];
+
+export function relatedLanding(lang, post) {
+  const pages = LANDING_PAGES[lang];
+  if (!pages || !post) return null;
+  const hay = `${post.category || ''} ${post.keywords || ''} ${post.title || ''}`.toLowerCase();
+
+  for (const rule of THEME_RULES) {
+    if (pages[rule.slug] && rule.words.some((w) => hay.includes(w))) {
+      return { slug: rule.slug, ...pages[rule.slug] };
+    }
+  }
+  const firstSlug = Object.keys(pages)[0];
+  return firstSlug ? { slug: firstSlug, ...pages[firstSlug] } : null;
+}
+
 // All { lang, slug } pairs for generateStaticParams + sitemap.
 export function allLandingParams() {
   const out = [];
