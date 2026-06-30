@@ -5,10 +5,20 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import db from '@/lib/db';
 import { renderMarkdown } from '@/lib/markdown';
+import { localePath, isLocale, DEFAULT_LOCALE } from '@/lib/locale';
+
+const BASE = 'https://restos.uz';
 
 function getPost(id) {
   if (!/^\d+$/.test(String(id))) return null;
   return db.prepare("SELECT * FROM posts WHERE id = ? AND status = 'published'").get(id);
+}
+
+// A post exists in exactly one language; canonicalize every locale route
+// (/en/blog/5, /ru/blog/5, …) to the post's own language URL to avoid
+// duplicate content.
+function canonicalLang(post) {
+  return isLocale(post.lang) ? post.lang : DEFAULT_LOCALE;
 }
 
 // Derive a ~155-char meta description so posts without an excerpt are never
@@ -37,8 +47,9 @@ export function generateMetadata({ params }) {
     };
   }
   const description = metaDescription(post);
+  const canonical = `${BASE}/${canonicalLang(post)}/blog/${post.id}`;
   const ogImage = {
-    url: `https://restos.uz/api/posts/${post.id}/og`,
+    url: `${BASE}/api/posts/${post.id}/og`,
     width: 1200,
     height: 630,
     alt: post.title,
@@ -46,10 +57,10 @@ export function generateMetadata({ params }) {
   return {
     title: post.title,
     description,
-    alternates: { canonical: `https://restos.uz/blog/${post.id}` },
+    alternates: { canonical },
     openGraph: {
       type: 'article',
-      url: `https://restos.uz/blog/${post.id}`,
+      url: canonical,
       title: post.title,
       description,
       publishedTime: post.published_at || undefined,
@@ -68,6 +79,10 @@ export default function BlogPost({ params }) {
   const post = getPost(params.id);
   if (!post) notFound();
 
+  const cLang = canonicalLang(post);
+  const canonical = `${BASE}/${cLang}/blog/${post.id}`;
+  const routeLang = isLocale(params.lang) ? params.lang : DEFAULT_LOCALE;
+
   const bodyHtml = renderMarkdown(post.body);
   const date = post.published_at
     ? new Date(post.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
@@ -78,17 +93,17 @@ export default function BlogPost({ params }) {
     '@type': 'Article',
     headline: post.title,
     description: metaDescription(post),
-    image: `https://restos.uz/api/posts/${post.id}/og`,
+    image: `${BASE}/api/posts/${post.id}/og`,
     inLanguage: post.lang || 'en',
     articleSection: post.category || undefined,
     datePublished: post.published_at || undefined,
-    dateModified: post.published_at || undefined,
-    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://restos.uz/blog/${post.id}` },
-    author: { '@type': 'Organization', name: 'RestOS', url: 'https://restos.uz' },
+    dateModified: post.updated_at || post.published_at || undefined,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+    author: { '@type': 'Organization', name: 'RestOS', url: BASE },
     publisher: {
       '@type': 'Organization',
       name: 'RestOS',
-      logo: { '@type': 'ImageObject', url: 'https://restos.uz/opengraph-image' },
+      logo: { '@type': 'ImageObject', url: `${BASE}/opengraph-image` },
     },
   };
 
@@ -96,9 +111,9 @@ export default function BlogPost({ params }) {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://restos.uz' },
-      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://restos.uz/blog' },
-      { '@type': 'ListItem', position: 3, name: post.title, item: `https://restos.uz/blog/${post.id}` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${BASE}/${cLang}` },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${BASE}/${cLang}/blog` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: canonical },
     ],
   };
 
@@ -115,7 +130,7 @@ export default function BlogPost({ params }) {
       <Nav activePage="blog"/>
       <article className="post-page">
         <div className="wrap post-wrap">
-          <Link href="/blog" className="post-back">← All posts</Link>
+          <Link href={localePath(routeLang, '/blog')} className="post-back">← All posts</Link>
 
           <header className="post-header">
             {post.category && <div className="post-cat">{post.category}</div>}

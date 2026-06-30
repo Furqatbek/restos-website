@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useLang } from '@/context/AppContext';
+import { localePath } from '@/lib/locale';
 
 const BLOG_I18N = {
   en: {
@@ -133,7 +134,7 @@ export default function BlogContent() {
           {loading ? (
             <div style={emptyStyle}>…</div>
           ) : featured ? (
-            <Link href={`/blog/${featured.id}`} className="featured-post">
+            <Link href={localePath(lang, `/blog/${featured.id}`)} className="featured-post">
               <div className="pcover">
                 <div className="glyph">{featured.glyph}</div>
               </div>
@@ -163,7 +164,7 @@ export default function BlogContent() {
           ) : (
             <div className="blog-grid">
               {posts.map(p => (
-                <Link href={`/blog/${p.id}`} className="blog-card" key={p.id}>
+                <Link href={localePath(lang, `/blog/${p.id}`)} className="blog-card" key={p.id}>
                   <div className={`pthumb ${p.color}`}>
                     <div className="glyph">{p.glyph}</div>
                   </div>

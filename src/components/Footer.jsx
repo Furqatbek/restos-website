@@ -2,12 +2,14 @@
 import Link from 'next/link';
 import { useLang } from '@/context/AppContext';
 import { LOCALE } from '@/lib/locale-extras';
+import { localePath } from '@/lib/locale';
 import Icon from './Icon';
 
 export default function Footer() {
   const lang = useLang();
   const L = LOCALE[lang] || LOCALE.en;
   const f = L.footer;
+  const home = localePath(lang, '/');
 
   return (
     <footer className="footer">
@@ -29,7 +31,7 @@ export default function Footer() {
             <h4>{f.product}</h4>
             <ul>
               {f.productLinks.map((x, i) => (
-                <li key={i}><a href="/#modules">{x}</a></li>
+                <li key={i}><a href={`${home}#modules`}>{x}</a></li>
               ))}
             </ul>
           </div>
@@ -38,7 +40,7 @@ export default function Footer() {
             <ul>
               {f.companyLinks.map((x, i) => {
                 const hrefs = ['/about', '/clients', '/careers', '/blog'];
-                return <li key={i}><Link href={hrefs[i] || '/'}>{x}</Link></li>;
+                return <li key={i}><Link href={localePath(lang, hrefs[i] || '/')}>{x}</Link></li>;
               })}
             </ul>
           </div>
@@ -46,7 +48,7 @@ export default function Footer() {
             <h4>{f.resources}</h4>
             <ul>
               {f.resourcesLinks.map((x, i) => (
-                <li key={i}><a href="/#modules">{x}</a></li>
+                <li key={i}><a href={`${home}#modules`}>{x}</a></li>
               ))}
             </ul>
           </div>

@@ -15,22 +15,23 @@ export function useDemoLang() {
   return DEMOS[lang] || DEMOS.en;
 }
 
-export function AppProvider({ children }) {
-  const [lang, setLangRaw] = useState('en');
+export function AppProvider({ children, initialLang = 'en' }) {
+  const [lang, setLangRaw] = useState(initialLang);
   const [demoOpen, setDemoOpen] = useState(false);
 
+  // Follow the route-driven locale (client-side navigation between /en, /ru, …).
   useEffect(() => {
-    const saved = localStorage.getItem('restos-lang');
-    if (saved) setLangRaw(saved);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('restos-lang', lang);
-  }, [lang]);
+    if (initialLang && initialLang !== lang) setLangRaw(initialLang);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialLang]);
 
   const setLang = useCallback((next) => {
     setLangRaw(prev => {
-      if (prev !== next) track('lang_change', { from: prev, to: next }, next);
+      if (prev !== next) {
+        track('lang_change', { from: prev, to: next }, next);
+        // Persist for middleware locale detection on locale-less visits.
+        document.cookie = `restos-lang=${next}; path=/; max-age=31536000; samesite=lax`;
+      }
       return next;
     });
   }, []);

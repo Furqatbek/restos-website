@@ -1,8 +1,10 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import { useLang, useOpenDemo, useDemoOpen } from '@/context/AppContext';
 import { I18N } from '@/lib/i18n';
+import { localePath, isLocale } from '@/lib/locale';
 import Icon from './Icon';
 
 const LANGS = [
@@ -19,6 +21,8 @@ export default function Nav({ activePage = 'home' }) {
   const openDemo = useOpenDemo();
   const t = I18N[lang] || I18N.en;
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const onClick = (e) => { if (!e.target.closest('.lang-switch')) setOpen(false); };
@@ -26,27 +30,37 @@ export default function Nav({ activePage = 'home' }) {
     return () => document.removeEventListener('click', onClick);
   }, []);
 
+  // Switch language by navigating to the same page under the new locale.
+  const switchLang = (l) => {
+    setLang(l);
+    setOpen(false);
+    const parts = (pathname || '/').split('/');
+    const rest = isLocale(parts[1]) ? '/' + parts.slice(2).join('/') : (pathname || '/');
+    router.push(localePath(l, rest || '/'));
+  };
+
   const isHome = activePage === 'home';
+  const home = localePath(lang, '/');
 
   return (
     <nav className="nav">
       <div className="wrap nav-inner">
-        <Link className="logo" href="/">
+        <Link className="logo" href={home}>
           <span className="logo-mark">R</span>RestOS
         </Link>
         <div className="nav-links">
           {isHome
             ? <a href="#modules">{t.nav.modules}</a>
-            : <Link href="/#modules">{t.nav.modules}</Link>
+            : <Link href={`${home}#modules`}>{t.nav.modules}</Link>
           }
           {isHome
             ? <a href="#pricing">{t.nav.pricing}</a>
-            : <Link href="/#pricing">{t.nav.pricing}</Link>
+            : <Link href={`${home}#pricing`}>{t.nav.pricing}</Link>
           }
-          <Link href="/about" className={activePage === 'about' ? 'active' : ''}>{t.nav.about}</Link>
-          <Link href="/clients" className={activePage === 'clients' ? 'active' : ''}>{t.nav.clients}</Link>
-          <Link href="/careers" className={activePage === 'vacancy' ? 'active' : ''}>{t.nav.vacancy}</Link>
-          <Link href="/blog" className={activePage === 'blog' ? 'active' : ''}>{t.nav.blog}</Link>
+          <Link href={localePath(lang, '/about')} className={activePage === 'about' ? 'active' : ''}>{t.nav.about}</Link>
+          <Link href={localePath(lang, '/clients')} className={activePage === 'clients' ? 'active' : ''}>{t.nav.clients}</Link>
+          <Link href={localePath(lang, '/careers')} className={activePage === 'vacancy' ? 'active' : ''}>{t.nav.vacancy}</Link>
+          <Link href={localePath(lang, '/blog')} className={activePage === 'blog' ? 'active' : ''}>{t.nav.blog}</Link>
         </div>
         <div className="nav-right">
           <button className="lang-switch" onClick={(e) => { e.stopPropagation(); setOpen(o => !o); }}>
@@ -57,7 +71,7 @@ export default function Nav({ activePage = 'home' }) {
               <div className="lang-menu" onClick={e => e.stopPropagation()}>
                 {LANGS.map(l => (
                   <button key={l.k} className={lang === l.k ? 'active' : ''}
-                    onClick={() => { setLang(l.k); setOpen(false); }}>
+                    onClick={() => switchLang(l.k)}>
                     <span>{l.name}</span>
                     <span className="flag">{l.flag}</span>
                   </button>

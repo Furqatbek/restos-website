@@ -1,12 +1,10 @@
 'use client';
 import { AppProvider } from '@/context/AppContext';
 import DemoModal from './DemoModal';
-import TitleUpdater from './TitleUpdater';
 
-export function Providers({ children }) {
+export function Providers({ children, initialLang }) {
   return (
-    <AppProvider>
-      <TitleUpdater />
+    <AppProvider initialLang={initialLang}>
       {children}
       <DemoModal/>
     </AppProvider>
