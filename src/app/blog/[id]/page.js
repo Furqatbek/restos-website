@@ -24,8 +24,14 @@ export function generateMetadata({ params }) {
       title: post.title,
       description: post.excerpt || undefined,
       publishedTime: post.published_at || undefined,
+      images: [`https://restos.uz/api/posts/${post.id}/og`],
     },
-    twitter: { title: post.title, description: post.excerpt || undefined },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt || undefined,
+      images: [`https://restos.uz/api/posts/${post.id}/og`],
+    },
   };
 }
 
@@ -38,8 +44,31 @@ export default function BlogPost({ params }) {
     ? new Date(post.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
     : null;
 
+  const articleLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt || undefined,
+    image: `https://restos.uz/api/posts/${post.id}/og`,
+    inLanguage: post.lang || 'en',
+    articleSection: post.category || undefined,
+    datePublished: post.published_at || undefined,
+    dateModified: post.published_at || undefined,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://restos.uz/blog/${post.id}` },
+    author: { '@type': 'Organization', name: 'RestOS', url: 'https://restos.uz' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'RestOS',
+      logo: { '@type': 'ImageObject', url: 'https://restos.uz/opengraph-image' },
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+      />
       <Nav activePage="blog"/>
       <article className="post-page">
         <div className="wrap post-wrap">

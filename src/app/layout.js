@@ -33,9 +33,19 @@ export const metadata = {
   description:
     'One system. Twelve modules. Zero spreadsheets. RestOS handles POS, kitchen display, inventory, delivery, loyalty, finance, and more — all in one platform.',
   keywords: [
+    // English
     'restaurant management system', 'POS software', 'hospitality OS',
     'restaurant ERP', 'kitchen display system', 'food delivery management',
     'inventory management restaurant', 'loyalty program restaurant',
+    // Russian
+    'автоматизация ресторана', 'POS система для кафе', 'программа для ресторана',
+    'система учета для ресторана', 'программа для кафе', 'учет в общепите',
+    'программа лояльности для ресторана', 'автоматизация общепита',
+    // Uzbek
+    'restoran avtomatizatsiyasi', 'kafe uchun dastur', 'restoran uchun POS',
+    'restoran boshqaruv tizimi', 'oshxona uchun dastur',
+    // Geo
+    'автоматизация ресторана Узбекистан', 'POS система Ташкент',
   ],
   authors: [{ name: 'RestOS', url: BASE }],
   creator: 'RestOS',
