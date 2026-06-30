@@ -127,6 +127,31 @@ const jsonLd = {
       },
       publisher: { '@id': `${BASE}/#organization` },
     },
+    {
+      // Local-SEO node — helps eligibility for the map pack on local searches.
+      // TODO: fill in streetAddress and geo coordinates with the real office
+      // location, then mirror the SAME name/phone/address on the Google &
+      // Yandex Business profiles (NAP consistency is what local ranking checks).
+      '@type': 'LocalBusiness',
+      '@id': `${BASE}/#localbusiness`,
+      name: 'RestOS',
+      url: BASE,
+      telephone: '+998941143232',
+      priceRange: 'UZS 280000–600000 / mo',
+      image: `${BASE}/opengraph-image`,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Tashkent',
+        addressCountry: 'UZ',
+        // streetAddress: '…',  // <- add the real street address
+      },
+      areaServed: [
+        { '@type': 'Country', name: 'Uzbekistan' },
+        { '@type': 'City', name: 'Tashkent' },
+      ],
+      sameAs: ['https://instagram.com/restos.uz', 'https://t.me/restos'],
+      parentOrganization: { '@id': `${BASE}/#organization` },
+    },
   ],
 };
 

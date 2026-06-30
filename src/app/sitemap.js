@@ -1,5 +1,6 @@
 import db from '@/lib/db';
 import { LOCALES, DEFAULT_LOCALE, HTML_LANG, isLocale } from '@/lib/locale';
+import { allLandingParams } from '@/lib/landing-pages';
 
 const BASE = 'https://restos.uz';
 
@@ -57,5 +58,13 @@ export default function sitemap() {
     })),
   );
 
-  return [...staticRoutes, ...postRoutes];
+  // Keyword landing pages — single-language, self-canonical.
+  const landingRoutes = allLandingParams().map(({ lang, slug }) => ({
+    url: `${BASE}/${lang}/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  }));
+
+  return [...staticRoutes, ...landingRoutes, ...postRoutes];
 }

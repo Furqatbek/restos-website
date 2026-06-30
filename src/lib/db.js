@@ -11,6 +11,9 @@ const DB_PATH = process.env.DATABASE_PATH || (() => {
 function initDb() {
   const db = new Database(DB_PATH);
   db.pragma('journal_mode = WAL');
+  // Wait for a lock instead of throwing SQLITE_BUSY — avoids "database is
+  // locked" when multiple Next build/runtime workers open the DB at once.
+  db.pragma('busy_timeout = 5000');
   db.exec(`
     CREATE TABLE IF NOT EXISTS demo_requests (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
