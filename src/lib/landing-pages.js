@@ -130,6 +130,66 @@ export const LANDING_PAGES = {
         ['Narxi qancha?', 'Bir muassasa uchun oyiga 280 000 so‘mdan, xodimlar soni cheklanmagan. Bepul sinov muddati bor.'],
       ],
     },
+    'restoran-avtomatizatsiyasi': {
+      keyword: 'restoran avtomatizatsiyasi',
+      title: 'Restoran avtomatizatsiyasi — RestOS boshqaruv tizimi',
+      description:
+        'Restoran va kafe avtomatizatsiyasi: kassa, oshxona, ombor, yetkazib berish, sodiqlik va moliya bitta tizimda. Fudkost va xodim xarajatlarini kamaytiring.',
+      eyebrow: 'Restoran avtomatizatsiyasi',
+      h1: 'Restoran avtomatizatsiyasi — kassadan P&L gacha',
+      lede: 'Bitta tizimda o‘n ikkita modul. O‘sishingizga qarab yoqing: bitta menyu, bitta ombor, biznesingiz haqida bitta haqiqat.',
+      sections: [
+        {
+          h2: 'Restoranni avtomatlashtirish nima beradi',
+          body: 'Kechqurunlari Excel jadvallarini yig‘ishni to‘xtatasiz. Savdo, qoldiq, tannarx, smenalar va hisobotlar bitta tizimda real vaqtda yangilanadi. Har bir taomning marjasini oyiga bir marta emas, hoziroq ko‘rasiz.',
+        },
+        {
+          h2: 'Tannarx va ombor nazorati',
+          body: 'Har bir savdo texnologik karta bo‘yicha ingredientlarni avtomatik hisobdan chiqaradi. Fudkost real vaqtda hisoblanadi. Tizim tugab qolayotgan pozitsiyalar va chetlanishlar haqida oldindan ogohlantiradi.',
+        },
+        {
+          h2: 'Xodim xarajatlari kamayadi',
+          body: 'RestOS mijozlari olti oyda o‘rtacha ish haqi fondining 11% ini tejaydi. Smenalarni avtomatik hisobga olish va tez kassa menejerlardan rutinani oladi.',
+        },
+        {
+          h2: 'Moliya va hisobotlar',
+          body: 'Jonli P&L, ish haqi, QQS va solishtirish — tahlilchi-buxgaltersiz. Egalar haqiqatan ochadigan o‘nta hisobot quticha bilan tayyor va Telegram’ga keladi.',
+        },
+      ],
+      faqs: [
+        ['Avtomatlashtirishni nimadan boshlash kerak?', 'POS-kassa va ombor hisobidan boshlang — bu tez natija beradi. Qolgan modullar o‘sish jarayonida, ma’lumotlarni ko‘chirmasdan ulanadi.'],
+        ['Bitta nuqta va tarmoq uchun mos keladimi?', 'Ha. Counter tarifi — kafe va yakka nuqtalar uchun, Group — tarmoq va mehmonxona F&B uchun cheksiz muassasalar bilan.'],
+        ['Joriy etish qancha vaqt oladi?', 'Asosiy ishga tushirish — 48 soat. To‘liq avtomatlashtirish odatda bir haftada amalga oshiriladi.'],
+      ],
+    },
+    'kafe-uchun-dastur': {
+      keyword: 'kafe uchun dastur',
+      title: 'Kafe uchun dastur — RestOS savdo va hisob tizimi',
+      description:
+        'Kafe uchun dastur: kassa, ombor hisobi, QR-menyu, yetkazib berish va sodiqlik dasturi bitta tizimda. 48 soatda ishga tushadi, o‘z uskunangizda ishlaydi.',
+      eyebrow: 'Kafe uchun dastur',
+      h1: 'Kafe uchun dastur — hammasi bitta tizimda',
+      lede: 'Kassa, ombor, QR-menyu va sodiqlik — kafengizni bitta oynadan boshqaring. Alohida beshta obuna o‘rniga bitta tizim.',
+      sections: [
+        {
+          h2: 'Tez kassa va QR-menyu',
+          body: 'Mijoz QR-kodni skanerlaydi, buyurtma beradi va to‘laydi — ofitsiantni kutmasdan. Bu stol aylanishini tezlashtiradi va o‘rtacha chekni oshiradi.',
+        },
+        {
+          h2: 'Ombor va tannarx nazorati',
+          body: 'Har bir savdo ingredientlarni avtomatik hisobdan chiqaradi. Fudkost jonli hisoblanadi, qoldiqlar har doim haqiqatni aks ettiradi — tungi inventarizatsiyasiz.',
+        },
+        {
+          h2: 'Sodiqlik va qaytadigan mijozlar',
+          body: 'QR-hamyon, darajalar va avtomatik bonuslar bir martalik mijozlarni doimiyga aylantiradi. Kassada mijoz avtomatik aniqlanadi.',
+        },
+      ],
+      faqs: [
+        ['Kichik kafe uchun ham foydalimi?', 'Ha. Counter tarifi aynan kafe, kiosk va yakka nuqtalar uchun mo‘ljallangan, xodimlar soni cheklanmagan.'],
+        ['Yandex Eats, Wolt bilan ishlaydimi?', 'Ha, barcha yetkazib berish agregatorlari bitta oynada, bitta printerda birlashtiriladi.'],
+        ['Internetsiz ishlaydimi?', 'Ha, offline rejimda savdo davom etadi va aloqa tiklangach avtomatik sinxronlanadi.'],
+      ],
+    },
   },
 };
 
