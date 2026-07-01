@@ -197,6 +197,35 @@ export function getLandingPage(lang, slug) {
   return LANDING_PAGES[lang]?.[slug] || null;
 }
 
+// Localized heading for the "Solutions" nav/footer group.
+export const SOLUTIONS_LABEL = {
+  en: 'Solutions', ru: 'Решения', uz: 'Yechimlar', 'uz-cyr': 'Ечимлар', kaa: 'Sheshimler',
+};
+
+// Short labels for nav/footer links (the h1/keyword is too long for a menu).
+const NAV_LABELS = {
+  ru: {
+    'pos-sistema-dlya-kafe-i-restoranov': 'POS для кафе и ресторанов',
+    'avtomatizatsiya-restorana': 'Автоматизация ресторана',
+    'programma-skladskogo-ucheta-dlya-restorana': 'Складской учёт',
+  },
+  uz: {
+    'kafe-va-restoranlar-uchun-pos-tizimi': 'Kafe uchun POS tizimi',
+    'restoran-avtomatizatsiyasi': 'Restoran avtomatizatsiyasi',
+    'kafe-uchun-dastur': 'Kafe uchun dastur',
+  },
+};
+
+// List of landing pages for a language, ready for nav/footer links.
+export function landingList(lang) {
+  const pages = LANDING_PAGES[lang];
+  if (!pages) return [];
+  return Object.keys(pages).map((slug) => ({
+    slug,
+    label: NAV_LABELS[lang]?.[slug] || pages[slug].keyword,
+  }));
+}
+
 // Pick the most relevant landing page for a blog post, by matching the post's
 // category / keywords / title against theme words. Falls back to the first
 // landing page in that language. Returns { slug, ...page } or null.

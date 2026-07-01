@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useLang } from '@/context/AppContext';
 import { LOCALE } from '@/lib/locale-extras';
 import { localePath } from '@/lib/locale';
+import { landingList, SOLUTIONS_LABEL } from '@/lib/landing-pages';
 import Icon from './Icon';
 
 export default function Footer() {
@@ -10,11 +11,12 @@ export default function Footer() {
   const L = LOCALE[lang] || LOCALE.en;
   const f = L.footer;
   const home = localePath(lang, '/');
+  const solutions = landingList(lang);
 
   return (
     <footer className="footer">
       <div className="wrap">
-        <div className="footer-grid">
+        <div className={`footer-grid${solutions.length ? ' footer-grid--6' : ''}`}>
           <div className="brand-block">
             <div className="logo"><span className="logo-mark">R</span>RestOS</div>
             <p>{f.tagline}</p>
@@ -35,6 +37,16 @@ export default function Footer() {
               ))}
             </ul>
           </div>
+          {solutions.length > 0 && (
+            <div>
+              <h4>{SOLUTIONS_LABEL[lang] || SOLUTIONS_LABEL.en}</h4>
+              <ul>
+                {solutions.map((s) => (
+                  <li key={s.slug}><Link href={localePath(lang, `/${s.slug}`)}>{s.label}</Link></li>
+                ))}
+              </ul>
+            </div>
+          )}
           <div>
             <h4>{f.company}</h4>
             <ul>

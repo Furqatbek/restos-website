@@ -5,6 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useLang, useOpenDemo, useDemoOpen } from '@/context/AppContext';
 import { I18N } from '@/lib/i18n';
 import { localePath, isLocale } from '@/lib/locale';
+import { landingList, SOLUTIONS_LABEL } from '@/lib/landing-pages';
 import Icon from './Icon';
 
 const LANGS = [
@@ -21,11 +22,16 @@ export default function Nav({ activePage = 'home' }) {
   const openDemo = useOpenDemo();
   const t = I18N[lang] || I18N.en;
   const [open, setOpen] = useState(false);
+  const [solOpen, setSolOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+  const solutions = landingList(lang);
 
   useEffect(() => {
-    const onClick = (e) => { if (!e.target.closest('.lang-switch')) setOpen(false); };
+    const onClick = (e) => {
+      if (!e.target.closest('.lang-switch')) setOpen(false);
+      if (!e.target.closest('.solutions-switch')) setSolOpen(false);
+    };
     document.addEventListener('click', onClick);
     return () => document.removeEventListener('click', onClick);
   }, []);
@@ -53,6 +59,21 @@ export default function Nav({ activePage = 'home' }) {
             ? <a href="#modules">{t.nav.modules}</a>
             : <Link href={`${home}#modules`}>{t.nav.modules}</Link>
           }
+          {solutions.length > 0 && (
+            <button className="solutions-switch" onClick={(e) => { e.stopPropagation(); setSolOpen(o => !o); }}>
+              {SOLUTIONS_LABEL[lang] || SOLUTIONS_LABEL.en}
+              <span style={{ fontSize: 9, color: 'var(--muted)' }}>▾</span>
+              {solOpen && (
+                <div className="solutions-menu" onClick={e => e.stopPropagation()}>
+                  {solutions.map((s) => (
+                    <Link key={s.slug} href={localePath(lang, `/${s.slug}`)} onClick={() => setSolOpen(false)}>
+                      {s.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </button>
+          )}
           {isHome
             ? <a href="#pricing">{t.nav.pricing}</a>
             : <Link href={`${home}#pricing`}>{t.nav.pricing}</Link>
