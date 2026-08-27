@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import CtaBand from '@/components/CtaBand';
 import { I18N } from '@/lib/i18n';
 import { localePath, isLocale, DEFAULT_LOCALE, OG_LOCALE } from '@/lib/locale';
-import { getLandingPage, allLandingParams } from '@/lib/landing-pages';
+import { getLandingPage, allLandingParams, landingAlternates } from '@/lib/landing-pages';
 
 const BASE = 'https://restos.uz';
 
@@ -19,19 +19,38 @@ export function generateMetadata({ params }) {
   const page = getLandingPage(params.lang, params.slug);
   if (!page) return { title: 'Not found', robots: { index: false, follow: false } };
   const url = `${BASE}/${params.lang}/${params.slug}`;
+  // Only emit hreflang when this page actually has a translation.
+  const languages = landingAlternates(params.lang, params.slug);
+  const ogImage = {
+    url: `${BASE}/api/og?${new URLSearchParams({
+      title: page.h1,
+      excerpt: page.lede,
+      category: page.eyebrow,
+      color: 'b2',
+    })}`,
+    width: 1200,
+    height: 630,
+    alt: page.h1,
+  };
   return {
     title: page.title,
     description: page.description,
     keywords: [page.keyword],
-    alternates: { canonical: url },
+    alternates: { canonical: url, ...(languages ? { languages } : {}) },
     openGraph: {
       type: 'website',
       url,
       title: page.title,
       description: page.description,
       locale: OG_LOCALE[params.lang] || 'en_US',
+      images: [ogImage],
     },
-    twitter: { card: 'summary_large_image', title: page.title, description: page.description },
+    twitter: {
+      card: 'summary_large_image',
+      title: page.title,
+      description: page.description,
+      images: [ogImage],
+    },
   };
 }
 
@@ -62,10 +81,35 @@ export default function LandingPage({ params }) {
     ],
   };
 
+  // Each landing page is a concrete offering, not just an article — Service
+  // ties the keyword, the provider, the region and the real price together.
+  const serviceLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: page.h1,
+    description: page.description,
+    serviceType: page.keyword,
+    inLanguage: lang,
+    provider: { '@id': `${BASE}/#organization` },
+    areaServed: [
+      { '@type': 'Country', name: 'Uzbekistan' },
+      { '@type': 'City', name: 'Tashkent' },
+    ],
+    availableChannel: { '@type': 'ServiceChannel', serviceUrl: url },
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'UZS',
+      lowPrice: '280000',
+      highPrice: '600000',
+      offerCount: '3',
+    },
+  };
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceLd) }} />
       <Nav activePage="" />
 
       <section className="page-hero">

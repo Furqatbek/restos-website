@@ -104,6 +104,10 @@ export default function BlogPost({ params }) {
     inLanguage: post.lang || 'en',
     articleSection: post.category || undefined,
     keywords: post.keywords || undefined,
+    wordCount: post.body ? post.body.trim().split(/\s+/).length : undefined,
+    // ISO 8601 duration, e.g. 6 min -> PT6M
+    timeRequired: post.read_time ? `PT${post.read_time}M` : undefined,
+    isAccessibleForFree: true,
     datePublished: post.published_at || undefined,
     dateModified: post.updated_at || post.published_at || undefined,
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },

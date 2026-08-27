@@ -197,6 +197,37 @@ export function getLandingPage(lang, slug) {
   return LANDING_PAGES[lang]?.[slug] || null;
 }
 
+// Landing pages that are translations of one another. Slugs differ per
+// language (that is the point — each targets its own keyword), so the
+// equivalence has to be declared explicitly for hreflang to work.
+const EQUIVALENTS = [
+  {
+    ru: 'pos-sistema-dlya-kafe-i-restoranov',
+    uz: 'kafe-va-restoranlar-uchun-pos-tizimi',
+  },
+  {
+    ru: 'avtomatizatsiya-restorana',
+    uz: 'restoran-avtomatizatsiyasi',
+  },
+];
+
+// hreflang map for a landing page: { 'ru': url, 'uz': url, 'x-default': url }.
+// Returns null when the page has no translation, so it stays self-canonical
+// rather than claiming alternates that do not exist.
+export function landingAlternates(lang, slug) {
+  const group = EQUIVALENTS.find((g) => g[lang] === slug);
+  if (!group) return null;
+  const langs = Object.keys(group);
+  if (langs.length < 2) return null;
+
+  const base = 'https://restos.uz';
+  const map = {};
+  for (const l of langs) map[l] = `${base}/${l}/${group[l]}`;
+  // Russian is the widest-reach version here, so it carries x-default.
+  map['x-default'] = map.ru || map[langs[0]];
+  return map;
+}
+
 // Localized heading for the "Solutions" nav/footer group.
 export const SOLUTIONS_LABEL = {
   en: 'Solutions', ru: 'Решения', uz: 'Yechimlar', 'uz-cyr': 'Ечимлар', kaa: 'Sheshimler',

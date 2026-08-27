@@ -52,10 +52,23 @@ export function generateMetadata({ params }) {
     authors: [{ name: 'RestOS', url: BASE }],
     creator: 'RestOS',
     publisher: 'RestOS',
-    robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        // Let Google show full text/video snippets and large image previews —
+        // the defaults are conservative and shrink your search appearance.
+        'max-snippet': -1,
+        'max-image-preview': 'large',
+        'max-video-preview': -1,
+      },
+    },
     alternates: {
       canonical: `${BASE}/${lang}`,
       languages: languageAlternates,
+      types: { 'application/rss+xml': `${BASE}/feed.xml` },
     },
     openGraph: {
       type: 'website',
@@ -77,6 +90,17 @@ export function generateMetadata({ params }) {
     },
   };
 }
+
+// Next 14 wants theme-color / viewport in their own export.
+export const viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#faf7f2' },
+    { media: '(prefers-color-scheme: dark)', color: '#0f2d24' },
+  ],
+  colorScheme: 'light',
+  width: 'device-width',
+  initialScale: 1,
+};
 
 const jsonLd = {
   '@context': 'https://schema.org',

@@ -11,23 +11,37 @@ export function pageMetadata({ lang, path = '', title, description, type = 'webs
     { 'x-default': `${BASE}/${DEFAULT_LOCALE}${path}` },
   );
   const url = `${BASE}/${l}${path}`;
+  // Without this every page shares the site-wide card. Generating one per page
+  // means a shared link shows that page's own title.
+  const ogImages = images || [
+    {
+      url: `${BASE}/api/og?${new URLSearchParams({
+        title,
+        excerpt: description || '',
+        color: 'b1',
+      })}`,
+      width: 1200,
+      height: 630,
+      alt: title,
+    },
+  ];
   return {
     title,
     description,
-    alternates: { canonical: url, languages },
+    alternates: { canonical: url, languages, types: { 'application/rss+xml': `${BASE}/feed.xml` } },
     openGraph: {
       type,
       url,
       title,
       description,
       locale: OG_LOCALE[l] || 'en_US',
-      ...(images ? { images } : {}),
+      images: ogImages,
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      ...(images ? { images } : {}),
+      images: ogImages,
     },
   };
 }
