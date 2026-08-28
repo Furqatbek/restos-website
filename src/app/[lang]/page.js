@@ -2,6 +2,7 @@ import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
 import LogoBand from '@/components/LogoBand';
 import ModulesShowcase from '@/components/ModulesShowcase';
+import Testimonials from '@/components/Testimonials';
 import Migration from '@/components/Migration';
 import Pricing from '@/components/Pricing';
 import FAQ from '@/components/FAQ';
@@ -52,6 +53,7 @@ export default function Home({ params }) {
       <Hero/>
       <LogoBand/>
       <ModulesShowcase/>
+      <Testimonials/>
       <Migration/>
       <Pricing/>
       <FAQ/>
