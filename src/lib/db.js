@@ -11,13 +11,17 @@ const DB_PATH = process.env.DATABASE_PATH || (() => {
 
 function initDb() {
   const db = new Database(DB_PATH);
-  db.pragma('journal_mode = WAL');
   // Next spins up several build/runtime workers that all open this file and
-  // run the schema + migrations at once. Two things keep that from throwing
-  // SQLITE_BUSY: wait rather than fail on a held lock, and take the write
-  // lock up front (BEGIN IMMEDIATE below) so one worker finishes the whole
-  // migration while the others queue instead of interleaving.
+  // run the schema + migrations at once. Three things keep that from throwing
+  // SQLITE_BUSY, and the order matters:
+  //   1. busy_timeout FIRST — switching to WAL is itself a write that needs a
+  //      lock, so setting it after would leave that pragma racing with a zero
+  //      timeout (this is exactly what kept failing the Docker build).
+  //   2. WAL, so readers do not block the writer.
+  //   3. BEGIN IMMEDIATE below, so one worker takes the write lock and
+  //      completes the whole migration while the others queue behind it.
   db.pragma('busy_timeout = 15000');
+  db.pragma('journal_mode = WAL');
 
   db.exec('BEGIN IMMEDIATE');
   try {
