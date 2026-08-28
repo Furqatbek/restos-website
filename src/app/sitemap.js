@@ -21,7 +21,6 @@ export default function sitemap() {
   const staticPaths = [
     { path: '',         changeFrequency: 'weekly',  priority: 1.0 },
     { path: '/about',   changeFrequency: 'monthly', priority: 0.8 },
-    { path: '/clients', changeFrequency: 'monthly', priority: 0.7 },
     { path: '/careers', changeFrequency: 'weekly',  priority: 0.7 },
     { path: '/blog',    changeFrequency: 'weekly',  priority: 0.9 },
   ];

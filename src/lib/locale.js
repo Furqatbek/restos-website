@@ -1,6 +1,8 @@
 // Single source of truth for the site's locales and URL helpers.
-export const LOCALES = ['en', 'ru', 'uz', 'uz-cyr', 'kaa'];
-export const DEFAULT_LOCALE = 'en';
+// Order matters: it drives the language switcher and hreflang output.
+// Buyers here read Uzbek and Russian; English is third.
+export const LOCALES = ['uz', 'ru', 'en', 'uz-cyr', 'kaa'];
+export const DEFAULT_LOCALE = 'uz';
 
 // BCP-47 values for the <html lang> attribute.
 export const HTML_LANG = {

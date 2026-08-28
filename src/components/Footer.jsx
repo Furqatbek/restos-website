@@ -21,21 +21,13 @@ export default function Footer() {
             <div className="logo"><span className="logo-mark">R</span>RestOS</div>
             <p>{f.tagline}</p>
             <div className="social-links">
-              <a href="https://instagram.com/restos" target="_blank" rel="noreferrer" aria-label="Instagram">
+              <a href="https://instagram.com/restos.uz" target="_blank" rel="noreferrer" aria-label="Instagram">
                 <Icon name="instagram" size={18}/>
               </a>
               <a href="https://t.me/restos" target="_blank" rel="noreferrer" aria-label="Telegram">
                 <Icon name="telegram" size={18}/>
               </a>
             </div>
-          </div>
-          <div>
-            <h4>{f.product}</h4>
-            <ul>
-              {f.productLinks.map((x, i) => (
-                <li key={i}><a href={`${home}#modules`}>{x}</a></li>
-              ))}
-            </ul>
           </div>
           {solutions.length > 0 && (
             <div>
@@ -51,17 +43,9 @@ export default function Footer() {
             <h4>{f.company}</h4>
             <ul>
               {f.companyLinks.map((x, i) => {
-                const hrefs = ['/about', '/clients', '/careers', '/blog'];
+                const hrefs = ['/about', '/careers', '/blog'];
                 return <li key={i}><Link href={localePath(lang, hrefs[i] || '/')}>{x}</Link></li>;
               })}
-            </ul>
-          </div>
-          <div>
-            <h4>{f.resources}</h4>
-            <ul>
-              {f.resourcesLinks.map((x, i) => (
-                <li key={i}><a href={`${home}#modules`}>{x}</a></li>
-              ))}
             </ul>
           </div>
           <div>

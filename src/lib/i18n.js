@@ -12,15 +12,12 @@ export const I18N = {
       cta_secondary:"Book demo",
       trust:"No card · Live in 48h · Your hardware"
     },
-    logos:"2,400+ venues. 14 countries.",
-    stats:{ title:"Numbers that matter.", subtitle:"RestOS customers, 2024–2025." },
     modules:{
       eyebrow:"12 modules. 1 system.",
       title:"All you need.",
       title_em:"Nothing you don't.",
       subtitle:"Turn on as you grow. One menu. One stock. One truth."
     },
-    case:{ eyebrow:"Customer", quote:"Four vendors. One week. Labour −11%, food cost −3pts. I sleep Sundays.", author:"Dilnoza Rakhimova", role:"Founder, Qahvoon" },
     pricing:{ eyebrow:"Pricing", title:"Cook prices. Not consultant prices.", subtitle:"Per venue. Unlimited staff.", monthly:"Monthly", annual:"Annual", save:"−20%", cta:"Start free", contact:"Talk to sales", features_in:"Everything in" },
     faq_title:"Questions.",
     cta_band:{ title:"Open in 48 hours.", subtitle:"One tablet. One menu import. You're live.", cta:"Start free" }
@@ -38,15 +35,12 @@ export const I18N = {
       cta_secondary:"Демо",
       trust:"Без карты · Запуск за 48 ч · На вашем железе"
     },
-    logos:"2 400+ заведений. 14 стран.",
-    stats:{ title:"Цифры, которые важны.", subtitle:"Клиенты RestOS, 2024–2025." },
     modules:{
       eyebrow:"12 модулей. 1 система.",
       title:"Всё, что нужно.",
       title_em:"И ничего лишнего.",
       subtitle:"Включайте по мере роста. Одно меню. Один склад. Одна правда."
     },
-    case:{ eyebrow:"Клиент", quote:"Четыре вендора. Одна неделя. ФОТ −11%, фудкост −3 пункта. Сплю по воскресеньям.", author:"Дилноза Рахимова", role:"Основатель, Qahvoon" },
     pricing:{ eyebrow:"Цены", title:"Цены повара. Не консультанта.", subtitle:"За заведение. Сотрудников — сколько нужно.", monthly:"Месяц", annual:"Год", save:"−20%", cta:"Попробовать", contact:"Связаться", features_in:"Всё из" },
     faq_title:"Вопросы.",
     cta_band:{ title:"Запуск за 48 часов.", subtitle:"Один планшет. Импорт меню. Вы работаете.", cta:"Начать" }
@@ -64,15 +58,12 @@ export const I18N = {
       cta_secondary:"Demo olish",
       trust:"Kartasiz · 48 soatda · O'z uskunangizda"
     },
-    logos:"2 400+ muassasa. 14 mamlakat.",
-    stats:{ title:"Muhim raqamlar.", subtitle:"RestOS mijozlari, 2024–2025." },
     modules:{
       eyebrow:"12 modul. 1 tizim.",
       title:"Hammasi bor.",
       title_em:"Ortiqchasi yo'q.",
       subtitle:"O'sib boring, modul qo'shing. Bitta menyu. Bitta ombor."
     },
-    case:{ eyebrow:"Mijoz", quote:"To'rt vendor. Bir hafta. Ish haqi −11%, fudkost −3 foiz. Yakshanba uxlayman.", author:"Dilnoza Rahimova", role:"Asoschisi, Qahvoon" },
     pricing:{ eyebrow:"Narxlar", title:"Oshpaz narxida. Konsultant emas.", subtitle:"Muassasaga. Xodimlar — cheksiz.", monthly:"Oylik", annual:"Yillik", save:"−20%", cta:"Bepul", contact:"Bog'lanish", features_in:"Barchasi:" },
     faq_title:"Savollar.",
     cta_band:{ title:"48 soatda ochilasiz.", subtitle:"Bir planshet. Menyu import. Ishlaysiz.", cta:"Boshlash" }
@@ -90,15 +81,12 @@ export const I18N = {
       cta_secondary:"Демо олиш",
       trust:"Картасиз · 48 соатда · Ўз ускунангизда"
     },
-    logos:"2 400+ муассаса. 14 мамлакат.",
-    stats:{ title:"Муҳим рақамлар.", subtitle:"RestOS мижозлари, 2024–2025." },
     modules:{
       eyebrow:"12 модул. 1 тизим.",
       title:"Ҳаммаси бор.",
       title_em:"Ортиқчаси йўқ.",
       subtitle:"Ўсиб боринг, модул қўшинг. Битта меню. Битта омбор."
     },
-    case:{ eyebrow:"Мижоз", quote:"Тўрт вендор. Бир ҳафта. Иш ҳақи −11%, фудкост −3 фоиз. Якшанба ухлайман.", author:"Дилноза Раҳимова", role:"Асосчиси, Qahvoon" },
     pricing:{ eyebrow:"Нархлар", title:"Ошпаз нархида. Консультант эмас.", subtitle:"Муассасага. Ходимлар — чексиз.", monthly:"Ойлик", annual:"Йиллик", save:"−20%", cta:"Бепул", contact:"Боғланиш", features_in:"Барчаси:" },
     faq_title:"Саволлар.",
     cta_band:{ title:"48 соатда очиласиз.", subtitle:"Бир планшет. Меню импорт. Ишлайсиз.", cta:"Бошлаш" }
@@ -116,15 +104,12 @@ export const I18N = {
       cta_secondary:"Demo alıw",
       trust:"Kartasız · 48 saatta · Óz úskenińizde"
     },
-    logos:"2 400+ muassasa. 14 mámleket.",
-    stats:{ title:"Áhmiyetli sanlar.", subtitle:"RestOS klientleri, 2024–2025." },
     modules:{
       eyebrow:"12 modul. 1 sistema.",
       title:"Hámmesi bar.",
       title_em:"Artıqshası joq.",
       subtitle:"Ósip barıń, modul qosıń. Bir menyu. Bir ambar."
     },
-    case:{ eyebrow:"Klient", quote:"Tórt vendor. Bir hápte. Jumıs haqı −11%, fudkost −3 procent. Yakshenbi uyqılayman.", author:"Dilnoza Raxımova", role:"Tiykarshısı, Qahvoon" },
     pricing:{ eyebrow:"Baha", title:"Ashpaz bahası. Konsultant emes.", subtitle:"Muassasaǵa. Xızmetkerler — sheksiz.", monthly:"Aylıq", annual:"Jıllıq", save:"−20%", cta:"Tegin", contact:"Baylanısıw", features_in:"Barlıǵı:" },
     faq_title:"Sorawlar.",
     cta_band:{ title:"48 saatta ashılasız.", subtitle:"Bir planshet. Menyu import. Islaysız.", cta:"Baslaw" }

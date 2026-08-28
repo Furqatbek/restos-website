@@ -223,8 +223,8 @@ export function landingAlternates(lang, slug) {
   const base = 'https://restos.uz';
   const map = {};
   for (const l of langs) map[l] = `${base}/${l}/${group[l]}`;
-  // Russian is the widest-reach version here, so it carries x-default.
-  map['x-default'] = map.ru || map[langs[0]];
+  // Uzbek is the site default, so it carries x-default where it exists.
+  map['x-default'] = map.uz || map.ru || map[langs[0]];
   return map;
 }
 
