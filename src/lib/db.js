@@ -74,6 +74,20 @@ function migrate(db) {
       status TEXT DEFAULT 'open',
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
+    CREATE TABLE IF NOT EXISTS foodcost_requests (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      phone TEXT NOT NULL,
+      venue TEXT,
+      contact TEXT,
+      venues_count TEXT,
+      current_system TEXT,
+      revenue_band TEXT,
+      lang TEXT DEFAULT 'uz',
+      source TEXT,
+      ip TEXT,
+      user_agent TEXT,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
     CREATE TABLE IF NOT EXISTS posts (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       title TEXT NOT NULL,

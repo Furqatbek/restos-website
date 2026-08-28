@@ -1,10 +1,18 @@
 import { tables, db } from '../helpers/db';
 
 describe('database — schema', () => {
-  const EXPECTED = ['demo_requests', 'newsletter', 'events', 'vacancies', 'posts'];
+  const EXPECTED = ['demo_requests', 'newsletter', 'events', 'vacancies', 'posts', 'foodcost_requests'];
 
-  test('all five tables exist', () => {
+  test('all expected tables exist', () => {
     expect(tables().sort()).toEqual(EXPECTED.sort());
+  });
+
+  test('foodcost_requests has required columns', () => {
+    const cols = db.prepare('PRAGMA table_info(foodcost_requests)').all().map(c => c.name);
+    expect(cols).toEqual(expect.arrayContaining([
+      'id', 'phone', 'venue', 'contact', 'venues_count',
+      'current_system', 'revenue_band', 'lang', 'created_at',
+    ]));
   });
 
   test('demo_requests has required columns', () => {

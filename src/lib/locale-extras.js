@@ -14,8 +14,14 @@ export const LOCALE = {
       finance:   { title:"Finance",            desc:"Live P&L. Payroll. VAT. Reconciled.",                     kpis:[{v:"MTD",l:"P&L"},{v:"auto",l:"recon"},{v:"VAT",l:"ready"}] },
       marketing: { title:"Marketing",          desc:"Bundles. Combos. Drops. Pushed everywhere.",              kpis:[{v:"1",l:"editor"},{v:"A/B",l:"tests"}] },
     },
+    migration:{ eyebrow:"Migration", title:"Already on iiko or r_keeper?",
+      body:"We move your menu, your stock, and your history. You keep your hardware. If it doesn't work, you go back — we'll help you do that too.",
+      cta:"Talk about migration" },
     pricing:{
       per:"/ venue / mo", custom:"Custom", popular:"Most popular",
+      setup:"Setup", setupPrice:"2 000 000 UZS", setupPer:"one-time",
+      setupNote:"Menu import, warehouse setup, staff training, migration from your old system.",
+      roi:"A venue doing 88M UZS/month at 38% food cost spends 33M on food. Two points of food cost is 660,000 UZS a month.",
       tiers:[
         { name:"Counter", desc:"Cafés, kiosks, single counter.",    features:["POS + KDS","QR menu + pay","Payments","Basic analytics","1 venue · unlimited staff","Email support"] },
         { name:"Service", desc:"Full-service with floor staff.",     features:["Everything in Counter","Waiter app","Delivery apps","Inventory + food-cost","Loyalty + CRM","Courier","24/7 support"] },
@@ -46,8 +52,14 @@ export const LOCALE = {
       finance:   { title:"Финансы",                desc:"P&L вживую. Зарплата. НДС. Сверка.",                   kpis:[{v:"MTD",l:"P&L"},{v:"авто",l:"сверка"},{v:"НДС",l:"готов"}] },
       marketing: { title:"Маркетинг",              desc:"Бандлы. Комбо. Дропы. Везде сразу.",                   kpis:[{v:"1",l:"редактор"},{v:"A/B",l:"тесты"}] },
     },
+    migration:{ eyebrow:"Переход", title:"Уже на iiko или r_keeper?",
+      body:"Переносим ваше меню, склад и историю. Оборудование остаётся ваше. Если не подойдёт — вернётесь обратно, и с этим мы тоже поможем.",
+      cta:"Обсудить переход" },
     pricing:{
       per:"/ точка / мес", custom:"По запросу", popular:"Популярное",
+      setup:"Внедрение", setupPrice:"2 000 000 сум", setupPer:"разово",
+      setupNote:"Импорт меню, настройка склада, обучение персонала, миграция со старой системы.",
+      roi:"Заведение с оборотом 88 млн сум/мес при фудкосте 38% тратит на продукты 33 млн. Два пункта фудкоста — это 660 000 сум в месяц.",
       tiers:[
         { name:"Касса",  desc:"Кофейни, киоски, одна касса.",   features:["POS + KDS","QR-меню и оплата","Платежи","Базовая аналитика","1 точка · персонал без лимита","Email-поддержка"] },
         { name:"Сервис", desc:"Ресторан с официантами.",         features:["Всё из «Касса»","Мобильный официант","Доставки","Склад + фудкост","Лояльность + CRM","Курьеры","24/7 поддержка"] },
@@ -78,8 +90,14 @@ export const LOCALE = {
       finance:   { title:"Moliya",              desc:"Jonli P&L. Maosh. QQS. Sverka.",                         kpis:[{v:"MTD",l:"P&L"},{v:"avto",l:"sverka"},{v:"QQS",l:"tayyor"}] },
       marketing: { title:"Marketing",           desc:"Bundle. Kombo. Drop. Hamma joyda.",                      kpis:[{v:"1",l:"muharrir"},{v:"A/B",l:"test"}] },
     },
+    migration:{ eyebrow:"O'tish", title:"iiko yoki r_keeper'dasizmi?",
+      body:"Menyu, ombor va tarixingizni ko'chiramiz. Uskunangiz o'zingizda qoladi. To'g'ri kelmasa — ortga qaytasiz, bunda ham yordam beramiz.",
+      cta:"O'tish haqida gaplashamiz" },
     pricing:{
       per:"/ muassasa / oy", custom:"Kelishuv", popular:"Eng mashhur",
+      setup:"Ishga tushirish", setupPrice:"2 000 000 so'm", setupPer:"bir marta",
+      setupNote:"Menyu importi, ombor sozlash, xodimlarni o'qitish, eski tizimdan ko'chirish.",
+      roi:"Oyiga 88 mln so'm aylanmasi va 38% fudkostli muassasa mahsulotga 33 mln sarflaydi. Fudkostning ikki punkti — oyiga 660 000 so'm.",
       tiers:[
         { name:"Kassa",  desc:"Kafe, kiosk, bitta kassa.",       features:["POS + KDS","QR menyu + to'lov","To'lovlar","Bazaviy analitika","1 nuqta · cheksiz xodim","Email qo'llab-quvvat."] },
         { name:"Servis", desc:"Ofitsiantli restoran.",            features:["«Kassa»-dagi barchasi","Ofitsiant ilovasi","Yetkazuvchilar","Ombor + fudkost","Loyallik + CRM","Kuryer","24/7 qo'llab-quvvat."] },
@@ -110,8 +128,14 @@ export const LOCALE = {
       finance:   { title:"Молия",                 desc:"Жонли P&L. Маош. ҚҚС. Сверка.",                       kpis:[{v:"MTD",l:"P&L"},{v:"авто",l:"сверка"},{v:"ҚҚС",l:"тайёр"}] },
       marketing: { title:"Маркетинг",             desc:"Бандл. Комбо. Дроп. Ҳамма жойда.",                    kpis:[{v:"1",l:"муҳаррир"},{v:"A/B",l:"тест"}] },
     },
+    migration:{ eyebrow:"Ўтиш", title:"iiko ёки r_keeper'дасизми?",
+      body:"Меню, омбор ва тарихингизни кўчирамиз. Ускунангиз ўзингизда қолади. Тўғри келмаса — ортга қайтасиз, бунда ҳам ёрдам берамиз.",
+      cta:"Ўтиш ҳақида гаплашамиз" },
     pricing:{
       per:"/ муассаса / ой", custom:"Келишув", popular:"Энг машҳур",
+      setup:"Ишга тушириш", setupPrice:"2 000 000 сўм", setupPer:"бир марта",
+      setupNote:"Меню импорти, омбор созлаш, ходимларни ўқитиш, эски тизимдан кўчириш.",
+      roi:"Ойига 88 млн сўм айланмаси ва 38% фудкостли муассаса маҳсулотга 33 млн сарфлайди. Фудкостнинг икки пункти — ойига 660 000 сўм.",
       tiers:[
         { name:"Касса",  desc:"Кафе, киоск, битта касса.",      features:["POS + KDS","QR меню + тўлов","Тўловлар","Базавий аналитика","1 нуқта · чексиз ходим","Email қўллаб-қувват."] },
         { name:"Сервис", desc:"Официантли ресторан.",            features:["«Касса»-даги барчаси","Официант иловаси","Етказувчилар","Омбор + фудкост","Лояллик + CRM","Курьер","24/7 қўллаб-қувват."] },
@@ -142,8 +166,14 @@ export const LOCALE = {
       finance:   { title:"Qarjı",                desc:"Janlı P&L. Aylıq. QQS. Sverka.",                       kpis:[{v:"MTD",l:"P&L"},{v:"avto",l:"sverka"},{v:"QQS",l:"tayar"}] },
       marketing: { title:"Marketing",            desc:"Bandle. Kombo. Drop. Hámme jerde.",                     kpis:[{v:"1",l:"redaktor"},{v:"A/B",l:"test"}] },
     },
+    migration:{ eyebrow:"Ótiw", title:"iiko yamasa r_keeper'desiz be?",
+      body:"Menyu, ambar hám tariyxıńızdı kóshiremiz. Úskeneńiz ózińizde qaladı. Kelispese — keri qaytasız, buǵan da járdem beremiz.",
+      cta:"Ótiw haqqında sóylesemiz" },
     pricing:{
       per:"/ muassasa / ay", custom:"Kelisim", popular:"Eń ataqlı",
+      setup:"Iske túsiriw", setupPrice:"2 000 000 so'm", setupPer:"bir márte",
+      setupNote:"Menyu importı, ambar sazlaw, xızmetkerlerdi oqıtıw, eski sistemadan kóshiriw.",
+      roi:"Ayına 88 mln so'm aylanbalı hám 38% fudkostlı orın ónimge 33 mln jumsaydı. Fudkosttıń eki punkti — ayına 660 000 so'm.",
       tiers:[
         { name:"Kassa",  desc:"Kafe, kiosk, bir kassa.",         features:["POS + KDS","QR menyu + tólem","Tólemler","Bazalıq analitika","1 orın · sheksiz xızmetker","Email qollaw"] },
         { name:"Servis", desc:"Ofitsianttı restoran.",            features:["«Kassa»-daǵı hámmesi","Ofitsiant ilovası","Jetkeriwshiler","Ambar + fudkost","Loyallıq + CRM","Kuryer","24/7 qollaw"] },

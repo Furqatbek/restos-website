@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { useLang, useOpenDemo, useDemoOpen } from '@/context/AppContext';
+import { useLang, useOpenDemo, useDemoOpen, useOpenFoodCost } from '@/context/AppContext';
 import { I18N } from '@/lib/i18n';
 import { localePath, isLocale } from '@/lib/locale';
 import { landingList, SOLUTIONS_LABEL } from '@/lib/landing-pages';
@@ -20,6 +20,7 @@ export default function Nav({ activePage = 'home' }) {
   const lang = useLang();
   const { setLang } = useDemoOpen();
   const openDemo = useOpenDemo();
+  const openFoodCost = useOpenFoodCost();
   const t = I18N[lang] || I18N.en;
   const [open, setOpen] = useState(false);
   const [solOpen, setSolOpen] = useState(false);
@@ -100,7 +101,7 @@ export default function Nav({ activePage = 'home' }) {
             )}
           </button>
           <button className="btn btn-outline" onClick={openDemo}>{t.nav.demo}</button>
-          <button className="btn btn-primary" onClick={openDemo}>{t.nav.trial}</button>
+          <button className="btn btn-primary" onClick={openFoodCost}>{t.nav.foodcost}</button>
         </div>
       </div>
     </nav>

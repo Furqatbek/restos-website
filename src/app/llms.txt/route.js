@@ -61,7 +61,7 @@ export function GET() {
 - Works offline: the POS keeps selling without internet and syncs when the connection returns.
 - Delivery integrations: Yandex Eats, Wolt, Glovo, Uber Eats and regional aggregators in one inbox.
 - Languages: Russian, Uzbek (Latin), Uzbek (Cyrillic), Karakalpak, English.
-- Contact: +998 94 114 3232 · https://t.me/restos · https://instagram.com/restos.uz
+- Contact: +998 94 114 3232 · https://t.me/restos_blog · https://instagram.com/restos.uz
 
 ## Site structure
 

@@ -4,10 +4,8 @@
 // names twelve times, which reads as padding around thin content — and with
 // three customers, honesty is the stronger signal.
 //
-// NOTE: using these names publicly requires written permission from each
-// venue (CUSTOMER_NAMES_APPROVED in the rebuild brief). Remove any name that
-// has not been approved.
-const VENUES = ['Qahvoon', "Jangirov's", 'Mayami'];
+// Names published with the owner's written permission (confirmed 2026-08-28).
+const VENUES = ["Jangirov's", 'Qahvoon', 'LaCasa', 'Mayami Club'];
 
 export default function LogoBand() {
   return (

@@ -24,7 +24,7 @@ export default function Footer() {
               <a href="https://instagram.com/restos.uz" target="_blank" rel="noreferrer" aria-label="Instagram">
                 <Icon name="instagram" size={18}/>
               </a>
-              <a href="https://t.me/restos" target="_blank" rel="noreferrer" aria-label="Telegram">
+              <a href="https://t.me/restos_blog" target="_blank" rel="noreferrer" aria-label="Telegram">
                 <Icon name="telegram" size={18}/>
               </a>
             </div>

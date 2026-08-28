@@ -2,6 +2,7 @@ import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
 import LogoBand from '@/components/LogoBand';
 import ModulesShowcase from '@/components/ModulesShowcase';
+import Migration from '@/components/Migration';
 import Pricing from '@/components/Pricing';
 import FAQ from '@/components/FAQ';
 import CtaBand from '@/components/CtaBand';
@@ -51,6 +52,7 @@ export default function Home({ params }) {
       <Hero/>
       <LogoBand/>
       <ModulesShowcase/>
+      <Migration/>
       <Pricing/>
       <FAQ/>
       <CtaBand/>

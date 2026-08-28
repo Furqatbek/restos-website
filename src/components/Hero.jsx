@@ -1,5 +1,5 @@
 'use client';
-import { useLang, useOpenDemo } from '@/context/AppContext';
+import { useLang, useOpenDemo, useOpenFoodCost } from '@/context/AppContext';
 import { I18N } from '@/lib/i18n';
 import { LOCALE } from '@/lib/locale-extras';
 import Icon from './Icon';
@@ -9,6 +9,7 @@ const iconMap = { pos: 'pos', waiter: 'waiter', self: 'self', delivery: 'deliver
 export default function Hero() {
   const lang = useLang();
   const openDemo = useOpenDemo();
+  const openFoodCost = useOpenFoodCost();
   const t = I18N[lang] || I18N.en;
   const L = LOCALE[lang] || LOCALE.en;
 
@@ -39,7 +40,7 @@ export default function Hero() {
             </h1>
             <p className="hero-sub">{t.hero.subtitle}</p>
             <div className="hero-ctas">
-              <button className="btn btn-primary btn-lg" onClick={openDemo}>
+              <button className="btn btn-primary btn-lg" onClick={openFoodCost}>
                 {t.hero.cta_primary} <Icon name="arrow" size={14}/>
               </button>
               <button className="btn btn-outline btn-lg" onClick={openDemo}>
