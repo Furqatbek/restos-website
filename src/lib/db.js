@@ -12,9 +12,26 @@ const DB_PATH = process.env.DATABASE_PATH || (() => {
 function initDb() {
   const db = new Database(DB_PATH);
   db.pragma('journal_mode = WAL');
-  // Wait for a lock instead of throwing SQLITE_BUSY — avoids "database is
-  // locked" when multiple Next build/runtime workers open the DB at once.
-  db.pragma('busy_timeout = 5000');
+  // Next spins up several build/runtime workers that all open this file and
+  // run the schema + migrations at once. Two things keep that from throwing
+  // SQLITE_BUSY: wait rather than fail on a held lock, and take the write
+  // lock up front (BEGIN IMMEDIATE below) so one worker finishes the whole
+  // migration while the others queue instead of interleaving.
+  db.pragma('busy_timeout = 15000');
+
+  db.exec('BEGIN IMMEDIATE');
+  try {
+    migrate(db);
+    db.exec('COMMIT');
+  } catch (err) {
+    db.exec('ROLLBACK');
+    throw err;
+  }
+
+  return db;
+}
+
+function migrate(db) {
   db.exec(`
     CREATE TABLE IF NOT EXISTS demo_requests (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -100,8 +117,6 @@ function initDb() {
       setSlug.run(slug, p.id);
     }
   }
-
-  return db;
 }
 
 // Singleton to survive HMR in development

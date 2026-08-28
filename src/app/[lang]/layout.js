@@ -52,6 +52,18 @@ export function generateMetadata({ params }) {
     authors: [{ name: 'RestOS', url: BASE }],
     creator: 'RestOS',
     publisher: 'RestOS',
+    // Site-ownership verification. Set the env vars and redeploy — no code
+    // change needed. Yandex matters as much as Google in this market.
+    //   GOOGLE_SITE_VERIFICATION=...   (Search Console > HTML tag)
+    //   YANDEX_VERIFICATION=...        (Yandex Webmaster > Meta tag)
+    verification: {
+      ...(process.env.GOOGLE_SITE_VERIFICATION
+        ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+        : {}),
+      ...(process.env.YANDEX_VERIFICATION
+        ? { yandex: process.env.YANDEX_VERIFICATION }
+        : {}),
+    },
     robots: {
       index: true,
       follow: true,

@@ -25,6 +25,24 @@ function canonicalLang(post) {
   return isLocale(post.lang) ? post.lang : DEFAULT_LOCALE;
 }
 
+// Other posts in the same language, same category first. Without this every
+// post is a dead end: a crawler that lands on one has nowhere to go, and no
+// authority flows between articles.
+function relatedPosts(post) {
+  try {
+    return db
+      .prepare(
+        `SELECT id, title, slug, category, glyph, color, read_time FROM posts
+         WHERE status = 'published' AND lang = ? AND id != ? AND slug IS NOT NULL
+         ORDER BY (category = ?) DESC, COALESCE(published_at, created_at) DESC
+         LIMIT 3`
+      )
+      .all(post.lang, post.id, post.category || '');
+  } catch (_) {
+    return [];
+  }
+}
+
 function metaDescription(post) {
   if (post.meta_description?.trim()) return post.meta_description.trim();
   if (post.excerpt?.trim()) return post.excerpt.trim();
@@ -38,6 +56,11 @@ function metaDescription(post) {
   }
   return [post.category, post.title].filter(Boolean).join(' — ') || post.title;
 }
+
+const MORE_LABEL = {
+  en: 'Keep reading', ru: 'Читать дальше', uz: 'Yana o‘qing',
+  'uz-cyr': 'Яна ўқинг', kaa: 'Jáne oqıń',
+};
 
 const RELATED_LABEL = {
   en: 'Related solution', ru: 'Решение по теме', uz: 'Mavzu bo‘yicha yechim',
@@ -89,6 +112,7 @@ export default function BlogPost({ params }) {
   const cLang = canonicalLang(post);
   const canonical = `${BASE}/${cLang}/blog/${post.slug}`;
   const related = relatedLanding(cLang, post);
+  const more = relatedPosts(post);
 
   const bodyHtml = renderMarkdown(post.body);
   const date = post.published_at
@@ -164,6 +188,26 @@ export default function BlogPost({ params }) {
               <span className="post-related-label">{RELATED_LABEL[cLang] || RELATED_LABEL.en}</span>
               <span className="post-related-title">{related.h1} →</span>
             </Link>
+          )}
+
+          {more.length > 0 && (
+            <section className="post-more">
+              <h2>{MORE_LABEL[cLang] || MORE_LABEL.en}</h2>
+              <div className="post-more-grid">
+                {more.map((p) => (
+                  <Link key={p.id} className="blog-card" href={localePath(cLang, `/blog/${p.slug}`)}>
+                    <div className={`pthumb ${p.color}`}>
+                      <div className="glyph">{p.glyph}</div>
+                    </div>
+                    <div className="pbody">
+                      <div className="pcat">{p.category}</div>
+                      <h4>{p.title}</h4>
+                      <div className="pmeta">{p.read_time} min</div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
           )}
         </div>
       </article>

@@ -24,15 +24,16 @@ export function generateMetadata({ params }) {
   });
 }
 
-// The listing itself is rendered client-side, so the crawler-facing summary of
-// "what is on this page" has to come from structured data.
+// Read the listing on the server so every post link ships in the HTML.
 function listingPosts(lang) {
   try {
     return db
       .prepare(
-        `SELECT title, slug, published_at, created_at FROM posts
+        `SELECT id, title, slug, excerpt, category, glyph, color, read_time,
+                featured, published_at, created_at
+         FROM posts
          WHERE status = 'published' AND lang = ? AND slug IS NOT NULL
-         ORDER BY COALESCE(published_at, created_at) DESC LIMIT 25`
+         ORDER BY COALESCE(published_at, created_at) DESC LIMIT 50`
       )
       .all(lang);
   } catch (_) {
@@ -43,6 +44,8 @@ function listingPosts(lang) {
 export default function Blog({ params }) {
   const lang = isLocale(params.lang) ? params.lang : DEFAULT_LOCALE;
   const posts = listingPosts(lang);
+  const featured = posts.find((p) => p.featured) || null;
+  const rest = posts.filter((p) => !p.featured);
 
   const blogLd = {
     '@context': 'https://schema.org',
@@ -74,7 +77,7 @@ export default function Blog({ params }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <Nav activePage="blog"/>
-      <BlogContent/>
+      <BlogContent initialPosts={rest} initialFeatured={featured} initialLang={lang} />
       <Footer/>
     </>
   );
