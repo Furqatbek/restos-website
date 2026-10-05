@@ -94,4 +94,15 @@ describe('pricing ROI claim', () => {
       expect(roi).not.toMatch(/660/);   // the 2%-of-food-spend error
     }
   });
+
+  it('states the payback in every locale, naming that tier as its card does', () => {
+    for (const lang of LOCALES) {
+      const payback = LOCALE[lang].pricing.payback;
+      expect(typeof payback).toBe('string');
+      expect(payback).toMatch(/9[.,]2/);   // year-one cost
+      expect(payback).toMatch(/2[.,]3/);   // the multiple
+      // The tier named in the line must be the tier priced at 600,000 above it.
+      expect(payback).toContain(LOCALE[lang].pricing.tiers[1].name);
+    }
+  });
 });

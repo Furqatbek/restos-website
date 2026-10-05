@@ -75,6 +75,9 @@ export default function Pricing() {
         </div>
         <p className="pricing-note">{L.pricing.setupNote}</p>
         <p className="pricing-roi">{L.pricing.roi}</p>
+        {/* The conclusion the ROI figure is there to support: what a year costs
+            against what it saves. Shown as arithmetic, not as a bare multiple. */}
+        <p className="pricing-payback">{L.pricing.payback}</p>
       </div>
     </section>
   );
