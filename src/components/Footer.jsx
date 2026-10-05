@@ -7,7 +7,8 @@ import { landingList, SOLUTIONS_LABEL } from '@/lib/landing-pages';
 import Icon from './Icon';
 
 const TELEGRAM_CONTACT = 'furqaty';
-const DEV_SITE = 'istech.uz';
+const DEV_SITE_URL = 'https://www.istech.uz';
+const DEV_SITE_LABEL = 'istech.uz';
 
 // The credit line is localised, and the word order differs per language
 // (Uzbek puts the studio first), so the string carries {heart} and {istech}
@@ -20,7 +21,7 @@ function madeBy(template) {
     }
     if (part === '{istech}') {
       return (
-        <a href={`https://${DEV_SITE}`} target="_blank" rel="noreferrer" key={i}>{DEV_SITE}</a>
+        <a href={DEV_SITE_URL} target="_blank" rel="noreferrer" key={i}>{DEV_SITE_LABEL}</a>
       );
     }
     const text = part.trim();
