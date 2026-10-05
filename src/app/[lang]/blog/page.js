@@ -3,6 +3,7 @@ import BlogContent from '@/components/BlogContent';
 import Footer from '@/components/Footer';
 import db from '@/lib/db';
 import { pageMetadata } from '@/lib/seo';
+import { pageMeta } from '@/lib/page-meta';
 import { I18N } from '@/lib/i18n';
 import { isLocale, DEFAULT_LOCALE } from '@/lib/locale';
 
@@ -19,8 +20,7 @@ export function generateMetadata({ params }) {
     lang,
     path: '/blog',
     title: t.nav.blog,
-    description:
-      'Insights on restaurant operations, hospitality technology, and the business of food service from the RestOS team.',
+    description: pageMeta(lang, 'blog'),
   });
 }
 

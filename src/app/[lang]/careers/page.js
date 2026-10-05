@@ -2,6 +2,7 @@ import Nav from '@/components/Nav';
 import CareersContent from '@/components/CareersContent';
 import Footer from '@/components/Footer';
 import { pageMetadata } from '@/lib/seo';
+import { pageMeta } from '@/lib/page-meta';
 import { I18N } from '@/lib/i18n';
 import { isLocale, DEFAULT_LOCALE } from '@/lib/locale';
 
@@ -12,8 +13,7 @@ export function generateMetadata({ params }) {
     lang,
     path: '/careers',
     title: t.nav.vacancy,
-    description:
-      'Join the team building the future of restaurant technology. Open roles at RestOS in engineering, product, and sales.',
+    description: pageMeta(lang, 'careers'),
   });
 }
 

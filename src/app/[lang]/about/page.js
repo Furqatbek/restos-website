@@ -2,6 +2,7 @@ import Nav from '@/components/Nav';
 import AboutContent from '@/components/AboutContent';
 import Footer from '@/components/Footer';
 import { pageMetadata } from '@/lib/seo';
+import { pageMeta } from '@/lib/page-meta';
 import { I18N } from '@/lib/i18n';
 import { isLocale, DEFAULT_LOCALE } from '@/lib/locale';
 
@@ -12,8 +13,7 @@ export function generateMetadata({ params }) {
     lang,
     path: '/about',
     title: t.nav.about,
-    description:
-      'RestOS was built in Tashkent in 2026 by Boris Vasylev (CEO) and Furqat Saydamadov (CTO). Furqat wrote the system, installs it on site, and answers support himself.',
+    description: pageMeta(lang, 'about'),
   });
 }
 

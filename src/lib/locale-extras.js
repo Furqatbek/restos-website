@@ -19,7 +19,7 @@ export const LOCALE = {
       cta:"Talk about migration" },
     pricing:{
       per:"/ venue / mo", custom:"Custom", popular:"Most popular",
-      setup:"Setup", setupPrice:"2 000 000 UZS", setupPer:"one-time",
+      setup:"Setup", setupCurrency:"UZS", setupPer:"one-time", billedAnnually:"billed annually",
       setupNote:"Menu import, warehouse setup, staff training, migration from your old system.",
       roi:"A venue doing 88M UZS/month at 38% food cost spends 33.4M on food. Bring food cost to 36% and that is 1.76M UZS a month. 21M a year.",
       payback:"Year one on Service: 9.2M UZS — 600,000 × 12 plus the 2M setup. Against the 21M above, that is 2.3× back.",
@@ -59,7 +59,7 @@ export const LOCALE = {
       cta:"Обсудить переход" },
     pricing:{
       per:"/ точка / мес", custom:"По запросу", popular:"Популярное",
-      setup:"Внедрение", setupPrice:"2 000 000 сум", setupPer:"разово",
+      setup:"Внедрение", setupCurrency:"сум", setupPer:"разово", billedAnnually:"при оплате за год",
       setupNote:"Импорт меню, настройка склада, обучение персонала, миграция со старой системы.",
       roi:"Заведение с оборотом 88 млн сум/мес при фудкосте 38% тратит на продукты 33,4 млн. Снизьте фудкост до 36% — это 1,76 млн сум в месяц. 21 млн в год.",
       payback:"Первый год на «Сервис»: 9,2 млн сум — 600 000 × 12 плюс 2 млн внедрения. Против 21 млн выше это 2,3×.",
@@ -99,7 +99,7 @@ export const LOCALE = {
       cta:"O'tish haqida gaplashamiz" },
     pricing:{
       per:"/ muassasa / oy", custom:"Kelishuv", popular:"Eng mashhur",
-      setup:"Ishga tushirish", setupPrice:"2 000 000 so'm", setupPer:"bir marta",
+      setup:"Ishga tushirish", setupCurrency:"so'm", setupPer:"bir marta", billedAnnually:"yillik to'lovda",
       setupNote:"Menyu importi, ombor sozlash, xodimlarni o'qitish, eski tizimdan ko'chirish.",
       roi:"Oyiga 88 mln so'm aylanmasi va 38% fudkostli muassasa mahsulotga 33,4 mln sarflaydi. Fudkostni 36% ga tushirsangiz — oyiga 1,76 mln so'm. Yiliga 21 mln.",
       payback:"Servis tarifida birinchi yil: 9,2 mln so'm — 600 000 × 12 va 2 mln o'rnatish. Yuqoridagi 21 mln ga nisbatan bu 2,3×.",
@@ -139,7 +139,7 @@ export const LOCALE = {
       cta:"Ўтиш ҳақида гаплашамиз" },
     pricing:{
       per:"/ муассаса / ой", custom:"Келишув", popular:"Энг машҳур",
-      setup:"Ишга тушириш", setupPrice:"2 000 000 сўм", setupPer:"бир марта",
+      setup:"Ишга тушириш", setupCurrency:"сўм", setupPer:"бир марта", billedAnnually:"йиллик тўловда",
       setupNote:"Меню импорти, омбор созлаш, ходимларни ўқитиш, эски тизимдан кўчириш.",
       roi:"Ойига 88 млн сўм айланмаси ва 38% фудкостли муассаса маҳсулотга 33,4 млн сарфлайди. Фудкостни 36% га туширсангиз — ойига 1,76 млн сўм. Йилига 21 млн.",
       payback:"Сервис тарифида биринчи йил: 9,2 млн сўм — 600 000 × 12 ва 2 млн ўрнатиш. Юқоридаги 21 млн га нисбатан бу 2,3×.",
@@ -179,7 +179,7 @@ export const LOCALE = {
       cta:"Ótiw haqqında sóylesemiz" },
     pricing:{
       per:"/ muassasa / ay", custom:"Kelisim", popular:"Eń ataqlı",
-      setup:"Iske túsiriw", setupPrice:"2 000 000 so'm", setupPer:"bir márte",
+      setup:"Iske túsiriw", setupCurrency:"so'm", setupPer:"bir márte", billedAnnually:"jıllıq tólemde",
       setupNote:"Menyu importı, ambar sazlaw, xızmetkerlerdi oqıtıw, eski sistemadan kóshiriw.",
       roi:"Ayına 88 mln so'm aylanbalı hám 38% fudkostlı orın ónimge 33,4 mln jumsaydı. Fudkostı 36% ke túsirseńiz — ayına 1,76 mln so'm. Jılına 21 mln.",
       payback:"Servis tarifinde birinshi jıl: 9,2 mln so'm — 600 000 × 12 hám 2 mln ornatıw. Joqarıdaǵı 21 mln ǵa salıstırǵanda bul 2,3×.",

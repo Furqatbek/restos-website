@@ -12,12 +12,32 @@ export const MONTHLY_UZS = {
 };
 
 // One-time implementation fee: menu import, warehouse setup, staff training.
-export const SETUP_UZS = 2_000_000;
+// Scaled per tier — a flat 2M was 6.7x the entry tier's monthly price, which
+// made the cheap tier the expensive one to start. The top tier is scoped per
+// venue count, so it is quoted rather than listed.
+export const SETUP_UZS = {
+  counter: 1_000_000,
+  service: 2_000_000,
+};
+
+// Annual prepay discount. Twelve months of cash up front is worth more to a
+// two-person company than the discount costs it.
+export const ANNUAL_DISCOUNT = 0.15;
+
+// The per-month rate when a year is paid up front.
+export function annualMonthlyUZS(tier) {
+  return Math.round(MONTHLY_UZS[tier] * (1 - ANNUAL_DISCOUNT));
+}
+
+// What a year up front costs in total.
+export function annualTotalUZS(tier) {
+  return annualMonthlyUZS(tier) * 12;
+}
 
 // What a venue pays in its first year on a tier, which is the figure the
 // payback line compares against the food-cost saving.
 export function yearOneCost(tier = 'service') {
-  return MONTHLY_UZS[tier] * 12 + SETUP_UZS;
+  return MONTHLY_UZS[tier] * 12 + SETUP_UZS[tier];
 }
 
 // Space-grouped, matching how the cards and the copy render a sum: 600000 ->
@@ -45,10 +65,13 @@ export const priceRangeLabel = () =>
 // The sentence both the AggregateOffer description and llms.txt need: what the
 // monthly price buys and what the one-time fee is.
 export const setupFeeSentence = () =>
-  `Per venue, per month, plus a one-time ${commaUZS(SETUP_UZS)} UZS setup fee ` +
-  '(menu import, warehouse setup, staff training, migration). Custom pricing for groups.';
+  `Per venue, per month, plus a one-time setup fee from ${commaUZS(SETUP_UZS.counter)} UZS ` +
+  '(menu import, warehouse setup, staff training, migration). ' +
+  `${Math.round(ANNUAL_DISCOUNT * 100)}% off on annual prepay. Custom pricing for groups.`;
 
 // The llms.txt pricing fact, in the same prose style as the rest of that file.
 export const llmsPricingLine = () =>
   `from ${commaUZS(MONTHLY_UZS.counter)} UZS per venue per month to ` +
-  `${commaUZS(MONTHLY_UZS.service)} UZS`;
+  `${commaUZS(MONTHLY_UZS.service)} UZS, ` +
+  `${Math.round(ANNUAL_DISCOUNT * 100)}% off when a year is paid up front; ` +
+  `one-time setup from ${commaUZS(SETUP_UZS.counter)} UZS`;

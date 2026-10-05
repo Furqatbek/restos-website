@@ -4,10 +4,12 @@ import { CLIENTS_PAGE, clientsPageFor, testimonialsFor } from '@/lib/testimonial
 import fs from 'fs';
 import path from 'path';
 import {
-  MONTHLY_UZS, SETUP_UZS, yearOneCost, groupUZS, commaUZS,
-  offerLowPrice, offerHighPrice, priceRangeLabel, setupFeeSentence, llmsPricingLine,
+  MONTHLY_UZS, SETUP_UZS, ANNUAL_DISCOUNT, annualMonthlyUZS, yearOneCost,
+  groupUZS, commaUZS, offerLowPrice, offerHighPrice, priceRangeLabel,
+  setupFeeSentence, llmsPricingLine,
 } from '@/lib/pricing';
 import { I18N } from '@/lib/i18n';
+import { pageMeta } from '@/lib/page-meta';
 
 describe('footer credit line', () => {
   it('is present for every locale the site ships', () => {
@@ -164,14 +166,35 @@ describe('published price, everywhere it is stated', () => {
   it('builds the prose figures from the same numbers', () => {
     expect(commaUZS(300_000)).toBe('300,000');
     expect(commaUZS(2_000_000)).toBe('2,000,000');
-    expect(setupFeeSentence()).toContain(commaUZS(SETUP_UZS));
+    expect(setupFeeSentence()).toContain(commaUZS(SETUP_UZS.counter));
     expect(llmsPricingLine()).toContain(commaUZS(MONTHLY_UZS.counter));
     expect(llmsPricingLine()).toContain(commaUZS(MONTHLY_UZS.service));
   });
 
-  it('keeps the year-one cost consistent with both tier prices', () => {
-    expect(yearOneCost('counter')).toBe(MONTHLY_UZS.counter * 12 + SETUP_UZS);
-    expect(yearOneCost('service')).toBe(MONTHLY_UZS.service * 12 + SETUP_UZS);
+  it('keeps the year-one cost consistent with each tier price and its setup fee', () => {
+    expect(yearOneCost('counter')).toBe(MONTHLY_UZS.counter * 12 + SETUP_UZS.counter);
+    expect(yearOneCost('service')).toBe(MONTHLY_UZS.service * 12 + SETUP_UZS.service);
+  });
+
+  it('scales the setup fee below the flat 2M that priced the entry tier out', () => {
+    expect(SETUP_UZS.counter).toBeLessThan(SETUP_UZS.service);
+    // The fee that made the cheap tier expensive to start: keep it under 4x
+    // the tier's own monthly price.
+    expect(SETUP_UZS.counter / MONTHLY_UZS.counter).toBeLessThanOrEqual(4);
+  });
+
+  it('prices annual prepay below monthly on every tier', () => {
+    for (const tier of Object.keys(MONTHLY_UZS)) {
+      expect(annualMonthlyUZS(tier)).toBeLessThan(MONTHLY_UZS[tier]);
+      expect(annualMonthlyUZS(tier)).toBe(Math.round(MONTHLY_UZS[tier] * (1 - ANNUAL_DISCOUNT)));
+    }
+  });
+
+  it('labels the discount with the rate actually applied', () => {
+    const pct = `${Math.round(ANNUAL_DISCOUNT * 100)}%`;
+    for (const lang of LOCALES) {
+      expect(I18N[lang].pricing.save).toContain(pct);
+    }
   });
 
   // Guard against someone pasting a price back in rather than importing it.
@@ -182,7 +205,7 @@ describe('published price, everywhere it is stated', () => {
       'src/app/llms.txt/route.js',
       'src/components/Pricing.jsx',
     ];
-    const owned = [MONTHLY_UZS.counter, MONTHLY_UZS.service, SETUP_UZS];
+    const owned = [...Object.values(MONTHLY_UZS), ...Object.values(SETUP_UZS)];
     for (const file of files) {
       const src = fs.readFileSync(path.join(process.cwd(), file), 'utf8');
       for (const n of owned) {
@@ -190,6 +213,27 @@ describe('published price, everywhere it is stated', () => {
         const pattern = new RegExp(String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '[\\s,]?'));
         expect({ file, n, hit: pattern.test(src) }).toEqual({ file, n, hit: false });
       }
+    }
+  });
+});
+
+describe('meta descriptions', () => {
+  it('exist for every page in every locale', () => {
+    for (const lang of LOCALES) {
+      for (const page of ['about', 'blog', 'careers']) {
+        const d = pageMeta(lang, page);
+        expect(typeof d).toBe('string');
+        expect(d.length).toBeGreaterThan(60);
+      }
+    }
+  });
+
+  it('are translated, not the English copied across', () => {
+    for (const page of ['about', 'blog', 'careers']) {
+      const all = LOCALES.map((l) => pageMeta(l, page));
+      expect(new Set(all).size).toBe(all.length);
+      // The Cyrillic locales must actually be Cyrillic.
+      for (const l of ['ru', 'uz-cyr']) expect(pageMeta(l, page)).toMatch(/[А-Яа-яЁёЎўҚқҒғҲҳ]/);
     }
   });
 });

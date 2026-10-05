@@ -18,9 +18,9 @@ export const I18N = {
       title_em:"Nothing you don't.",
       subtitle:"Turn on as you grow. One menu. One stock. One truth."
     },
-    pricing:{ eyebrow:"Pricing", title:"Cook prices. Not consultant prices.", subtitle:"Per venue. Unlimited staff.", monthly:"Monthly", annual:"Annual", save:"−20%", cta:"Free food-cost check", contact:"Talk to sales", features_in:"Everything in" },
+    pricing:{ eyebrow:"Pricing", title:"Cook prices. Not consultant prices.", subtitle:"Per venue. Unlimited staff.", monthly:"Monthly", annual:"Annual", save:"−15%", cta:"Free food-cost check", contact:"Talk to sales", features_in:"Everything in" },
     faq_title:"Questions.",
-    cta_band:{ title:"Open in 48 hours.", subtitle:"Send last month's purchase numbers. In 10 minutes we show you where the money went.", cta:"Free food-cost check" }
+    cta_band:{ title:"Where is your money going?", subtitle:"Send last month's purchase numbers. In 10 minutes we show you where the money went.", cta:"Free food-cost check" }
   },
   ru: {
     siteTitle: "RestOS — Операционная система для современного гостеприимства",
@@ -41,9 +41,9 @@ export const I18N = {
       title_em:"И ничего лишнего.",
       subtitle:"Включайте по мере роста. Одно меню. Один склад. Одна правда."
     },
-    pricing:{ eyebrow:"Цены", title:"Цены повара. Не консультанта.", subtitle:"За заведение. Сотрудников — сколько нужно.", monthly:"Месяц", annual:"Год", save:"−20%", cta:"Разбор фудкоста", contact:"Связаться", features_in:"Всё из" },
+    pricing:{ eyebrow:"Цены", title:"Цены повара. Не консультанта.", subtitle:"За заведение. Сотрудников — сколько нужно.", monthly:"Месяц", annual:"Год", save:"−15%", cta:"Разбор фудкоста", contact:"Связаться", features_in:"Всё из" },
     faq_title:"Вопросы.",
-    cta_band:{ title:"Запуск за 48 часов.", subtitle:"Пришлите цифры закупок за прошлый месяц. За 10 минут покажем, куда ушли деньги.", cta:"Бесплатный разбор фудкоста" }
+    cta_band:{ title:"Куда уходят ваши деньги?", subtitle:"Пришлите цифры закупок за прошлый месяц. За 10 минут покажем, куда ушли деньги.", cta:"Бесплатный разбор фудкоста" }
   },
   uz: {
     siteTitle: "RestOS — Zamonaviy mehmondo'stlik uchun operatsion tizim",
@@ -64,9 +64,9 @@ export const I18N = {
       title_em:"Ortiqchasi yo'q.",
       subtitle:"O'sib boring, modul qo'shing. Bitta menyu. Bitta ombor."
     },
-    pricing:{ eyebrow:"Narxlar", title:"Oshpaz narxida. Konsultant emas.", subtitle:"Muassasaga. Xodimlar — cheksiz.", monthly:"Oylik", annual:"Yillik", save:"−20%", cta:"Food-cost tahlili", contact:"Bog'lanish", features_in:"Barchasi:" },
+    pricing:{ eyebrow:"Narxlar", title:"Oshpaz narxida. Konsultant emas.", subtitle:"Muassasaga. Xodimlar — cheksiz.", monthly:"Oylik", annual:"Yillik", save:"−15%", cta:"Food-cost tahlili", contact:"Bog'lanish", features_in:"Barchasi:" },
     faq_title:"Savollar.",
-    cta_band:{ title:"48 soatda ochilasiz.", subtitle:"O'tgan oy xarid raqamlarini yuboring. 10 daqiqada pul qayerga ketganini ko'rsatamiz.", cta:"Bepul food-cost tahlili" }
+    cta_band:{ title:"Pulingiz qayerga ketyapti?", subtitle:"O'tgan oy xarid raqamlarini yuboring. 10 daqiqada pul qayerga ketganini ko'rsatamiz.", cta:"Bepul food-cost tahlili" }
   },
   "uz-cyr": {
     siteTitle: "RestOS — Замонавий меҳмондўстлик учун операцион тизим",
@@ -87,9 +87,9 @@ export const I18N = {
       title_em:"Ортиқчаси йўқ.",
       subtitle:"Ўсиб боринг, модул қўшинг. Битта меню. Битта омбор."
     },
-    pricing:{ eyebrow:"Нархлар", title:"Ошпаз нархида. Консультант эмас.", subtitle:"Муассасага. Ходимлар — чексиз.", monthly:"Ойлик", annual:"Йиллик", save:"−20%", cta:"Food-cost таҳлили", contact:"Боғланиш", features_in:"Барчаси:" },
+    pricing:{ eyebrow:"Нархлар", title:"Ошпаз нархида. Консультант эмас.", subtitle:"Муассасага. Ходимлар — чексиз.", monthly:"Ойлик", annual:"Йиллик", save:"−15%", cta:"Food-cost таҳлили", contact:"Боғланиш", features_in:"Барчаси:" },
     faq_title:"Саволлар.",
-    cta_band:{ title:"48 соатда очиласиз.", subtitle:"Ўтган ой харид рақамларини юборинг. 10 дақиқада пул қаерга кетганини кўрсатамиз.", cta:"Бепул food-cost таҳлили" }
+    cta_band:{ title:"Пулингиз қаерга кетяпти?", subtitle:"Ўтган ой харид рақамларини юборинг. 10 дақиқада пул қаерга кетганини кўрсатамиз.", cta:"Бепул food-cost таҳлили" }
   },
   kaa: {
     siteTitle: "RestOS — Zamanagóy mehmandoslıq ushın operatsiyalıq sistema",
@@ -110,9 +110,9 @@ export const I18N = {
       title_em:"Artıqshası joq.",
       subtitle:"Ósip barıń, modul qosıń. Bir menyu. Bir ambar."
     },
-    pricing:{ eyebrow:"Baha", title:"Ashpaz bahası. Konsultant emes.", subtitle:"Muassasaǵa. Xızmetkerler — sheksiz.", monthly:"Aylıq", annual:"Jıllıq", save:"−20%", cta:"Food-cost analizi", contact:"Baylanısıw", features_in:"Barlıǵı:" },
+    pricing:{ eyebrow:"Baha", title:"Ashpaz bahası. Konsultant emes.", subtitle:"Muassasaǵa. Xızmetkerler — sheksiz.", monthly:"Aylıq", annual:"Jıllıq", save:"−15%", cta:"Food-cost analizi", contact:"Baylanısıw", features_in:"Barlıǵı:" },
     faq_title:"Sorawlar.",
-    cta_band:{ title:"48 saatta ashılasız.", subtitle:"Ótken aydıń satıp alıw sanların jiberiń. 10 minutta aqsha qayerge ketkenin kórsetemiz.", cta:"Tegin food-cost analizi" }
+    cta_band:{ title:"Aqshańız qayerge ketip atır?", subtitle:"Ótken aydıń satıp alıw sanların jiberiń. 10 minutta aqsha qayerge ketkenin kórsetemiz.", cta:"Tegin food-cost analizi" }
   }
 };
 

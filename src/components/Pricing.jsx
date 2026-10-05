@@ -1,8 +1,9 @@
 'use client';
+import { useState } from 'react';
 import { useLang, useOpenFoodCost } from '@/context/AppContext';
 import { I18N } from '@/lib/i18n';
 import { LOCALE } from '@/lib/locale-extras';
-import { MONTHLY_UZS, groupUZS } from '@/lib/pricing';
+import { MONTHLY_UZS, SETUP_UZS, annualMonthlyUZS, groupUZS } from '@/lib/pricing';
 import Icon from './Icon';
 
 export default function Pricing() {
@@ -11,12 +12,14 @@ export default function Pricing() {
   const t = I18N[lang] || I18N.en;
   const L = LOCALE[lang] || LOCALE.en;
 
-  // One price per tier, as approved. There is no annual rate published yet,
-  // so the monthly/annual toggle is gone rather than showing an invented
-  // discount — add it back when annual figures are confirmed.
+  // Annual is the confirmed rate now, so the toggle is back. Both figures are
+  // derived from the same constants the structured data and the ROI copy use.
+  const [annual, setAnnual] = useState(false);
+  const rate = (key) => (annual ? annualMonthlyUZS(key) : MONTHLY_UZS[key]);
+
   const prices = [
-    { price: MONTHLY_UZS.counter, variant: 'outline' },
-    { price: MONTHLY_UZS.service, variant: 'gold', featured: true },
+    { key: 'counter', price: rate('counter'), setup: SETUP_UZS.counter, variant: 'outline' },
+    { key: 'service', price: rate('service'), setup: SETUP_UZS.service, variant: 'gold', featured: true },
     { custom: true, variant: 'outline' },
   ];
   const tiers = L.pricing.tiers.map((tier, i) => ({
@@ -31,6 +34,14 @@ export default function Pricing() {
           <div className="eyebrow">{t.pricing.eyebrow}</div>
           <h2>{t.pricing.title}</h2>
           <p>{t.pricing.subtitle}</p>
+          <div className="pricing-toggle" role="group" aria-label={t.pricing.eyebrow}>
+            <button className={annual ? '' : 'active'} aria-pressed={!annual} onClick={() => setAnnual(false)}>
+              {t.pricing.monthly}
+            </button>
+            <button className={annual ? 'active' : ''} aria-pressed={annual} onClick={() => setAnnual(true)}>
+              {t.pricing.annual}<span className="save">{t.pricing.save}</span>
+            </button>
+          </div>
         </div>
         <div className="tiers">
           {tiers.map((tier) => (
@@ -43,8 +54,11 @@ export default function Pricing() {
               ) : (
                 <div className="price price-uzs">
                   <span className="amount">{groupUZS(tier.price)}</span>
-                  <span className="curr">UZS</span>
-                  <span className="per">{L.pricing.per}</span>
+                  <span className="curr">{L.pricing.setupCurrency}</span>
+                  <span className="per">
+                    {L.pricing.per}
+                    {annual && <em className="per-annual">{L.pricing.billedAnnually}</em>}
+                  </span>
                 </div>
               )}
               {/* The setup fee sits on the card on purpose: it is a
@@ -52,7 +66,9 @@ export default function Pricing() {
               <div className="tier-setup">
                 <span className="tier-setup-label">{L.pricing.setup}</span>
                 <span className="tier-setup-price">
-                  {L.pricing.setupPrice} <em>{L.pricing.setupPer}</em>
+                  {tier.setup
+                    ? <>{groupUZS(tier.setup)} {L.pricing.setupCurrency} <em>{L.pricing.setupPer}</em></>
+                    : <em>{L.pricing.custom}</em>}
                 </span>
               </div>
               <hr className="tier-divider"/>
