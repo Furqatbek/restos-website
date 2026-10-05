@@ -20,6 +20,7 @@
   --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --serif: "Instrument Serif", "Times New Roman", serif;
   --mono: "JetBrains Mono", ui-monospace, monospace;
+  --nav-h: 69px; /* .nav-inner height + .nav bottom border */
 }
 
 * { box-sizing: border-box; }
@@ -61,7 +62,47 @@ a { color: inherit; text-decoration: none; }
   .nav-links a, .solutions-switch { font-size: 13px; }
 }
 @media (max-width: 1000px) { .nav-inner { gap: 12px; } .nav-links { gap: 12px; } }
-@media (max-width: 900px) { .nav-links { display: none; } }
+
+/* MOBILE MENU */
+.nav-burger { display: none; width: 40px; height: 40px; flex: 0 0 auto; border-radius: 10px; border: 1px solid var(--line); align-items: center; justify-content: center; color: var(--forest); transition: background .15s ease, border-color .15s ease; }
+.nav-burger:hover { background: var(--cream-2); border-color: var(--line-strong); }
+.burger-lines { position: relative; display: block; width: 18px; height: 12px; }
+.burger-lines span { position: absolute; left: 0; width: 100%; height: 1.75px; border-radius: 2px; background: currentColor; transition: top .2s ease, transform .2s ease, opacity .12s ease; }
+.burger-lines span:nth-child(1) { top: 0; }
+.burger-lines span:nth-child(2) { top: 5px; }
+.burger-lines span:nth-child(3) { top: 10px; }
+.nav-burger[aria-expanded="true"] .burger-lines span:nth-child(1) { top: 5px; transform: rotate(45deg); }
+.nav-burger[aria-expanded="true"] .burger-lines span:nth-child(2) { opacity: 0; }
+.nav-burger[aria-expanded="true"] .burger-lines span:nth-child(3) { top: 5px; transform: rotate(-45deg); }
+
+/* The panel hangs off .nav, which is sticky and so already a containing block. */
+.mobile-menu { position: absolute; top: 100%; left: 0; right: 0; background: var(--cream); border-bottom: 1px solid var(--line); box-shadow: var(--shadow-md); padding: 10px 0 24px; max-height: calc(100dvh - var(--nav-h)); overflow-y: auto; overscroll-behavior: contain; animation: mm-in .18s ease; }
+@keyframes mm-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+/* Dims the page under the panel so a tap outside reads as "close". It sits
+   before .mobile-menu in the DOM, so the panel paints over it without
+   either needing a z-index inside the sticky bar's stacking context. */
+.mm-scrim { position: fixed; left: 0; right: 0; top: var(--nav-h); bottom: 0; background: rgba(15,45,36,0.38); backdrop-filter: blur(2px); animation: mm-fade .18s ease; }
+@keyframes mm-fade { from { opacity: 0; } to { opacity: 1; } }
+.mm-links { display: flex; flex-direction: column; padding: 0 32px; }
+.mm-link { padding: 14px 0; font-size: 17px; color: var(--forest); border-bottom: 1px solid var(--line); }
+.mm-link.active { font-weight: 600; }
+.mm-group { padding: 18px 32px 0; }
+.mm-group-label { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 8px; }
+.mm-sublink { display: block; padding: 9px 0; font-size: 15px; color: var(--ink-soft); }
+.mm-sublink:hover { color: var(--forest); }
+.mm-actions { display: flex; flex-direction: column; gap: 10px; padding: 22px 32px 0; max-width: 460px; }
+.mm-actions .btn { justify-content: center; }
+@media (max-width: 640px) { .mm-links, .mm-group, .mm-actions { padding-left: 20px; padding-right: 20px; } }
+
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-burger { display: inline-flex; }
+  /* The two CTAs move into the panel rather than overflowing the bar.
+     Scoped to .nav-right so it outranks `.btn { display: inline-flex }`,
+     which is declared further down the file at equal specificity. */
+  .nav-right .nav-cta { display: none; }
+}
+@media (min-width: 901px) { .mobile-menu, .mm-scrim { display: none; } }
 
 /* BUTTONS */
 .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; font-size: 14px; font-weight: 500; transition: transform .15s ease, background .15s ease, border-color .15s ease, box-shadow .2s ease; white-space: nowrap; }

@@ -1,7 +1,7 @@
 export const I18N = {
   en: {
     siteTitle: "RestOS — The operating system for modern hospitality",
-    nav: { product:"Product", modules:"Modules", pricing:"Pricing", customers:"Customers", resources:"Resources", signin:"Sign in", foodcost:"Free food-cost check", demo:"Book demo", about:"About", clients:"Clients", vacancy:"Careers", blog:"Blog" },
+    nav: { product:"Product", modules:"Modules", pricing:"Pricing", customers:"Customers", resources:"Resources", signin:"Sign in", foodcost:"Free food-cost check", demo:"Book demo", about:"About", clients:"Clients", menu:"Menu", vacancy:"Careers", blog:"Blog" },
     hero: {
       eyebrow:"Restaurant management system",
       title_1:"Sell more.",
@@ -24,7 +24,7 @@ export const I18N = {
   },
   ru: {
     siteTitle: "RestOS — Операционная система для современного гостеприимства",
-    nav:{ product:"Продукт", modules:"Модули", pricing:"Цены", customers:"Клиенты", resources:"Ресурсы", signin:"Войти", foodcost:"Разбор фудкоста", demo:"Демо", about:"О нас", clients:"Клиенты", vacancy:"Карьера", blog:"Блог" },
+    nav:{ product:"Продукт", modules:"Модули", pricing:"Цены", customers:"Клиенты", resources:"Ресурсы", signin:"Войти", foodcost:"Разбор фудкоста", demo:"Демо", about:"О нас", clients:"Клиенты", menu:"Меню", vacancy:"Карьера", blog:"Блог" },
     hero:{
       eyebrow:"Система автоматизации ресторана",
       title_1:"Продавай больше.",
@@ -47,7 +47,7 @@ export const I18N = {
   },
   uz: {
     siteTitle: "RestOS — Zamonaviy mehmondo'stlik uchun operatsion tizim",
-    nav:{ product:"Mahsulot", modules:"Modullar", pricing:"Narxlar", customers:"Mijozlar", resources:"Resurslar", signin:"Kirish", foodcost:"Food-cost tahlili", demo:"Demo", about:"Biz haqimizda", clients:"Mijozlar", vacancy:"Karyera", blog:"Blog" },
+    nav:{ product:"Mahsulot", modules:"Modullar", pricing:"Narxlar", customers:"Mijozlar", resources:"Resurslar", signin:"Kirish", foodcost:"Food-cost tahlili", demo:"Demo", about:"Biz haqimizda", clients:"Mijozlar", menu:"Menyu", vacancy:"Karyera", blog:"Blog" },
     hero:{
       eyebrow:"Restoran boshqaruv tizimi",
       title_1:"Ko'proq soting.",
@@ -70,7 +70,7 @@ export const I18N = {
   },
   "uz-cyr": {
     siteTitle: "RestOS — Замонавий меҳмондўстлик учун операцион тизим",
-    nav:{ product:"Маҳсулот", modules:"Модуллар", pricing:"Нархлар", customers:"Мижозлар", resources:"Ресурслар", signin:"Кириш", foodcost:"Food-cost таҳлили", demo:"Демо", about:"Биз ҳақимизда", clients:"Мижозлар", vacancy:"Карьера", blog:"Блог" },
+    nav:{ product:"Маҳсулот", modules:"Модуллар", pricing:"Нархлар", customers:"Мижозлар", resources:"Ресурслар", signin:"Кириш", foodcost:"Food-cost таҳлили", demo:"Демо", about:"Биз ҳақимизда", clients:"Мижозлар", menu:"Меню", vacancy:"Карьера", blog:"Блог" },
     hero:{
       eyebrow:"Ресторан бошқарув тизими",
       title_1:"Кўпроқ сотинг.",
@@ -93,7 +93,7 @@ export const I18N = {
   },
   kaa: {
     siteTitle: "RestOS — Zamanagóy mehmandoslıq ushın operatsiyalıq sistema",
-    nav:{ product:"Ónim", modules:"Modulller", pricing:"Baha", customers:"Klientler", resources:"Resurslar", signin:"Kiriw", foodcost:"Food-cost analizi", demo:"Demo", about:"Biz haqımızda", clients:"Klientler", vacancy:"Kareyra", blog:"Blog" },
+    nav:{ product:"Ónim", modules:"Modulller", pricing:"Baha", customers:"Klientler", resources:"Resurslar", signin:"Kiriw", foodcost:"Food-cost analizi", demo:"Demo", about:"Biz haqımızda", clients:"Klientler", menu:"Menyu", vacancy:"Kareyra", blog:"Blog" },
     hero:{
       eyebrow:"Restoran basqarıw sisteması",
       title_1:"Kóbirek satıń.",
