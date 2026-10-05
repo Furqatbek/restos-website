@@ -10,12 +10,14 @@ import Icon from './Icon';
 // who is not the person who owns this company. None of it was true. RestOS
 // launched in January 2026 and is one person.
 //
-// THE RULE FOR THIS FILE: every sentence here must be true of a company of one
-// with a handful of customers. No headcount. No venue counts. No revenue. No
-// percentages. No history that did not happen. If a claim needs a number to
-// land, it does not belong on this page — the smallness IS the pitch, because
-// direct access to the person who wrote the software is the one thing a larger
-// vendor structurally cannot offer.
+// THE RULE FOR THIS FILE: every sentence here must be true of a two-person
+// company with a handful of customers. The only people named are Boris Vasylev
+// (CEO) and Furqat Saydamadov (CTO), who are real and hold those roles. No
+// invented colleagues. No venue counts. No revenue. No percentages. No history
+// that did not happen. If a claim needs a number to land, it does not belong on
+// this page — the smallness IS the pitch, because direct access to the person
+// who wrote the software is the one thing a larger vendor structurally cannot
+// offer. If the team grows, add the person; never round the number up.
 const ABOUT_I18N = {
   en: {
     eyebrow: 'About RestOS',
@@ -31,12 +33,19 @@ const ABOUT_I18N = {
       'It is a new product — it went live in 2026, and it runs in a small number of venues in Tashkent. I am not going to pretend otherwise. What those venues get in exchange is the thing below.',
     ],
     valuesEyebrow: 'What you actually get',
-    valuesTitle: 'A company of one,',
+    valuesTitle: 'A two-person company,',
     valuesTitleEm: 'on purpose.',
     values: [
       { num: '01', t: 'You talk to the developer', b: 'Not a reseller, not a first-line agent reading a script. The person who wrote the code is the person who answers you, and he can change the code.' },
       { num: '02', t: 'I set it up myself', b: 'I import your menu, set up your stock, and train your staff in your venue. I am there on the day you go live, not a partner you have never met.' },
       { num: '03', t: 'My number is on this page', b: 'Telegram and a phone number that reach me directly. No ticket queue standing between you and a fix.' },
+    ],
+    teamEyebrow: 'Who we are',
+    teamTitle: 'Two people.',
+    teamTitleEm: 'That is the company.',
+    team: [
+      { i: 'B', c: '', n: 'Boris Vasylev', r: 'CEO' },
+      { i: 'F', c: 't2', n: 'Furqat Saydamadov', r: 'CTO' },
     ],
     contactEyebrow: 'Talk to me',
     contactTitle: 'Directly.',
@@ -58,12 +67,19 @@ const ABOUT_I18N = {
       'Это новый продукт: запущен в 2026 году и работает в небольшом числе заведений Ташкента. Я не буду делать вид, что это не так. Взамен эти заведения получают то, что ниже.',
     ],
     valuesEyebrow: 'Что вы получаете',
-    valuesTitle: 'Компания из одного человека —',
+    valuesTitle: 'Компания из двух человек —',
     valuesTitleEm: 'и это осознанно.',
     values: [
       { num: '01', t: 'Вы говорите с разработчиком', b: 'Не с дилером и не с первой линией по скрипту. Отвечает тот, кто написал код, — и он может этот код поменять.' },
       { num: '02', t: 'Внедряю я сам', b: 'Сам импортирую меню, настраиваю склад и обучаю персонал у вас в заведении. В день запуска я на месте, а не партнёр, которого вы никогда не видели.' },
       { num: '03', t: 'Мой номер — на этой странице', b: 'Telegram и телефон, которые ведут напрямую ко мне. Между вами и решением проблемы нет очереди тикетов.' },
+    ],
+    teamEyebrow: 'Кто мы',
+    teamTitle: 'Два человека.',
+    teamTitleEm: 'Это вся компания.',
+    team: [
+      { i: 'Б', c: '', n: 'Борис Василев', r: 'CEO' },
+      { i: 'Ф', c: 't2', n: 'Фуркат Сайдамадов', r: 'CTO' },
     ],
     contactEyebrow: 'Напишите мне',
     contactTitle: 'Напрямую.',
@@ -85,12 +101,19 @@ const ABOUT_I18N = {
       "Bu yangi mahsulot: 2026 yilda ishga tushdi va Toshkentning oz sonli muassasalarida ishlaydi. Men buni boshqacha ko'rsatmoqchi emasman. Buning evaziga o'sha muassasalar quyidagini oladi.",
     ],
     valuesEyebrow: 'Siz nima olasiz',
-    valuesTitle: 'Bitta odamdan iborat kompaniya —',
+    valuesTitle: 'Ikki kishilik kompaniya —',
     valuesTitleEm: 'va bu ataylab shunday.',
     values: [
       { num: '01', t: 'Siz dasturchining o\'zi bilan gaplashasiz', b: "Diler ham, skript o'qiyotgan birinchi liniya ham emas. Kodni yozgan odam javob beradi — va u kodni o'zgartira oladi." },
       { num: '02', t: "O'rnatishni o'zim qilaman", b: "Menyuni o'zim ko'chiraman, omborni sozlayman va xodimlaringizni o'z muassasangizda o'qitaman. Ishga tushgan kuni men joyda bo'laman." },
       { num: '03', t: 'Raqamim shu sahifada', b: "To'g'ridan-to'g'ri menga chiqadigan Telegram va telefon. Siz bilan yechim o'rtasida tiket navbati yo'q." },
+    ],
+    teamEyebrow: 'Biz kimmiz',
+    teamTitle: 'Ikki kishi.',
+    teamTitleEm: 'Kompaniya shu.',
+    team: [
+      { i: 'B', c: '', n: 'Boris Vasylev', r: 'CEO' },
+      { i: 'F', c: 't2', n: 'Furqat Saydamadov', r: 'CTO' },
     ],
     contactEyebrow: 'Menga yozing',
     contactTitle: "To'g'ridan-to'g'ri.",
@@ -112,12 +135,19 @@ const ABOUT_I18N = {
       'Бу янги маҳсулот: 2026 йилда ишга тушди ва Тошкентнинг оз сонли муассасаларида ишлайди. Мен буни бошқача кўрсатмоқчи эмасман. Бунинг эвазига ўша муассасалар қуйидагини олади.',
     ],
     valuesEyebrow: 'Сиз нима оласиз',
-    valuesTitle: 'Битта одамдан иборат компания —',
+    valuesTitle: 'Икки кишилик компания —',
     valuesTitleEm: 'ва бу атайлаб шундай.',
     values: [
       { num: '01', t: 'Сиз дастурчининг ўзи билан гаплашасиз', b: 'Дилер ҳам, скрипт ўқиётган биринчи линия ҳам эмас. Кодни ёзган одам жавоб беради — ва у кодни ўзгартира олади.' },
       { num: '02', t: 'Ўрнатишни ўзим қиламан', b: 'Менюни ўзим кўчираман, омборни созлайман ва ходимларингизни ўз муассасангизда ўқитаман. Ишга тушган куни мен жойда бўламан.' },
       { num: '03', t: 'Рақамим шу саҳифада', b: 'Тўғридан-тўғри менга чиқадиган Telegram ва телефон. Сиз билан ечим ўртасида тикет навбати йўқ.' },
+    ],
+    teamEyebrow: 'Биз киммиз',
+    teamTitle: 'Икки киши.',
+    teamTitleEm: 'Компания шу.',
+    team: [
+      { i: 'Б', c: '', n: 'Борис Василев', r: 'CEO' },
+      { i: 'Ф', c: 't2', n: 'Фурқат Сайдамадов', r: 'CTO' },
     ],
     contactEyebrow: 'Менга ёзинг',
     contactTitle: 'Тўғридан-тўғри.',
@@ -139,12 +169,19 @@ const ABOUT_I18N = {
       "Bul jańa ónim: 2026 jılı iske tústi hám Tashkenttiń az sanlı orınlarında isleydi. Men bunı basqasha kórsetpekshi emespen. Onıń ornına sol orınlar tómendegini aladı.",
     ],
     valuesEyebrow: 'Siz ne alasız',
-    valuesTitle: 'Bir adamnan ibarat kompaniya —',
+    valuesTitle: 'Eki adamnan ibarat kompaniya —',
     valuesTitleEm: 'hám bul ataylap sonday.',
     values: [
       { num: '01', t: 'Siz baǵdarlamashınıń ózi menen sóylesesiz', b: "Diler de, skript oqıp atırǵan birinshi liniya da emes. Kodtı jazǵan adam juwap beredi — hám ol kodtı ózgerte aladı." },
       { num: '02', t: 'Ornatıwdı ózim islaymen', b: "Menyudı ózim kóshiremen, ambardı sazlayman hám xızmetkerlerińizdi óz orınıńızda oqıtaman. Iske túsken kúni men jayda bolaman." },
       { num: '03', t: 'Nomerim usı bette', b: "Tuwrıdan-tuwrı maǵan shıǵatuǵın Telegram hám telefon. Siz benen sheshim ortasında tiket gezegi joq." },
+    ],
+    teamEyebrow: 'Biz kimbiz',
+    teamTitle: 'Eki adam.',
+    teamTitleEm: 'Kompaniya usı.',
+    team: [
+      { i: 'B', c: '', n: 'Boris Vasylev', r: 'CEO' },
+      { i: 'F', c: 't2', n: 'Furqat Saydamadov', r: 'CTO' },
     ],
     contactEyebrow: 'Maǵan jazıń',
     contactTitle: 'Tuwrıdan-tuwrı.',
@@ -197,6 +234,24 @@ export default function AboutContent() {
                 <div className="num">{v.num}</div>
                 <h4>{v.t}</h4>
                 <p>{v.b}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="wrap">
+          <div className="section-head">
+            <div className="eyebrow">{A.teamEyebrow}</div>
+            <h2>{A.teamTitle} <em>{A.teamTitleEm}</em></h2>
+          </div>
+          <div className="team-grid team-grid--2">
+            {A.team.map((m) => (
+              <div className="team-card" key={m.n}>
+                <div className={'team-photo' + (m.c ? ' ' + m.c : '')} aria-hidden="true">{m.i}</div>
+                <div className="nm">{m.n}</div>
+                <div className="ro">{m.r}</div>
               </div>
             ))}
           </div>

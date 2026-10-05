@@ -498,6 +498,8 @@ a { color: inherit; text-decoration: none; }
 .value-card h4 { font-family: var(--serif); font-size: 28px; font-weight: 400; color: var(--forest); margin: 10px 0 12px; line-height: 1.1; }
 .value-card p { font-size: 14px; color: var(--ink-soft); margin: 0; text-wrap: pretty; }
 .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 56px; }
+/* Two people, so the cards keep portrait proportions instead of stretching. */
+.team-grid--2 { grid-template-columns: repeat(2, 1fr); max-width: 520px; }
 @media (max-width: 900px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .team-grid { grid-template-columns: 1fr 1fr; gap: 16px; } }
 .team-card { display: flex; flex-direction: column; }

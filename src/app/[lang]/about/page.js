@@ -13,7 +13,7 @@ export function generateMetadata({ params }) {
     path: '/about',
     title: t.nav.about,
     description:
-      'RestOS was built in Tashkent in 2026 by one developer, Furqat. He wrote it, he installs it, and he answers support himself.',
+      'RestOS was built in Tashkent in 2026 by Boris Vasylev (CEO) and Furqat Saydamadov (CTO). Furqat wrote the system, installs it on site, and answers support himself.',
   });
 }
 

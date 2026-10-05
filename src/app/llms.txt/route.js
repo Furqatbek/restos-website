@@ -53,8 +53,9 @@ export function GET() {
 ## Key facts
 
 - Company: RestOS, based in Tashkent, Uzbekistan. Serves Uzbekistan and the wider region.
-- Built and run by one developer, Furqat, who launched it in 2026. He writes the software,
-  installs it on site, and answers support himself — there is no reseller or support tier.
+- Run by two people: Boris Vasylev (CEO) and Furqat Saydamadov (CTO), who launched it in 2026.
+  Furqat writes the software, installs it on site, and answers support himself — there is no
+  reseller or support tier between a customer and the developer.
 - Product type: B2B SaaS for restaurants, cafes, bars, bakeries, hotel F&B and chains.
 - Pricing: from 300,000 UZS per venue per month to 600,000 UZS;
   three tiers (Counter, Service, Group) plus custom pricing for groups. Free trial available.
