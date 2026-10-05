@@ -34,6 +34,12 @@ export function annualTotalUZS(tier) {
   return annualMonthlyUZS(tier) * 12;
 }
 
+// Year one when the year is prepaid: the discounted rate plus the same setup
+// fee. Lower than monthly billing, so the payback multiple is better.
+export function yearOneCostAnnual(tier = 'service') {
+  return annualTotalUZS(tier) + SETUP_UZS[tier];
+}
+
 // What a venue pays in its first year on a tier, which is the figure the
 // payback line compares against the food-cost saving.
 export function yearOneCost(tier = 'service') {

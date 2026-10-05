@@ -5,8 +5,8 @@ import fs from 'fs';
 import path from 'path';
 import {
   MONTHLY_UZS, SETUP_UZS, ANNUAL_DISCOUNT, annualMonthlyUZS, yearOneCost,
-  groupUZS, commaUZS, offerLowPrice, offerHighPrice, priceRangeLabel,
-  setupFeeSentence, llmsPricingLine,
+  yearOneCostAnnual, groupUZS, commaUZS, offerLowPrice, offerHighPrice,
+  priceRangeLabel, setupFeeSentence, llmsPricingLine,
 } from '@/lib/pricing';
 import { I18N } from '@/lib/i18n';
 import { pageMeta } from '@/lib/page-meta';
@@ -116,23 +116,40 @@ describe('pricing ROI claim', () => {
   // Every figure below is DERIVED from src/lib/pricing.js — the same module the
   // cards render from — so changing a price fails this test instead of shipping
   // a stale claim.
-  it('quotes figures derived from the published price, not stale literals', () => {
-    const cost = yearOneCost('service');                           // 9 200 000
-    const costMln = (cost / 1_000_000).toFixed(1);                 // "9.2"
-    const saving = (REVENUE * FROM - REVENUE * TO) * 12;           // 21 120 000
-    const ratio = (saving / cost).toFixed(1);                      // "2.3"
+  // Locales group thousands differently ("600 000" vs "600,000") and some use a
+  // comma decimal, so compare on the digits rather than the typography — this
+  // is checking the price, not the formatting.
+  const ungroup = (str) => str.replace(/(?<=\d)[\s\u00a0,](?=\d{3}\b)/g, '');
+  const decimal = (x) => new RegExp(x.replace('.', '[.,]'));
+  // 9 200 000 -> "9.2", 8 120 000 -> "8.12": as many decimals as the figure
+  // actually needs, which is how the copy writes them.
+  const mln = (n) => (n / 1_000_000).toFixed(2).replace(/0$/, '').replace(/\.$/, '');
 
-    // Locales group thousands differently ("600 000" vs "600,000") and some
-    // use a comma decimal, so compare on the digits rather than the typography
-    // — this is checking the price, not the formatting.
-    const ungroup = (str) => str.replace(/(?<=\d)[\s\u00a0,](?=\d{3}\b)/g, '');
-    const decimal = (x) => new RegExp(x.replace('.', '[.,]'));
+  it.each([
+    ['payback', 'monthly', () => MONTHLY_UZS.service, () => yearOneCost('service')],
+    ['paybackAnnual', 'annual', () => annualMonthlyUZS('service'), () => yearOneCostAnnual('service')],
+  ])('%s quotes figures derived from the %s rate, not stale literals', (key, _label, rateOf, costOf) => {
+    const rate = rateOf();
+    const cost = costOf();
+    const saving = (REVENUE * FROM - REVENUE * TO) * 12;           // 21 120 000
+    const ratio = (saving / cost).toFixed(1);
 
     for (const lang of LOCALES) {
-      const payback = LOCALE[lang].pricing.payback;
-      expect(ungroup(payback)).toContain(String(MONTHLY_UZS.service));
-      expect(payback).toMatch(decimal(costMln));
-      expect(payback).toMatch(decimal(ratio));
+      const line = LOCALE[lang].pricing[key];
+      expect(typeof line).toBe('string');
+      expect(ungroup(line)).toContain(String(rate));
+      expect(line).toMatch(decimal(mln(cost)));
+      expect(line).toMatch(decimal(ratio));
+    }
+  });
+
+  it('shows prepaying a year beating monthly billing, in the copy and the maths', () => {
+    expect(yearOneCostAnnual('service')).toBeLessThan(yearOneCost('service'));
+    const saving = (REVENUE * FROM - REVENUE * TO) * 12;
+    expect(saving / yearOneCostAnnual('service')).toBeGreaterThan(saving / yearOneCost('service'));
+    // Both lines must name the same tier.
+    for (const lang of LOCALES) {
+      expect(LOCALE[lang].pricing.paybackAnnual).toContain(LOCALE[lang].pricing.tiers[1].name);
     }
   });
 
@@ -205,7 +222,11 @@ describe('published price, everywhere it is stated', () => {
       'src/app/llms.txt/route.js',
       'src/components/Pricing.jsx',
     ];
-    const owned = [...Object.values(MONTHLY_UZS), ...Object.values(SETUP_UZS)];
+    const owned = [
+      ...Object.values(MONTHLY_UZS),
+      ...Object.values(SETUP_UZS),
+      ...Object.keys(MONTHLY_UZS).map(annualMonthlyUZS),
+    ];
     for (const file of files) {
       const src = fs.readFileSync(path.join(process.cwd(), file), 'utf8');
       for (const n of owned) {

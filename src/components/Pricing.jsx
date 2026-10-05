@@ -93,7 +93,7 @@ export default function Pricing() {
         <p className="pricing-roi">{L.pricing.roi}</p>
         {/* The conclusion the ROI figure is there to support: what a year costs
             against what it saves. Shown as arithmetic, not as a bare multiple. */}
-        <p className="pricing-payback">{L.pricing.payback}</p>
+        <p className="pricing-payback">{annual ? L.pricing.paybackAnnual : L.pricing.payback}</p>
       </div>
     </section>
   );
