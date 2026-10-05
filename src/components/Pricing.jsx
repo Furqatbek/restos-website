@@ -2,6 +2,7 @@
 import { useLang, useOpenFoodCost } from '@/context/AppContext';
 import { I18N } from '@/lib/i18n';
 import { LOCALE } from '@/lib/locale-extras';
+import { MONTHLY_UZS, groupUZS } from '@/lib/pricing';
 import Icon from './Icon';
 
 export default function Pricing() {
@@ -14,11 +15,10 @@ export default function Pricing() {
   // so the monthly/annual toggle is gone rather than showing an invented
   // discount — add it back when annual figures are confirmed.
   const prices = [
-    { price: 300, variant: 'outline' },
-    { price: 600, variant: 'gold', featured: true },
+    { price: MONTHLY_UZS.counter, variant: 'outline' },
+    { price: MONTHLY_UZS.service, variant: 'gold', featured: true },
     { custom: true, variant: 'outline' },
   ];
-  const fmt = (k) => (k * 1000).toLocaleString('ru-RU').replace(/,/g, ' ');
   const tiers = L.pricing.tiers.map((tier, i) => ({
     ...tier, ...prices[i],
     cta: prices[i].custom ? t.pricing.contact : t.pricing.cta,
@@ -42,7 +42,7 @@ export default function Pricing() {
                 <div className="price">{L.pricing.custom}<span className="per"> </span></div>
               ) : (
                 <div className="price price-uzs">
-                  <span className="amount">{fmt(tier.price)}</span>
+                  <span className="amount">{groupUZS(tier.price)}</span>
                   <span className="curr">UZS</span>
                   <span className="per">{L.pricing.per}</span>
                 </div>

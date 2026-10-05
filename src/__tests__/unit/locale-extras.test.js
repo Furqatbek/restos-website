@@ -1,6 +1,7 @@
 import { LOCALE } from '@/lib/locale-extras';
 import { LOCALES } from '@/lib/locale';
 import { CLIENTS_PAGE, clientsPageFor, testimonialsFor } from '@/lib/testimonials';
+import { MONTHLY_UZS, yearOneCost, groupUZS } from '@/lib/pricing';
 import { I18N } from '@/lib/i18n';
 
 describe('footer credit line', () => {
@@ -79,10 +80,9 @@ describe('pricing ROI claim', () => {
   });
 
   it('still beats a year of the Service tier plus setup', () => {
-    const yearOneCost = 600_000 * 12 + 2_000_000;
     const yearOneSaving = (REVENUE * FROM - REVENUE * TO) * 12;
-    expect(yearOneCost).toBe(9_200_000);
-    expect(yearOneSaving / yearOneCost).toBeGreaterThan(2);
+    expect(yearOneCost('service')).toBe(9_200_000);
+    expect(yearOneSaving / yearOneCost('service')).toBeGreaterThan(2);
   });
 
   it('quotes those figures in every locale, and never the old 660,000', () => {
@@ -99,10 +99,43 @@ describe('pricing ROI claim', () => {
     for (const lang of LOCALES) {
       const payback = LOCALE[lang].pricing.payback;
       expect(typeof payback).toBe('string');
-      expect(payback).toMatch(/9[.,]2/);   // year-one cost
-      expect(payback).toMatch(/2[.,]3/);   // the multiple
-      // The tier named in the line must be the tier priced at 600,000 above it.
+      // The tier named in the line must be the tier priced above it.
       expect(payback).toContain(LOCALE[lang].pricing.tiers[1].name);
     }
+  });
+
+  // The payback copy restates the price in five languages by hand, so a reprice
+  // would otherwise leave the cards right and the sentence under them wrong.
+  // Every figure below is DERIVED from src/lib/pricing.js — the same module the
+  // cards render from — so changing a price fails this test instead of shipping
+  // a stale claim.
+  it('quotes figures derived from the published price, not stale literals', () => {
+    const cost = yearOneCost('service');                           // 9 200 000
+    const costMln = (cost / 1_000_000).toFixed(1);                 // "9.2"
+    const saving = (REVENUE * FROM - REVENUE * TO) * 12;           // 21 120 000
+    const ratio = (saving / cost).toFixed(1);                      // "2.3"
+
+    // Locales group thousands differently ("600 000" vs "600,000") and some
+    // use a comma decimal, so compare on the digits rather than the typography
+    // — this is checking the price, not the formatting.
+    const ungroup = (str) => str.replace(/(?<=\d)[\s\u00a0,](?=\d{3}\b)/g, '');
+    const decimal = (x) => new RegExp(x.replace('.', '[.,]'));
+
+    for (const lang of LOCALES) {
+      const payback = LOCALE[lang].pricing.payback;
+      expect(ungroup(payback)).toContain(String(MONTHLY_UZS.service));
+      expect(payback).toMatch(decimal(costMln));
+      expect(payback).toMatch(decimal(ratio));
+    }
+  });
+
+  // Deliberately NOT asserting MONTHLY_UZS === 600_000: that restates the price
+  // rather than checking anything, and would fail on a correct reprice where
+  // the copy was updated too. The derived test above fails only when the cards
+  // and the sentence under them actually disagree.
+  it('groups a sum the way the cards render it', () => {
+    expect(groupUZS(300_000)).toBe('300 000');
+    expect(groupUZS(2_000_000)).toBe('2 000 000');
+    expect(groupUZS(600)).toBe('600');
   });
 });
