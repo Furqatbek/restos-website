@@ -59,7 +59,7 @@ export function GET() {
 - Setup time: 48 hours to the first order, including menu import and staff training.
 - Runs on existing hardware: any iPad, Android tablet or PC; existing printers and terminals.
 - Works offline: the POS keeps selling without internet and syncs when the connection returns.
-- Delivery integrations: Yandex Eats, Wolt, Glovo, Uber Eats and regional aggregators in one inbox.
+- Delivery integrations: Uzum Tezkor, Express24, Yandex Eats, Wolt — all in one inbox, on one printer.
 - Languages: Russian, Uzbek (Latin), Uzbek (Cyrillic), Karakalpak, English.
 - Contact: +998 94 114 3232 · https://t.me/restos_blog · https://instagram.com/restos.uz
 
@@ -70,7 +70,6 @@ For example the homepage in Russian is ${BASE}/ru and the blog is ${BASE}/ru/blo
 
 - [Home](${BASE}/en): product overview, modules, pricing, FAQ.
 - [About](${BASE}/en/about): company and team.
-- [Clients](${BASE}/en/clients): customer results and case studies.
 - [Careers](${BASE}/en/careers): open roles.
 - [Blog](${BASE}/en/blog): operations guides for restaurant owners.
 
