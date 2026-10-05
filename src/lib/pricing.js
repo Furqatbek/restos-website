@@ -26,3 +26,29 @@ export function yearOneCost(tier = 'service') {
 export function groupUZS(n) {
   return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
+
+// English prose grouping: 300000 -> "300,000". The cards and the non-English
+// copy group with spaces (groupUZS); llms.txt and the JSON-LD description are
+// English prose, so they group with commas.
+export function commaUZS(n) {
+  return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+// schema.org AggregateOffer wants bare integers as strings, ungrouped.
+export const offerLowPrice = () => String(MONTHLY_UZS.counter);
+export const offerHighPrice = () => String(MONTHLY_UZS.service);
+
+// schema.org LocalBusiness priceRange is free text, but keep it machine-ish.
+export const priceRangeLabel = () =>
+  `UZS ${MONTHLY_UZS.counter}\u2013${MONTHLY_UZS.service} / mo`;
+
+// The sentence both the AggregateOffer description and llms.txt need: what the
+// monthly price buys and what the one-time fee is.
+export const setupFeeSentence = () =>
+  `Per venue, per month, plus a one-time ${commaUZS(SETUP_UZS)} UZS setup fee ` +
+  '(menu import, warehouse setup, staff training, migration). Custom pricing for groups.';
+
+// The llms.txt pricing fact, in the same prose style as the rest of that file.
+export const llmsPricingLine = () =>
+  `from ${commaUZS(MONTHLY_UZS.counter)} UZS per venue per month to ` +
+  `${commaUZS(MONTHLY_UZS.service)} UZS`;

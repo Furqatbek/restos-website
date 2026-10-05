@@ -6,6 +6,7 @@ import CtaBand from '@/components/CtaBand';
 import { I18N } from '@/lib/i18n';
 import { localePath, isLocale, DEFAULT_LOCALE, OG_LOCALE } from '@/lib/locale';
 import { getLandingPage, allLandingParams, landingAlternates } from '@/lib/landing-pages';
+import { offerLowPrice, offerHighPrice } from '@/lib/pricing';
 
 const BASE = 'https://restos.uz';
 
@@ -99,8 +100,8 @@ export default function LandingPage({ params }) {
     offers: {
       '@type': 'AggregateOffer',
       priceCurrency: 'UZS',
-      lowPrice: '300000',
-      highPrice: '600000',
+      lowPrice: offerLowPrice(),
+      highPrice: offerHighPrice(),
       offerCount: '3',
     },
   };

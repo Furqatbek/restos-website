@@ -5,6 +5,7 @@ import { Providers } from '@/components/Providers';
 import { I18N } from '@/lib/i18n';
 import { LOCALE } from '@/lib/locale-extras';
 import { LOCALES, DEFAULT_LOCALE, HTML_LANG, OG_LOCALE, isLocale } from '@/lib/locale';
+import { offerLowPrice, offerHighPrice, priceRangeLabel, setupFeeSentence } from '@/lib/pricing';
 import '../globals.css';
 
 const GA_ID = 'G-2992TGBM5Y';
@@ -145,10 +146,10 @@ const jsonLd = {
       offers: {
         '@type': 'AggregateOffer',
         priceCurrency: 'UZS',
-        lowPrice: '300000',
-        highPrice: '600000',
+        lowPrice: offerLowPrice(),
+        highPrice: offerHighPrice(),
         offerCount: '3',
-        description: 'Per venue, per month, plus a one-time 2,000,000 UZS setup fee (menu import, warehouse setup, staff training, migration). Custom pricing for groups.',
+        description: setupFeeSentence(),
       },
       publisher: { '@id': `${BASE}/#organization` },
     },
@@ -162,7 +163,7 @@ const jsonLd = {
       name: 'RestOS',
       url: BASE,
       telephone: '+998941143232',
-      priceRange: 'UZS 300000–600000 / mo',
+      priceRange: priceRangeLabel(),
       image: `${BASE}/opengraph-image`,
       address: {
         '@type': 'PostalAddress',

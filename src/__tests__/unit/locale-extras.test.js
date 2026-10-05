@@ -1,7 +1,12 @@
 import { LOCALE } from '@/lib/locale-extras';
 import { LOCALES } from '@/lib/locale';
 import { CLIENTS_PAGE, clientsPageFor, testimonialsFor } from '@/lib/testimonials';
-import { MONTHLY_UZS, yearOneCost, groupUZS } from '@/lib/pricing';
+import fs from 'fs';
+import path from 'path';
+import {
+  MONTHLY_UZS, SETUP_UZS, yearOneCost, groupUZS, commaUZS,
+  offerLowPrice, offerHighPrice, priceRangeLabel, setupFeeSentence, llmsPricingLine,
+} from '@/lib/pricing';
 import { I18N } from '@/lib/i18n';
 
 describe('footer credit line', () => {
@@ -137,5 +142,54 @@ describe('pricing ROI claim', () => {
     expect(groupUZS(300_000)).toBe('300 000');
     expect(groupUZS(2_000_000)).toBe('2 000 000');
     expect(groupUZS(600)).toBe('600');
+  });
+});
+
+// The price was stated in four more places than the pricing cards: two
+// AggregateOffer nodes, a LocalBusiness priceRange and the llms.txt brief. A
+// reprice updated the cards and left those telling search engines and AI
+// assistants the old number. They all derive from pricing.js now; these tests
+// keep it that way.
+describe('published price, everywhere it is stated', () => {
+  it('builds the structured-data values from the tier prices', () => {
+    expect(offerLowPrice()).toBe(String(MONTHLY_UZS.counter));
+    expect(offerHighPrice()).toBe(String(MONTHLY_UZS.service));
+    expect(priceRangeLabel()).toContain(String(MONTHLY_UZS.counter));
+    expect(priceRangeLabel()).toContain(String(MONTHLY_UZS.service));
+    // schema.org wants bare integers — no grouping, no currency in the number.
+    expect(offerLowPrice()).toMatch(/^\d+$/);
+    expect(offerHighPrice()).toMatch(/^\d+$/);
+  });
+
+  it('builds the prose figures from the same numbers', () => {
+    expect(commaUZS(300_000)).toBe('300,000');
+    expect(commaUZS(2_000_000)).toBe('2,000,000');
+    expect(setupFeeSentence()).toContain(commaUZS(SETUP_UZS));
+    expect(llmsPricingLine()).toContain(commaUZS(MONTHLY_UZS.counter));
+    expect(llmsPricingLine()).toContain(commaUZS(MONTHLY_UZS.service));
+  });
+
+  it('keeps the year-one cost consistent with both tier prices', () => {
+    expect(yearOneCost('counter')).toBe(MONTHLY_UZS.counter * 12 + SETUP_UZS);
+    expect(yearOneCost('service')).toBe(MONTHLY_UZS.service * 12 + SETUP_UZS);
+  });
+
+  // Guard against someone pasting a price back in rather than importing it.
+  it('no page hardcodes a price that pricing.js owns', () => {
+    const files = [
+      'src/app/[lang]/layout.js',
+      'src/app/[lang]/[slug]/page.js',
+      'src/app/llms.txt/route.js',
+      'src/components/Pricing.jsx',
+    ];
+    const owned = [MONTHLY_UZS.counter, MONTHLY_UZS.service, SETUP_UZS];
+    for (const file of files) {
+      const src = fs.readFileSync(path.join(process.cwd(), file), 'utf8');
+      for (const n of owned) {
+        // Any grouping style: 600000, 600 000, 600,000.
+        const pattern = new RegExp(String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '[\\s,]?'));
+        expect({ file, n, hit: pattern.test(src) }).toEqual({ file, n, hit: false });
+      }
+    }
   });
 });

@@ -1,4 +1,5 @@
 import db from '@/lib/db';
+import { llmsPricingLine } from '@/lib/pricing';
 import { LANDING_PAGES } from '@/lib/landing-pages';
 import { DEFAULT_LOCALE, isLocale } from '@/lib/locale';
 
@@ -57,7 +58,7 @@ export function GET() {
   Furqat writes the software, installs it on site, and answers support himself — there is no
   reseller or support tier between a customer and the developer.
 - Product type: B2B SaaS for restaurants, cafes, bars, bakeries, hotel F&B and chains.
-- Pricing: from 300,000 UZS per venue per month to 600,000 UZS;
+- Pricing: ${llmsPricingLine()};
   three tiers (Counter, Service, Group) plus custom pricing for groups. Free trial available.
 - Setup time: 48 hours to the first order, including menu import and staff training.
 - Runs on existing hardware: any iPad, Android tablet or PC; existing printers and terminals.
