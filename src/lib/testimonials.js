@@ -76,6 +76,52 @@ const HEADING = {
   kaa:      { eyebrow: 'Klientler', title: 'Olardan esitiń.' },
 };
 
+// Copy for the standalone /clients page. The quotes themselves come from
+// TESTIMONIALS above, so the page carries no claim that is not already
+// approved by the venue it names — and, as there, no percentages or
+// multipliers that would need a measurement method behind them.
+export const CLIENTS_PAGE = {
+  uz: {
+    eyebrow: 'Mijozlar',
+    title_a: 'Zalni boshqaradigan',
+    title_b: 'odamlar bilan.',
+    lede: "O'zbekiston bo'ylab kafelar, restoranlar va klublar RestOS orqali o'z raqamlarini o'sha kuniyoq ko'radi. Mana, ular nima deydi.",
+    note: "Bu sahifadagi har bir iqtibos e'lon qilinishidan oldin u nomlagan muassasa tomonidan tasdiqlangan.",
+  },
+  ru: {
+    eyebrow: 'Клиенты',
+    title_a: 'Словами тех,',
+    title_b: 'кто стоит за стойкой.',
+    lede: 'Кафе, рестораны и клубы по всему Узбекистану видят свои цифры в тот же день, когда они случились. Вот что они об этом говорят.',
+    note: 'Каждая цитата на этой странице согласована с заведением, которое в ней названо, до публикации.',
+  },
+  en: {
+    eyebrow: 'Clients',
+    title_a: 'In the words of',
+    title_b: 'the people on the floor.',
+    lede: 'Cafés, restaurants and clubs across Uzbekistan use RestOS to see their numbers the same day they happen. Here is what they say about it.',
+    note: 'Every quote on this page was approved by the venue it names before it was published.',
+  },
+  'uz-cyr': {
+    eyebrow: 'Мижозлар',
+    title_a: 'Зални бошқарадиган',
+    title_b: 'одамлар билан.',
+    lede: 'Ўзбекистон бўйлаб кафелар, ресторанлар ва клублар RestOS орқали ўз рақамларини ўша куниёқ кўради. Мана, улар нима дейди.',
+    note: 'Бу саҳифадаги ҳар бир иқтибос эълон қилинишидан олдин у номлаган муассаса томонидан тасдиқланган.',
+  },
+  kaa: {
+    eyebrow: 'Klientler',
+    title_a: 'Zaldı basqaratuǵın',
+    title_b: 'adamlar menen.',
+    lede: 'Ózbekstan boylap kafeler, restoranlar hám klublar RestOS arqalı óz sanlarin sol kúni kóredi. Mine, olar ne deydi.',
+    note: 'Bul bettegi hár bir sitata járiyalanıwdan aldın ol atap ótken orın tárepinen tastıyıqlanǵan.',
+  },
+};
+
+export function clientsPageFor(lang) {
+  return CLIENTS_PAGE[lang] || CLIENTS_PAGE.uz;
+}
+
 export function testimonialsFor(lang) {
   const list = (TESTIMONIALS[lang] || TESTIMONIALS.uz).filter((t) => t.approved);
   return { list, heading: HEADING[lang] || HEADING.uz };

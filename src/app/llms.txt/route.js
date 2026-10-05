@@ -70,6 +70,7 @@ For example the homepage in Russian is ${BASE}/ru and the blog is ${BASE}/ru/blo
 
 - [Home](${BASE}/en): product overview, modules, pricing, FAQ.
 - [About](${BASE}/en/about): company and team.
+- [Clients](${BASE}/en/clients): venues running RestOS, in their own words.
 - [Careers](${BASE}/en/careers): open roles.
 - [Blog](${BASE}/en/blog): operations guides for restaurant owners.
 

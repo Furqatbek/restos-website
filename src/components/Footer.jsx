@@ -66,7 +66,7 @@ export default function Footer() {
             <h4>{f.company}</h4>
             <ul>
               {f.companyLinks.map((x, i) => {
-                const hrefs = ['/about', '/careers', '/blog'];
+                const hrefs = ['/about', '/clients', '/careers', '/blog'];
                 return <li key={i}><Link href={localePath(lang, hrefs[i] || '/')}>{x}</Link></li>;
               })}
             </ul>

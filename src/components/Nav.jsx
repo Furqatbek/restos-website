@@ -80,6 +80,7 @@ export default function Nav({ activePage = 'home' }) {
             : <Link href={`${home}#pricing`}>{t.nav.pricing}</Link>
           }
           <Link href={localePath(lang, '/about')} className={activePage === 'about' ? 'active' : ''}>{t.nav.about}</Link>
+          <Link href={localePath(lang, '/clients')} className={activePage === 'clients' ? 'active' : ''}>{t.nav.clients}</Link>
           <Link href={localePath(lang, '/careers')} className={activePage === 'vacancy' ? 'active' : ''}>{t.nav.vacancy}</Link>
           <Link href={localePath(lang, '/blog')} className={activePage === 'blog' ? 'active' : ''}>{t.nav.blog}</Link>
         </div>

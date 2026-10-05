@@ -32,7 +32,7 @@ export const LOCALE = {
     footer:{
       tagline:"The all-in-one restaurant & café management system for modern hospitality — Tashkent, Uzbekistan.",
       product:"Product", company:"Company", resources:"Resources", contact:"Contact",
-      companyLinks:["About","Careers","Blog"],
+      companyLinks:["About","Clients","Careers","Blog"],
       legal:"Privacy · Terms · DPA",
       madeBy:"Made with {heart} at {istech}",
       copyright:"© 2026 RestOS",
@@ -71,7 +71,7 @@ export const LOCALE = {
     footer:{
       tagline:"Система автоматизации ресторанов и кафе для современного бизнеса — Ташкент, Узбекистан.",
       product:"Продукт", company:"Компания", resources:"Ресурсы", contact:"Контакты",
-      companyLinks:["О нас","Карьера","Блог"],
+      companyLinks:["О нас","Клиенты","Карьера","Блог"],
       legal:"Приватность · Условия · DPA",
       madeBy:"Сделано с {heart} в {istech}",
       copyright:"© 2026 RestOS",
@@ -110,7 +110,7 @@ export const LOCALE = {
     footer:{
       tagline:"Restoran va kafelar uchun zamonaviy boshqaruv tizimi — Toshkent, O'zbekiston.",
       product:"Mahsulot", company:"Kompaniya", resources:"Resurslar", contact:"Aloqa",
-      companyLinks:["Biz haqimizda","Karyera","Blog"],
+      companyLinks:["Biz haqimizda","Mijozlar","Karyera","Blog"],
       legal:"Maxfiylik · Shartlar · DPA",
       madeBy:"{istech} da {heart} bilan yaratilgan",
       copyright:"© 2026 RestOS",
@@ -149,7 +149,7 @@ export const LOCALE = {
     footer:{
       tagline:"Ресторан ва кафелар учун замонавий бошқарув тизими — Тошкент, Ўзбекистон.",
       product:"Маҳсулот", company:"Компания", resources:"Ресурслар", contact:"Алоқа",
-      companyLinks:["Биз ҳақимизда","Карьера","Блог"],
+      companyLinks:["Биз ҳақимизда","Мижозлар","Карьера","Блог"],
       legal:"Махфийлик · Шартлар · DPA",
       madeBy:"{istech} да {heart} билан яратилган",
       copyright:"© 2026 RestOS",
@@ -188,7 +188,7 @@ export const LOCALE = {
     footer:{
       tagline:"Restoran hám kafeler ushın zamanagóy basqarıw sistemasy — Tashkent, Ózbekstan.",
       product:"Ónim", company:"Kompaniya", resources:"Resurslar", contact:"Baylanıs",
-      companyLinks:["Biz haqımızda","Kareyra","Blog"],
+      companyLinks:["Biz haqımızda","Klientler","Kareyra","Blog"],
       legal:"Maxfiylik · Shartlar · DPA",
       madeBy:"{istech} da {heart} penen jaratıldı",
       copyright:"© 2026 RestOS",
