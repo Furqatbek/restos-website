@@ -62,3 +62,36 @@ describe('clients page', () => {
     }
   });
 });
+
+// The ROI line is the only arithmetic the pricing section asserts to a buyer,
+// and it was wrong once: it took two percent OF THE FOOD SPEND (2% x 33.4M =
+// ~660k) when "two points of food cost" means two percent OF REVENUE (2% x 88M
+// = 1.76M). Understated the saving 2.7x. Pin the derivation and the figures.
+describe('pricing ROI claim', () => {
+  const REVENUE = 88_000_000;
+  const FROM = 0.38;
+  const TO = 0.36;
+
+  it('derives the figures the copy quotes', () => {
+    expect(REVENUE * FROM).toBeCloseTo(33_440_000, 0);          // 33.4M on food
+    expect(REVENUE * FROM - REVENUE * TO).toBeCloseTo(1_760_000, 0); // 1.76M/mo
+    expect((REVENUE * FROM - REVENUE * TO) * 12).toBeCloseTo(21_120_000, 0); // 21M/yr
+  });
+
+  it('still beats a year of the Service tier plus setup', () => {
+    const yearOneCost = 600_000 * 12 + 2_000_000;
+    const yearOneSaving = (REVENUE * FROM - REVENUE * TO) * 12;
+    expect(yearOneCost).toBe(9_200_000);
+    expect(yearOneSaving / yearOneCost).toBeGreaterThan(2);
+  });
+
+  it('quotes those figures in every locale, and never the old 660,000', () => {
+    for (const lang of LOCALES) {
+      const roi = LOCALE[lang].pricing.roi;
+      expect(roi).toMatch(/33[.,]4/);   // food spend at 38%
+      expect(roi).toMatch(/1[.,]76/);   // monthly saving
+      expect(roi).toMatch(/21/);        // annual saving
+      expect(roi).not.toMatch(/660/);   // the 2%-of-food-spend error
+    }
+  });
+});

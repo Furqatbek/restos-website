@@ -21,7 +21,7 @@ export const LOCALE = {
       per:"/ venue / mo", custom:"Custom", popular:"Most popular",
       setup:"Setup", setupPrice:"2 000 000 UZS", setupPer:"one-time",
       setupNote:"Menu import, warehouse setup, staff training, migration from your old system.",
-      roi:"A venue doing 88M UZS/month at 38% food cost spends 33M on food. Two points of food cost is 660,000 UZS a month.",
+      roi:"A venue doing 88M UZS/month at 38% food cost spends 33.4M on food. Bring food cost to 36% and that is 1.76M UZS a month. 21M a year.",
       tiers:[
         { name:"Counter", desc:"Cafés, kiosks, single counter.",    features:["POS + KDS","QR menu + pay","Payments","Basic analytics","1 venue · unlimited staff","Email support"] },
         { name:"Service", desc:"Full-service with floor staff.",     features:["Everything in Counter","Waiter app","Delivery apps","Inventory + food-cost","Loyalty + CRM","Courier","24/7 support"] },
@@ -60,7 +60,7 @@ export const LOCALE = {
       per:"/ точка / мес", custom:"По запросу", popular:"Популярное",
       setup:"Внедрение", setupPrice:"2 000 000 сум", setupPer:"разово",
       setupNote:"Импорт меню, настройка склада, обучение персонала, миграция со старой системы.",
-      roi:"Заведение с оборотом 88 млн сум/мес при фудкосте 38% тратит на продукты 33 млн. Два пункта фудкоста — это 660 000 сум в месяц.",
+      roi:"Заведение с оборотом 88 млн сум/мес при фудкосте 38% тратит на продукты 33,4 млн. Снизьте фудкост до 36% — это 1,76 млн сум в месяц. 21 млн в год.",
       tiers:[
         { name:"Касса",  desc:"Кофейни, киоски, одна касса.",   features:["POS + KDS","QR-меню и оплата","Платежи","Базовая аналитика","1 точка · персонал без лимита","Email-поддержка"] },
         { name:"Сервис", desc:"Ресторан с официантами.",         features:["Всё из «Касса»","Мобильный официант","Доставки","Склад + фудкост","Лояльность + CRM","Курьеры","24/7 поддержка"] },
@@ -99,7 +99,7 @@ export const LOCALE = {
       per:"/ muassasa / oy", custom:"Kelishuv", popular:"Eng mashhur",
       setup:"Ishga tushirish", setupPrice:"2 000 000 so'm", setupPer:"bir marta",
       setupNote:"Menyu importi, ombor sozlash, xodimlarni o'qitish, eski tizimdan ko'chirish.",
-      roi:"Oyiga 88 mln so'm aylanmasi va 38% fudkostli muassasa mahsulotga 33 mln sarflaydi. Fudkostning ikki punkti — oyiga 660 000 so'm.",
+      roi:"Oyiga 88 mln so'm aylanmasi va 38% fudkostli muassasa mahsulotga 33,4 mln sarflaydi. Fudkostni 36% ga tushirsangiz — oyiga 1,76 mln so'm. Yiliga 21 mln.",
       tiers:[
         { name:"Kassa",  desc:"Kafe, kiosk, bitta kassa.",       features:["POS + KDS","QR menyu + to'lov","To'lovlar","Bazaviy analitika","1 nuqta · cheksiz xodim","Email qo'llab-quvvat."] },
         { name:"Servis", desc:"Ofitsiantli restoran.",            features:["«Kassa»-dagi barchasi","Ofitsiant ilovasi","Yetkazuvchilar","Ombor + fudkost","Loyallik + CRM","Kuryer","24/7 qo'llab-quvvat."] },
@@ -138,7 +138,7 @@ export const LOCALE = {
       per:"/ муассаса / ой", custom:"Келишув", popular:"Энг машҳур",
       setup:"Ишга тушириш", setupPrice:"2 000 000 сўм", setupPer:"бир марта",
       setupNote:"Меню импорти, омбор созлаш, ходимларни ўқитиш, эски тизимдан кўчириш.",
-      roi:"Ойига 88 млн сўм айланмаси ва 38% фудкостли муассаса маҳсулотга 33 млн сарфлайди. Фудкостнинг икки пункти — ойига 660 000 сўм.",
+      roi:"Ойига 88 млн сўм айланмаси ва 38% фудкостли муассаса маҳсулотга 33,4 млн сарфлайди. Фудкостни 36% га туширсангиз — ойига 1,76 млн сўм. Йилига 21 млн.",
       tiers:[
         { name:"Касса",  desc:"Кафе, киоск, битта касса.",      features:["POS + KDS","QR меню + тўлов","Тўловлар","Базавий аналитика","1 нуқта · чексиз ходим","Email қўллаб-қувват."] },
         { name:"Сервис", desc:"Официантли ресторан.",            features:["«Касса»-даги барчаси","Официант иловаси","Етказувчилар","Омбор + фудкост","Лояллик + CRM","Курьер","24/7 қўллаб-қувват."] },
@@ -177,7 +177,7 @@ export const LOCALE = {
       per:"/ muassasa / ay", custom:"Kelisim", popular:"Eń ataqlı",
       setup:"Iske túsiriw", setupPrice:"2 000 000 so'm", setupPer:"bir márte",
       setupNote:"Menyu importı, ambar sazlaw, xızmetkerlerdi oqıtıw, eski sistemadan kóshiriw.",
-      roi:"Ayına 88 mln so'm aylanbalı hám 38% fudkostlı orın ónimge 33 mln jumsaydı. Fudkosttıń eki punkti — ayına 660 000 so'm.",
+      roi:"Ayına 88 mln so'm aylanbalı hám 38% fudkostlı orın ónimge 33,4 mln jumsaydı. Fudkostı 36% ke túsirseńiz — ayına 1,76 mln so'm. Jılına 21 mln.",
       tiers:[
         { name:"Kassa",  desc:"Kafe, kiosk, bir kassa.",         features:["POS + KDS","QR menyu + tólem","Tólemler","Bazalıq analitika","1 orın · sheksiz xızmetker","Email qollaw"] },
         { name:"Servis", desc:"Ofitsianttı restoran.",            features:["«Kassa»-daǵı hámmesi","Ofitsiant ilovası","Jetkeriwshiler","Ambar + fudkost","Loyallıq + CRM","Kuryer","24/7 qollaw"] },
