@@ -29,6 +29,7 @@ const Icon = ({ name, size = 18, stroke = 1.75 }) => {
     tag: <><path d="M20 12l-8.5 8.5a2 2 0 0 1-2.8 0L2 13.8V4h9.8l8.2 8.2z"/><circle cx="7" cy="8" r="1"/></>,
     instagram: <><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></>,
     telegram: <><path d="M21.5 4.5L2.5 12l5 1.7M21.5 4.5L18 19.5l-7-4.5-1.5 5L9 16M21.5 4.5l-12.5 11"/></>,
+    heart: <><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l8.84 8.84 8.84-8.84a5.5 5.5 0 0 0 0-7.78z" fill="currentColor"/></>,
   };
   return <svg {...common}>{paths[name] || null}</svg>;
 };

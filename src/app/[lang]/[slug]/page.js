@@ -99,7 +99,7 @@ export default function LandingPage({ params }) {
     offers: {
       '@type': 'AggregateOffer',
       priceCurrency: 'UZS',
-      lowPrice: '280000',
+      lowPrice: '300000',
       highPrice: '600000',
       offerCount: '3',
     },

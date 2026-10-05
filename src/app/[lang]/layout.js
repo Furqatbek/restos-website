@@ -145,8 +145,8 @@ const jsonLd = {
       offers: {
         '@type': 'AggregateOffer',
         priceCurrency: 'UZS',
-        lowPrice: '500000',
-        highPrice: '900000',
+        lowPrice: '300000',
+        highPrice: '600000',
         offerCount: '3',
         description: 'Per venue, per month, plus a one-time 2,000,000 UZS setup fee (menu import, warehouse setup, staff training, migration). Custom pricing for groups.',
       },
@@ -162,7 +162,7 @@ const jsonLd = {
       name: 'RestOS',
       url: BASE,
       telephone: '+998941143232',
-      priceRange: 'UZS 500000–900000 / mo',
+      priceRange: 'UZS 300000–600000 / mo',
       image: `${BASE}/opengraph-image`,
       address: {
         '@type': 'PostalAddress',

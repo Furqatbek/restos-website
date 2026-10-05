@@ -14,8 +14,8 @@ export default function Pricing() {
   // so the monthly/annual toggle is gone rather than showing an invented
   // discount — add it back when annual figures are confirmed.
   const prices = [
-    { price: 500, variant: 'outline' },
-    { price: 900, variant: 'gold', featured: true },
+    { price: 300, variant: 'outline' },
+    { price: 600, variant: 'gold', featured: true },
     { custom: true, variant: 'outline' },
   ];
   const fmt = (k) => (k * 1000).toLocaleString('ru-RU').replace(/,/g, ' ');

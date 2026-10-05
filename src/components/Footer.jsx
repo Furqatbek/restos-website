@@ -6,6 +6,28 @@ import { localePath } from '@/lib/locale';
 import { landingList, SOLUTIONS_LABEL } from '@/lib/landing-pages';
 import Icon from './Icon';
 
+const TELEGRAM_CONTACT = 'furqaty';
+const DEV_SITE = 'istech.uz';
+
+// The credit line is localised, and the word order differs per language
+// (Uzbek puts the studio first), so the string carries {heart} and {istech}
+// placeholders instead of being stitched together from fragments here.
+function madeBy(template) {
+  if (!template) return null;
+  return template.split(/(\{heart\}|\{istech\})/).map((part, i) => {
+    if (part === '{heart}') {
+      return <span className="footer-made-heart" key={i}><Icon name="heart" size={12}/></span>;
+    }
+    if (part === '{istech}') {
+      return (
+        <a href={`https://${DEV_SITE}`} target="_blank" rel="noreferrer" key={i}>{DEV_SITE}</a>
+      );
+    }
+    const text = part.trim();
+    return text ? <span key={i}>{text}</span> : null;
+  });
+}
+
 export default function Footer() {
   const lang = useLang();
   const L = LOCALE[lang] || LOCALE.en;
@@ -52,11 +74,18 @@ export default function Footer() {
             <h4>{f.contact}</h4>
             <ul>
               <li><a href="tel:+998941143232">+998 94 114 3232</a></li>
+              <li>
+                <a className="footer-tg" href={`https://t.me/${TELEGRAM_CONTACT}`}
+                   target="_blank" rel="noreferrer">
+                  <Icon name="telegram" size={15}/>@{TELEGRAM_CONTACT}
+                </a>
+              </li>
             </ul>
           </div>
         </div>
         <div className="footer-bottom">
           <span>{f.copyright}</span>
+          <span className="footer-made">{madeBy(f.madeBy)}</span>
           <span>{f.legal}</span>
         </div>
       </div>

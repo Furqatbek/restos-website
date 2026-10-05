@@ -54,7 +54,7 @@ export function GET() {
 
 - Company: RestOS, based in Tashkent, Uzbekistan. Serves Uzbekistan and the wider region.
 - Product type: B2B SaaS for restaurants, cafes, bars, bakeries, hotel F&B and chains.
-- Pricing: from 280,000 UZS per venue per month (annual billing) to 600,000 UZS;
+- Pricing: from 300,000 UZS per venue per month to 600,000 UZS;
   three tiers (Counter, Service, Group) plus custom pricing for groups. Free trial available.
 - Setup time: 48 hours to the first order, including menu import and staff training.
 - Runs on existing hardware: any iPad, Android tablet or PC; existing printers and terminals.

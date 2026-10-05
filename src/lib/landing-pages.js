@@ -37,7 +37,7 @@ export const LANDING_PAGES = {
       faqs: [
         ['Нужно ли новое оборудование?', 'Нет. RestOS работает на любом iPad, Android-планшете или ПК. Ваши принтеры и терминалы подключаются как есть.'],
         ['За сколько можно запуститься?', '48 часов до первого заказа. Мы импортируем ваше меню и обучаем персонал.'],
-        ['Сколько стоит?', 'От 280 000 сум в месяц за заведение, без ограничения по числу сотрудников. Есть бесплатный пробный период.'],
+        ['Сколько стоит?', 'От 300 000 сум в месяц за заведение, без ограничения по числу сотрудников. Есть бесплатный пробный период.'],
       ],
     },
     'avtomatizatsiya-restorana': {
@@ -127,7 +127,7 @@ export const LANDING_PAGES = {
       faqs: [
         ['Yangi uskuna kerakmi?', 'Yo‘q. RestOS istalgan iPad, Android planshet yoki PK’da ishlaydi. Printer va terminallaringiz borligicha ulanadi.'],
         ['Qancha vaqtda ishga tushadi?', 'Birinchi buyurtmagacha 48 soat. Menyuni import qilamiz va xodimlarni o‘qitamiz.'],
-        ['Narxi qancha?', 'Bir muassasa uchun oyiga 280 000 so‘mdan, xodimlar soni cheklanmagan. Bepul sinov muddati bor.'],
+        ['Narxi qancha?', 'Bir muassasa uchun oyiga 300 000 so‘mdan, xodimlar soni cheklanmagan. Bepul sinov muddati bor.'],
       ],
     },
     'restoran-avtomatizatsiyasi': {
