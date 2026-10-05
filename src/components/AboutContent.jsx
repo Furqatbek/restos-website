@@ -1,222 +1,168 @@
 'use client';
 import { useLang } from '@/context/AppContext';
+import Icon from './Icon';
 
+// REWRITTEN FROM NOTHING, 2026-10-05.
+//
+// The previous version of this file was fiction: a 2018 founding with two
+// cofounders, a 2020 pandemic chapter, "2,400+ venues", "8.2M orders monthly",
+// "ARR tripled", a 32-person team and four named executives — including a CEO
+// who is not the person who owns this company. None of it was true. RestOS
+// launched in January 2026 and is one person.
+//
+// THE RULE FOR THIS FILE: every sentence here must be true of a company of one
+// with a handful of customers. No headcount. No venue counts. No revenue. No
+// percentages. No history that did not happen. If a claim needs a number to
+// land, it does not belong on this page — the smallness IS the pitch, because
+// direct access to the person who wrote the software is the one thing a larger
+// vendor structurally cannot offer.
 const ABOUT_I18N = {
   en: {
     eyebrow: 'About RestOS',
-    title_a: 'Profits up. Costs down.',
-    title_b: 'Chaos gone.',
-    lede: 'RestOS is the operating system 2,400+ independent venues run to lift margins, cut waste and finish the night without the panic. One platform. Twelve modules. Zero spreadsheets.',
-    storyTitle: 'Why we',
-    storyTitleEm: 'exist.',
-    storyEyebrow: 'Mission',
+    title_a: "I'm Furqat.",
+    title_b: 'I wrote this system.',
+    lede: 'RestOS was built in Tashkent in 2026. I wrote it, I install it, and when something breaks you talk to me — not to a support department.',
+    storyEyebrow: 'Why it exists',
+    storyTitle: 'One system instead of',
+    storyTitleEm: 'five subscriptions.',
     story: [
-      'Every restaurant owner we meet is running the same broken stack: four POS vendors, three delivery tablets, two spreadsheets and one paper ticket book. The money leaks between the tools. The chaos lives in the kitchen.',
-      'RestOS replaces that stack with one connected system. Every order, every ingredient, every som passes through the same spine — so the owner sees the truth, the chef sees the queue, and the line cook sees the next ticket. No double entry. No reconciliation. No 11 p.m. spreadsheet.',
-      'We are an independent platform with one job: turn hospitality margins from a guess into a number. We measure ourselves by the line items we move on our customers\' P&L. Nothing else.',
+      'A café in Tashkent runs its till in one program, its stock in a second, its delivery orders on three tablets, and its real numbers in a notebook. Nothing talks to anything. At the end of the month the owner still does not know what a dish actually costs.',
+      'RestOS is one connected system instead: till, kitchen, stock, delivery and finance on the same spine. Every sale deducts the ingredients. Food cost is a number you can look at today, not a guess you settle after a stock count.',
+      'It is a new product — it went live in 2026, and it runs in a small number of venues in Tashkent. I am not going to pretend otherwise. What those venues get in exchange is the thing below.',
     ],
-    timelineEyebrow: 'Platform milestones',
-    timelineTitle: 'Eight years of',
-    timelineTitleEm: 'compounding margin.',
-    timeline: [
-      ['2018', 'Founded', 'Two cofounders. One bet: that hospitality margin was a software problem, not a luck problem.'],
-      ['2020', 'Offline-first sync', 'Shipped during the pandemic. Customers kept selling when the internet didn\'t. None went dark.'],
-      ['2022', 'Live food-cost engine', 'Recipe-level costing in real time. The customer base shaved an average of 3 points off food cost in six months.'],
-      ['2024', 'Multi-venue rollout', 'Group consolidation, franchise controls and a unified P&L across locations. ARR tripled.'],
-      ['2026', 'Today', '2,400+ venues. 8.2M orders monthly. Customers report a median 11% labour saving and 28% repeat-rate lift in year one.'],
-    ],
-    valuesEyebrow: 'How we operate',
-    valuesTitle: 'Three rules',
-    valuesTitleEm: 'for the platform.',
+    valuesEyebrow: 'What you actually get',
+    valuesTitle: 'A company of one,',
+    valuesTitleEm: 'on purpose.',
     values: [
-      { num: '01', t: 'Margin or it doesn\'t ship', b: 'Every feature is justified against a line item — labour, food cost, fees, or table turns. If it doesn\'t move the P&L, it doesn\'t ship.' },
-      { num: '02', t: 'Owners are the user', b: 'We design for the person who signs the cheques. Speed, clarity and one number that tells them whether they made money tonight.' },
-      { num: '03', t: 'One bill of truth', b: 'One menu, one inventory, one customer record across the platform. No syncs to debug. No money leaking through the cracks.' },
+      { num: '01', t: 'You talk to the developer', b: 'Not a reseller, not a first-line agent reading a script. The person who wrote the code is the person who answers you, and he can change the code.' },
+      { num: '02', t: 'I set it up myself', b: 'I import your menu, set up your stock, and train your staff in your venue. I am there on the day you go live, not a partner you have never met.' },
+      { num: '03', t: 'My number is on this page', b: 'Telegram and a phone number that reach me directly. No ticket queue standing between you and a fix.' },
     ],
-    teamEyebrow: 'The team',
-    teamTitle: 'Builders behind',
-    teamTitleEm: 'the platform.',
-    teamSubtitle: '32 product, engineering, design and success operators shipping the system 2,400+ venues run their P&L on.',
-    team: [
-      { i: 'D', c: '', n: 'Diyor Tashkent', r: 'CEO & Co-founder' },
-      { i: 'M', c: 't2', n: 'Mavluda Saidova', r: 'CTO' },
-      { i: 'R', c: 't3', n: 'Ravshan Yusupov', r: 'VP Product' },
-      { i: 'N', c: 't4', n: 'Nargiza Karimova', r: 'Head of Design' },
-    ],
+    contactEyebrow: 'Talk to me',
+    contactTitle: 'Directly.',
+    contactBody: 'If you run a venue in Tashkent and want to see whether this fits, write to me. I will answer you, not a bot.',
+    tg: 'Telegram',
+    phone: 'Phone',
   },
   ru: {
-    eyebrow: 'О платформе',
-    title_a: 'Прибыль вверх. Издержки вниз.',
-    title_b: 'Хаос — в прошлом.',
-    lede: 'RestOS — операционная система, на которой 2 400+ независимых заведений поднимают маржу, режут потери и заканчивают вечер без паники. Одна платформа. Двенадцать модулей. Ноль таблиц.',
-    storyTitle: 'Зачем мы',
-    storyTitleEm: 'существуем.',
-    storyEyebrow: 'Миссия',
+    eyebrow: 'О RestOS',
+    title_a: 'Меня зовут Фуркат.',
+    title_b: 'Эту систему написал я.',
+    lede: 'RestOS сделан в Ташкенте в 2026 году. Я его написал, я его внедряю, и если что-то ломается — вы разговариваете со мной, а не с отделом поддержки.',
+    storyEyebrow: 'Зачем это',
+    storyTitle: 'Одна система вместо',
+    storyTitleEm: 'пяти подписок.',
     story: [
-      'Каждый владелец, к которому мы приходим, тянет один и тот же сломанный стек: четыре кассы, три планшета доставок, две таблицы и один блокнот. Деньги утекают между инструментами. Хаос живёт на кухне.',
-      'RestOS заменяет этот стек одной связанной системой. Каждый заказ, каждый ингредиент, каждый сум проходит через один хребет — собственник видит правду, шеф видит очередь, повар видит следующий тикет. Без двойного ввода. Без сверок. Без таблицы в 23:00.',
-      'Мы независимая платформа с одной задачей: превратить маржу в HoReCa из догадки в число. Мы измеряем себя строчками P&L наших клиентов. Больше нечем.',
+      'Кафе в Ташкенте пробивает чеки в одной программе, склад ведёт во второй, доставку принимает на трёх планшетах, а реальные цифры держит в тетради. Ничего ни с чем не связано. В конце месяца владелец всё равно не знает, сколько на самом деле стоит блюдо.',
+      'RestOS — это одна связанная система: касса, кухня, склад, доставка и финансы на одном хребте. Каждая продажа списывает ингредиенты. Фудкост — число, которое можно посмотреть сегодня, а не догадка до инвентаризации.',
+      'Это новый продукт: запущен в 2026 году и работает в небольшом числе заведений Ташкента. Я не буду делать вид, что это не так. Взамен эти заведения получают то, что ниже.',
     ],
-    timelineEyebrow: 'Этапы платформы',
-    timelineTitle: 'Восемь лет',
-    timelineTitleEm: 'сложенной маржи.',
-    timeline: [
-      ['2018', 'Старт', 'Два сооснователя. Одна гипотеза: маржа в HoReCa — это софтверная проблема, а не вопрос удачи.'],
-      ['2020', 'Offline-first синхронизация', 'Запустили в пандемию. Клиенты продолжали продавать, когда отключался интернет. Никто не закрылся.'],
-      ['2022', 'Живой фудкост', 'Калькуляция рецептов в реальном времени. В среднем по базе фудкост упал на 3 пункта за полгода.'],
-      ['2024', 'Мульти-точки', 'Консолидация группы, контроль франшизы, единый P&L по точкам. ARR утроился.'],
-      ['2026', 'Сегодня', '2 400+ заведений. 8.2М заказов в месяц. Медианный клиент: −11% по фонду оплаты, +28% по повторам в первый год.'],
-    ],
-    valuesEyebrow: 'Как работает платформа',
-    valuesTitle: 'Три правила,',
-    valuesTitleEm: 'и всё.',
+    valuesEyebrow: 'Что вы получаете',
+    valuesTitle: 'Компания из одного человека —',
+    valuesTitleEm: 'и это осознанно.',
     values: [
-      { num: '01', t: 'Маржа — или не релиз', b: 'Каждая фича оправдывается строчкой P&L: ФОТ, фудкост, комиссии или оборачиваемость. Не двигает цифру — не выходит.' },
-      { num: '02', t: 'Пользователь — собственник', b: 'Мы проектируем для того, кто подписывает счета. Скорость, ясность, одна цифра: заработали мы сегодня или нет.' },
-      { num: '03', t: 'Одна правда', b: 'Одно меню, склад и клиент по всей платформе. Никаких синхронов для отладки. Деньги не утекают между модулями.' },
+      { num: '01', t: 'Вы говорите с разработчиком', b: 'Не с дилером и не с первой линией по скрипту. Отвечает тот, кто написал код, — и он может этот код поменять.' },
+      { num: '02', t: 'Внедряю я сам', b: 'Сам импортирую меню, настраиваю склад и обучаю персонал у вас в заведении. В день запуска я на месте, а не партнёр, которого вы никогда не видели.' },
+      { num: '03', t: 'Мой номер — на этой странице', b: 'Telegram и телефон, которые ведут напрямую ко мне. Между вами и решением проблемы нет очереди тикетов.' },
     ],
-    teamEyebrow: 'Команда',
-    teamTitle: 'Те, кто строит',
-    teamTitleEm: 'платформу.',
-    teamSubtitle: '32 человека в продукте, инженерии, дизайне и поддержке — катят систему, на которой 2 400+ заведений ведут P&L.',
-    team: [
-      { i: 'Д', c: '', n: 'Диёр Ташкент', r: 'CEO и сооснователь' },
-      { i: 'М', c: 't2', n: 'Мавлуда Саидова', r: 'CTO' },
-      { i: 'Р', c: 't3', n: 'Равшан Юсупов', r: 'VP Product' },
-      { i: 'Н', c: 't4', n: 'Наргиза Каримова', r: 'Глава дизайна' },
-    ],
+    contactEyebrow: 'Напишите мне',
+    contactTitle: 'Напрямую.',
+    contactBody: 'Если у вас заведение в Ташкенте и вы хотите посмотреть, подходит ли это вам — напишите. Ответит человек, а не бот.',
+    tg: 'Telegram',
+    phone: 'Телефон',
   },
   uz: {
     eyebrow: 'RestOS haqida',
-    title_a: 'Foyda — yuqori. Xarajat — past.',
-    title_b: 'Tartibsizlik — yo\'q.',
-    lede: 'RestOS — 2 400+ mustaqil muassasa marjani ko\'tarish, isrofni qisqartirish va kechni paniksiz yakunlash uchun ishlatadigan operatsion tizim. Bitta platforma. O\'n ikki modul. Jadvallar — yo\'q.',
-    storyTitle: 'Nima uchun',
-    storyTitleEm: 'mavjudmiz.',
-    storyEyebrow: 'Missiya',
+    title_a: 'Men Furqat.',
+    title_b: 'Bu tizimni men yozdim.',
+    lede: "RestOS — 2026 yilda Toshkentda qurilgan. Men uni yozdim, men o'rnataman, va muammo bo'lsa siz men bilan gaplashasiz — qo'llab-quvvatlash bo'limi bilan emas.",
+    storyEyebrow: 'Nega kerak',
+    storyTitle: "Besh obuna o'rniga",
+    storyTitleEm: 'bitta tizim.',
     story: [
-      'Har bir muassasa egasida bir xil singan stek: to\'rt kassa, uch yetkazib berish planshet, ikki jadval va bir daftar. Pul vositalar orasidan oqib chiqadi. Tartibsizlik — oshxonada yashaydi.',
-      'RestOS bu stekni bitta bog\'langan tizim bilan almashtiradi. Har buyurtma, har ingrediyent, har som — bir umurtqa orqali o\'tadi. Egasi haqiqatni, oshpaz navbatni, oshpaz yordamchisi keyingi tiketni ko\'radi.',
-      'Biz mustaqil platformamiz, bitta vazifa bilan: HoReCa marjasini taxmin emas, raqamga aylantirish.',
+      "Toshkentdagi kafe cheklarni bitta dasturda uradi, omborni ikkinchisida yuritadi, yetkazib berishni uchta planshetda qabul qiladi, haqiqiy raqamlarni esa daftarda saqlaydi. Hech narsa bir-biri bilan bog'lanmagan. Oy oxirida egasi baribir bir taomning aslida qanchaga tushishini bilmaydi.",
+      "RestOS — bitta bog'langan tizim: kassa, oshxona, ombor, yetkazib berish va moliya bitta o'zakda. Har bir savdo ingredientlarni hisobdan chiqaradi. Fudkost — inventarizatsiyadan keyingi taxmin emas, bugun ko'rish mumkin bo'lgan raqam.",
+      "Bu yangi mahsulot: 2026 yilda ishga tushdi va Toshkentning oz sonli muassasalarida ishlaydi. Men buni boshqacha ko'rsatmoqchi emasman. Buning evaziga o'sha muassasalar quyidagini oladi.",
     ],
-    timelineEyebrow: 'Platforma bosqichlari',
-    timelineTitle: 'Sakkiz yil',
-    timelineTitleEm: 'yig\'ilgan marja.',
-    timeline: [
-      ['2018', 'Boshlanish', 'Ikki ta\'sischi. Bir farazli: HoReCa marjasi omad emas, dasturiy ta\'minot masalasi.'],
-      ['2020', 'Offline-first sinxronlash', 'Pandemiyada chiqdik. Mijozlar internet o\'chsa ham sotishni davom ettirdi. Hech kim yopilmadi.'],
-      ['2022', 'Jonli fudkost', 'Real vaqtda retsept kalkulyatsiyasi. 6 oyda baza bo\'yicha fudkost o\'rtacha 3 punktga tushdi.'],
-      ['2024', 'Ko\'p nuqtali yoyilish', 'Guruh konsolidatsiyasi, franshiza nazorati, birlashtirilgan P&L. ARR uch baravar oshdi.'],
-      ['2026', 'Bugun', '2 400+ muassasa. Oyiga 8.2M buyurtma. O\'rtacha mijoz: ish haqi −11%, qaytuv +28% birinchi yilda.'],
-    ],
-    valuesEyebrow: 'Platforma qoidalari',
-    valuesTitle: 'Uchta qoida —',
-    valuesTitleEm: 'boshqasi yo\'q.',
+    valuesEyebrow: 'Siz nima olasiz',
+    valuesTitle: 'Bitta odamdan iborat kompaniya —',
+    valuesTitleEm: 'va bu ataylab shunday.',
     values: [
-      { num: '01', t: 'Marja yoki yo\'q', b: 'Har funksiya P&L satri bilan oqlanadi: ish haqi, fudkost, komissiya yoki aylanma.' },
-      { num: '02', t: 'Foydalanuvchi — egasi', b: 'Hisoblarni imzolaydiganlar uchun loyihalashtiramiz. Tezlik, aniqlik va bitta raqam.' },
-      { num: '03', t: 'Bitta haqiqat', b: 'Bir menyu, ombor, mijoz — butun platformada. Sinxronlar tuzatilmaydi.' },
+      { num: '01', t: 'Siz dasturchining o\'zi bilan gaplashasiz', b: "Diler ham, skript o'qiyotgan birinchi liniya ham emas. Kodni yozgan odam javob beradi — va u kodni o'zgartira oladi." },
+      { num: '02', t: "O'rnatishni o'zim qilaman", b: "Menyuni o'zim ko'chiraman, omborni sozlayman va xodimlaringizni o'z muassasangizda o'qitaman. Ishga tushgan kuni men joyda bo'laman." },
+      { num: '03', t: 'Raqamim shu sahifada', b: "To'g'ridan-to'g'ri menga chiqadigan Telegram va telefon. Siz bilan yechim o'rtasida tiket navbati yo'q." },
     ],
-    teamEyebrow: 'Jamoa',
-    teamTitle: 'Platformani',
-    teamTitleEm: 'quruvchilar.',
-    teamSubtitle: 'Mahsulot, muhandislik, dizayn va mijoz xizmatida 32 inson.',
-    team: [
-      { i: 'D', c: '', n: 'Diyor Toshkent', r: 'CEO va ta\'sischi' },
-      { i: 'M', c: 't2', n: 'Mavluda Saidova', r: 'CTO' },
-      { i: 'R', c: 't3', n: 'Ravshan Yusupov', r: 'VP Product' },
-      { i: 'N', c: 't4', n: 'Nargiza Karimova', r: 'Bosh dizayner' },
-    ],
+    contactEyebrow: 'Menga yozing',
+    contactTitle: "To'g'ridan-to'g'ri.",
+    contactBody: "Toshkentda muassasangiz bo'lsa va bu sizga mos keladimi, ko'rmoqchi bo'lsangiz — yozing. Sizga bot emas, odam javob beradi.",
+    tg: 'Telegram',
+    phone: 'Telefon',
   },
   'uz-cyr': {
     eyebrow: 'RestOS ҳақида',
-    title_a: 'Фойда — юқори. Харажат — паст.',
-    title_b: 'Тартибсизлик — йўқ.',
-    lede: 'RestOS — 2 400+ мустақил муассаса маржани кўтариш, исрофни қисқартириш ва кечни паниксиз якунлаш учун ишлатадиган операцион тизим.',
-    storyTitle: 'Нима учун',
-    storyTitleEm: 'мавжудмиз.',
-    storyEyebrow: 'Миссия',
+    title_a: 'Мен Фурқат.',
+    title_b: 'Бу тизимни мен ёздим.',
+    lede: 'RestOS — 2026 йилда Тошкентда қурилган. Мен уни ёздим, мен ўрнатаман, ва муаммо бўлса сиз мен билан гаплашасиз — қўллаб-қувватлаш бўлими билан эмас.',
+    storyEyebrow: 'Нега керак',
+    storyTitle: 'Беш обуна ўрнига',
+    storyTitleEm: 'битта тизим.',
     story: [
-      'Ҳар бир муассаса эгасида бир хил синган стек: тўрт касса, уч етказиб бериш планшет, икки жадвал ва бир дафтар.',
-      'RestOS бу стекни битта боғланган тизим билан алмаштиради.',
-      'Биз мустақил платформамиз, битта вазифа билан: HoReCa маржасини тахмин эмас, рақамга айлантириш.',
+      'Тошкентдаги кафе чекларни битта дастурда уради, омборни иккинчисида юритади, етказиб беришни учта планшетда қабул қилади, ҳақиқий рақамларни эса дафтарда сақлайди. Ҳеч нарса бир-бири билан боғланмаган. Ой охирида эгаси барибир бир таомнинг аслида қанчага тушишини билмайди.',
+      'RestOS — битта боғланган тизим: касса, ошхона, омбор, етказиб бериш ва молия битта ўзакда. Ҳар бир савдо ингредиентларни ҳисобдан чиқаради. Фудкост — инвентаризациядан кейинги тахмин эмас, бугун кўриш мумкин бўлган рақам.',
+      'Бу янги маҳсулот: 2026 йилда ишга тушди ва Тошкентнинг оз сонли муассасаларида ишлайди. Мен буни бошқача кўрсатмоқчи эмасман. Бунинг эвазига ўша муассасалар қуйидагини олади.',
     ],
-    timelineEyebrow: 'Платформа босқичлари',
-    timelineTitle: 'Саккиз йил',
-    timelineTitleEm: 'йиғилган маржа.',
-    timeline: [
-      ['2018', 'Бошланиш', 'Икки таъсисчи. Бир фаразли: HoReCa маржаси омад эмас, дастурий таъминот масаласи.'],
-      ['2020', 'Offline-first синхронлаш', 'Пандемияда чиқдик. Мижозлар интернет ўчса ҳам сотишни давом эттирди.'],
-      ['2022', 'Жонли фудкост', 'Реал вақтда рецепт калькуляцияси. 6 ойда фудкост ўртача 3 пунктга тушди.'],
-      ['2024', 'Кўп нуқтали ёйилиш', 'Гуруҳ консолидацияси, франшиза назорати, бирлаштирилган P&L. ARR уч баравар ошди.'],
-      ['2026', 'Бугун', '2 400+ муассаса. Ойига 8.2M буюртма.'],
-    ],
-    valuesEyebrow: 'Платформа қоидалари',
-    valuesTitle: 'Учта қоида —',
-    valuesTitleEm: 'бошқаси йўқ.',
+    valuesEyebrow: 'Сиз нима оласиз',
+    valuesTitle: 'Битта одамдан иборат компания —',
+    valuesTitleEm: 'ва бу атайлаб шундай.',
     values: [
-      { num: '01', t: 'Маржа ёки йўқ', b: 'Ҳар функция P&L сатри билан оқланади.' },
-      { num: '02', t: 'Фойдаланувчи — эгаси', b: 'Ҳисобларни имзолайдиганлар учун лойиҳалаштирамиз.' },
-      { num: '03', t: 'Битта ҳақиқат', b: 'Бир меню, омбор, мижоз — бутун платформада.' },
+      { num: '01', t: 'Сиз дастурчининг ўзи билан гаплашасиз', b: 'Дилер ҳам, скрипт ўқиётган биринчи линия ҳам эмас. Кодни ёзган одам жавоб беради — ва у кодни ўзгартира олади.' },
+      { num: '02', t: 'Ўрнатишни ўзим қиламан', b: 'Менюни ўзим кўчираман, омборни созлайман ва ходимларингизни ўз муассасангизда ўқитаман. Ишга тушган куни мен жойда бўламан.' },
+      { num: '03', t: 'Рақамим шу саҳифада', b: 'Тўғридан-тўғри менга чиқадиган Telegram ва телефон. Сиз билан ечим ўртасида тикет навбати йўқ.' },
     ],
-    teamEyebrow: 'Жамоа',
-    teamTitle: 'Платформани',
-    teamTitleEm: 'қурувчилар.',
-    teamSubtitle: 'Маҳсулот, муҳандислик, дизайн ва мижоз хизматида 32 инсон.',
-    team: [
-      { i: 'Д', c: '', n: 'Диёр Тошкент', r: 'CEO ва таъсисчи' },
-      { i: 'М', c: 't2', n: 'Мавлуда Саидова', r: 'CTO' },
-      { i: 'Р', c: 't3', n: 'Равшан Юсупов', r: 'VP Product' },
-      { i: 'Н', c: 't4', n: 'Наргиза Каримова', r: 'Бош дизайнер' },
-    ],
+    contactEyebrow: 'Менга ёзинг',
+    contactTitle: 'Тўғридан-тўғри.',
+    contactBody: 'Тошкентда муассасангиз бўлса ва бу сизга мос келадими, кўрмоқчи бўлсангиз — ёзинг. Сизга бот эмас, одам жавоб беради.',
+    tg: 'Telegram',
+    phone: 'Телефон',
   },
   kaa: {
-    eyebrow: 'RestOS haqında',
-    title_a: 'Payda — joqarı. Shıǵın — tómen.',
-    title_b: 'Tártipsizlik — joq.',
-    lede: 'RestOS — 2 400+ ǵárezsiz muassasa marjanı kóteriw, ısırapty qısqartırıw hám keshti paniksiz juwmaqlaw ushın isletetuǵın operacion sistema.',
-    storyTitle: 'Nege bizler',
-    storyTitleEm: 'barmız.',
-    storyEyebrow: 'Missiya',
+    eyebrow: 'RestOS haqqında',
+    title_a: 'Men Furqat.',
+    title_b: 'Bul sistemanı men jazdım.',
+    lede: "RestOS — 2026 jılı Tashkentte qurılǵan. Onı men jazdım, men ornatamın, hám másele bolsa siz men menen sóylesesiz — qollap-quwatlaw bólimi menen emes.",
+    storyEyebrow: 'Ne ushın kerek',
+    storyTitle: 'Bes jazılıw ornına',
+    storyTitleEm: 'bir sistema.',
     story: [
-      'Hár bir muassasa iyesinde bir qıylı sınǵan stek: tórt kassa, úsh jetkeriw planshet, eki keste hám bir dápter.',
-      'RestOS bul stekti bir baylanısqan sistema menen almastıradı.',
-      'Biz ǵárezsiz platforma — bir wazıypa menen: HoReCa marjasın boljaw emes, sanǵa aylandırıw.',
+      "Tashkenttegi kafe cheklerdi bir baǵdarlamada uradı, ambardı ekinshisinde júrgizedi, jetkeriwdi úsh planshette qabıl etedi, haqıyqıy sanlardı bolsa dápterde saqlaydı. Hesh nárse bir-biri menen baylanıspaǵan. Ay aqırında iyesi báribir bir tamaqtıń shınında qanshaǵa túsetuǵının bilmeydi.",
+      "RestOS — bir baylanısqan sistema: kassa, asxana, ambar, jetkeriw hám finans bir ózekte. Hár bir sawda ingredientlerdi esaptan shıǵaradı. Fudkost — inventarizaciyadan keyingi boljaw emes, búgin kóriwge bolatuǵın san.",
+      "Bul jańa ónim: 2026 jılı iske tústi hám Tashkenttiń az sanlı orınlarında isleydi. Men bunı basqasha kórsetpekshi emespen. Onıń ornına sol orınlar tómendegini aladı.",
     ],
-    timelineEyebrow: 'Platforma basqıshları',
-    timelineTitle: 'Segiz jıl',
-    timelineTitleEm: 'jıynalǵan marja.',
-    timeline: [
-      ['2018', 'Baslanıs', 'Eki tiykarlawshı. Bir gipoteza: HoReCa marjası baxıt emes, baǵdarlama másele.'],
-      ['2020', 'Offline-first sinxronlaw', 'Pandemiyada shıqtıq. Klientler internet ózishken de sata berdi.'],
-      ['2022', 'Janlı fudkost', 'Real waqıtta retsept kalkulaciyası. 6 ay ishinde fudkost orta 3 punktke tústi.'],
-      ['2024', 'Kóp orın jayılıw', 'Topar konsolidaciyası, franshiza baqlaw, birlestirilgen P&L. ARR úsh ese ósti.'],
-      ['2026', 'Búgin', '2 400+ muassasa. Ayına 8.2M buyurtpa.'],
-    ],
-    valuesEyebrow: 'Platforma qaǵıydaları',
-    valuesTitle: 'Úsh qaǵıyda —',
-    valuesTitleEm: 'basqası joq.',
+    valuesEyebrow: 'Siz ne alasız',
+    valuesTitle: 'Bir adamnan ibarat kompaniya —',
+    valuesTitleEm: 'hám bul ataylap sonday.',
     values: [
-      { num: '01', t: 'Marja yamasa joq', b: 'Hár funksiya P&L satırı menen aqlanadı.' },
-      { num: '02', t: 'Paydalanıwshı — iyesi', b: 'Esaplarǵa qol qoyatuǵın adam ushın jobalaymız.' },
-      { num: '03', t: 'Bir haqıyqat', b: 'Bir menyu, ambar, klient — pútkil platformada.' },
+      { num: '01', t: 'Siz baǵdarlamashınıń ózi menen sóylesesiz', b: "Diler de, skript oqıp atırǵan birinshi liniya da emes. Kodtı jazǵan adam juwap beredi — hám ol kodtı ózgerte aladı." },
+      { num: '02', t: 'Ornatıwdı ózim islaymen', b: "Menyudı ózim kóshiremen, ambardı sazlayman hám xızmetkerlerińizdi óz orınıńızda oqıtaman. Iske túsken kúni men jayda bolaman." },
+      { num: '03', t: 'Nomerim usı bette', b: "Tuwrıdan-tuwrı maǵan shıǵatuǵın Telegram hám telefon. Siz benen sheshim ortasında tiket gezegi joq." },
     ],
-    teamEyebrow: 'Komanda',
-    teamTitle: 'Platformanı',
-    teamTitleEm: 'quruwshılar.',
-    teamSubtitle: 'Ónim, injenerlik, dizayn hám klient xızmetinde 32 insan.',
-    team: [
-      { i: 'D', c: '', n: 'Diyor Tashkent', r: 'CEO hám tiykarlawshı' },
-      { i: 'M', c: 't2', n: 'Mavluda Saidova', r: 'CTO' },
-      { i: 'R', c: 't3', n: 'Ravshan Yusupov', r: 'VP Product' },
-      { i: 'N', c: 't4', n: 'Nargiza Karimova', r: 'Bas dizayner' },
-    ],
+    contactEyebrow: 'Maǵan jazıń',
+    contactTitle: 'Tuwrıdan-tuwrı.',
+    contactBody: "Tashkentte orınıńız bolsa hám bul sizge sáykes pe, kórmekshi bolsańız — jazıń. Sizge bot emes, adam juwap beredi.",
+    tg: 'Telegram',
+    phone: 'Telefon',
   },
 };
 
+// The one place these live on this page. Same handle as the footer contact.
+const TELEGRAM = 'furqaty';
+const PHONE_DISPLAY = '+998 94 114 3232';
+const PHONE_HREF = '+998941143232';
+
 export default function AboutContent() {
   const lang = useLang();
-  const A = ABOUT_I18N[lang] || ABOUT_I18N.en;
+  const A = ABOUT_I18N[lang] || ABOUT_I18N.uz;
+
   return (
     <>
       <section className="page-hero">
@@ -228,7 +174,7 @@ export default function AboutContent() {
       </section>
 
       <section className="split">
-        <div className="wrap" style={{ display: 'contents' }}>
+        <div className="wrap">
           <div>
             <div className="eyebrow">{A.storyEyebrow}</div>
             <h2>{A.storyTitle} <em>{A.storyTitleEm}</em></h2>
@@ -242,32 +188,12 @@ export default function AboutContent() {
       <section className="section">
         <div className="wrap">
           <div className="section-head">
-            <div className="eyebrow">{A.timelineEyebrow}</div>
-            <h2>{A.timelineTitle} <em>{A.timelineTitleEm}</em></h2>
-          </div>
-          <div className="timeline" style={{ marginTop: 48 }}>
-            {A.timeline.map(([y, t, b], i) => (
-              <div className="tl-row" key={i}>
-                <div className="tl-year">{y}</div>
-                <div>
-                  <div className="tl-title">{t}</div>
-                  <div className="tl-body">{b}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section" style={{ paddingTop: 0, background: 'var(--cream-2)' }}>
-        <div className="wrap" style={{ paddingTop: 120 }}>
-          <div className="section-head">
             <div className="eyebrow">{A.valuesEyebrow}</div>
             <h2>{A.valuesTitle} <em>{A.valuesTitleEm}</em></h2>
           </div>
           <div className="values-grid">
-            {A.values.map((v, i) => (
-              <div className="value-card" key={i}>
+            {A.values.map((v) => (
+              <div className="value-card" key={v.num}>
                 <div className="num">{v.num}</div>
                 <h4>{v.t}</h4>
                 <p>{v.b}</p>
@@ -277,21 +203,28 @@ export default function AboutContent() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section" style={{ paddingTop: 0 }}>
         <div className="wrap">
           <div className="section-head">
-            <div className="eyebrow">{A.teamEyebrow}</div>
-            <h2>{A.teamTitle} <em>{A.teamTitleEm}</em></h2>
-            <p>{A.teamSubtitle}</p>
+            <div className="eyebrow">{A.contactEyebrow}</div>
+            <h2><em>{A.contactTitle}</em></h2>
+            <p>{A.contactBody}</p>
           </div>
-          <div className="team-grid">
-            {A.team.map((m, i) => (
-              <div className="team-card" key={i}>
-                <div className={'team-photo ' + m.c}>{m.i}</div>
-                <div className="nm">{m.n}</div>
-                <div className="ro">{m.r}</div>
-              </div>
-            ))}
+          <div className="about-contact">
+            <a className="about-contact-card" href={`https://t.me/${TELEGRAM}`} target="_blank" rel="noreferrer">
+              <span className="about-contact-icon"><Icon name="telegram" size={18}/></span>
+              <span>
+                <span className="about-contact-label">{A.tg}</span>
+                <span className="about-contact-value">@{TELEGRAM}</span>
+              </span>
+            </a>
+            <a className="about-contact-card" href={`tel:${PHONE_HREF}`}>
+              <span className="about-contact-icon"><Icon name="bell" size={18}/></span>
+              <span>
+                <span className="about-contact-label">{A.phone}</span>
+                <span className="about-contact-value">{PHONE_DISPLAY}</span>
+              </span>
+            </a>
           </div>
         </div>
       </section>

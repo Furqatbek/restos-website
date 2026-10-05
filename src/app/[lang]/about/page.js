@@ -13,7 +13,7 @@ export function generateMetadata({ params }) {
     path: '/about',
     title: t.nav.about,
     description:
-      'Learn about RestOS — the team building the operating system for modern hospitality. Our mission, values, and story.',
+      'RestOS was built in Tashkent in 2026 by one developer, Furqat. He wrote it, he installs it, and he answers support himself.',
   });
 }
 

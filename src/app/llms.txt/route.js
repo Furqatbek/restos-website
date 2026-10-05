@@ -53,6 +53,8 @@ export function GET() {
 ## Key facts
 
 - Company: RestOS, based in Tashkent, Uzbekistan. Serves Uzbekistan and the wider region.
+- Built and run by one developer, Furqat, who launched it in 2026. He writes the software,
+  installs it on site, and answers support himself — there is no reseller or support tier.
 - Product type: B2B SaaS for restaurants, cafes, bars, bakeries, hotel F&B and chains.
 - Pricing: from 300,000 UZS per venue per month to 600,000 UZS;
   three tiers (Counter, Service, Group) plus custom pricing for groups. Free trial available.
@@ -69,7 +71,7 @@ Every page exists per language under a locale prefix: /en, /ru, /uz, /uz-cyr, /k
 For example the homepage in Russian is ${BASE}/ru and the blog is ${BASE}/ru/blog.
 
 - [Home](${BASE}/en): product overview, modules, pricing, FAQ.
-- [About](${BASE}/en/about): company and team.
+- [About](${BASE}/en/about): who built RestOS and how to reach him directly.
 - [Clients](${BASE}/en/clients): venues running RestOS, in their own words.
 - [Careers](${BASE}/en/careers): open roles.
 - [Blog](${BASE}/en/blog): operations guides for restaurant owners.

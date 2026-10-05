@@ -59,7 +59,7 @@ export const LANDING_PAGES = {
         },
         {
           h2: 'Меньше затрат на персонал',
-          body: 'Клиенты RestOS в среднем экономят 11% фонда оплаты труда за полгода. Автоматический учёт смен, понятные роли и быстрая касса снимают рутину с менеджеров.',
+          body: 'Автоматический учёт смен, понятные роли и быстрая касса снимают рутину с менеджеров: меньше ручных сверок, меньше переработок на администрировании.',
         },
         {
           h2: 'Финансы и отчёты, которые открывают',
@@ -149,7 +149,7 @@ export const LANDING_PAGES = {
         },
         {
           h2: 'Xodim xarajatlari kamayadi',
-          body: 'RestOS mijozlari olti oyda o‘rtacha ish haqi fondining 11% ini tejaydi. Smenalarni avtomatik hisobga olish va tez kassa menejerlardan rutinani oladi.',
+          body: 'Smenalarni avtomatik hisobga olish, aniq rollar va tez kassa menejerlardan rutinani oladi: qo‘lda solishtirish kamayadi, ma’muriyatga ketadigan vaqt qisqaradi.',
         },
         {
           h2: 'Moliya va hisobotlar',
