@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useLang } from '@/context/AppContext';
+import { localePath } from '@/lib/locale';
 
 const BLOG_I18N = {
   en: {
@@ -91,16 +92,23 @@ const BLOG_I18N = {
   },
 };
 
-export default function BlogContent() {
+// Posts are passed in from the server so the listing (and every link to a
+// post) exists in the server-rendered HTML. That matters twice over: it is
+// what search engines follow to discover posts, and most AI crawlers do not
+// execute JavaScript at all, so a client-only fetch is invisible to them.
+export default function BlogContent({ initialPosts = [], initialFeatured = null, initialLang }) {
   const lang = useLang();
   const B = BLOG_I18N[lang] || BLOG_I18N.en;
   const [email, setEmail] = useState('');
   const [newsState, setNewsState] = useState('idle');
-  const [posts, setPosts] = useState([]);
-  const [featured, setFeatured] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [posts, setPosts] = useState(initialPosts);
+  const [featured, setFeatured] = useState(initialFeatured);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    // The server already rendered this locale's posts; only refetch if the
+    // active language somehow diverges from what was rendered.
+    if (!initialLang || lang === initialLang) return;
     setLoading(true);
     fetch(`/api/posts?lang=${lang}&status=published`)
       .then(r => r.json())
@@ -111,7 +119,7 @@ export default function BlogContent() {
       })
       .catch(() => {})
       .finally(() => setLoading(false));
-  }, [lang]);
+  }, [lang, initialLang]);
 
   const emptyStyle = { padding: '40px 0', fontFamily: 'var(--mono)', fontSize: 13, color: 'var(--muted)' };
 
@@ -133,7 +141,7 @@ export default function BlogContent() {
           {loading ? (
             <div style={emptyStyle}>…</div>
           ) : featured ? (
-            <Link href={`/blog/${featured.id}`} className="featured-post">
+            <Link href={localePath(lang, `/blog/${featured.slug || featured.id}`)} className="featured-post">
               <div className="pcover">
                 <div className="glyph">{featured.glyph}</div>
               </div>
@@ -163,7 +171,7 @@ export default function BlogContent() {
           ) : (
             <div className="blog-grid">
               {posts.map(p => (
-                <Link href={`/blog/${p.id}`} className="blog-card" key={p.id}>
+                <Link href={localePath(lang, `/blog/${p.slug || p.id}`)} className="blog-card" key={p.id}>
                   <div className={`pthumb ${p.color}`}>
                     <div className="glyph">{p.glyph}</div>
                   </div>

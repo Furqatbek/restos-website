@@ -1,14 +1,25 @@
+# syntax=docker/dockerfile:1
 # ── Stage 1: install & compile all dependencies ──────────────────────────────
 FROM node:22-slim AS deps
 
-# Build tools needed for better-sqlite3 and @resvg/resvg-js native modules
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    python3 make g++ \
- && rm -rf /var/lib/apt/lists/*
+# Build tools needed for better-sqlite3 and @resvg/resvg-js native modules.
+# The apt cache mount keeps the package lists between builds instead of
+# re-downloading ~90s of index every time.
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt/lists,sharing=locked \
+    apt-get update && apt-get install -y --no-install-recommends \
+    python3 make g++
 
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci
+
+# The npm cache mount is the big one: better-sqlite3 and @resvg/resvg-js are
+# native modules, so a cold `npm ci` downloads and compiles from source (~28
+# min on a small VPS). With the cache, a rebuild after a lockfile change reuses
+# the downloaded tarballs and prebuilt binaries instead of starting over.
+# --no-audit/--no-fund drop two pointless network round-trips.
+RUN --mount=type=cache,target=/root/.npm \
+    npm ci --prefer-offline --no-audit --no-fund
 
 
 # ── Stage 2: build Next.js ────────────────────────────────────────────────────

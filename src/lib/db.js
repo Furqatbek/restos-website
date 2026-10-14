@@ -1,6 +1,7 @@
 import Database from 'better-sqlite3';
 import path from 'path';
 import fs from 'fs';
+import { slugify, uniqueSlug } from './slugify';
 
 const DB_PATH = process.env.DATABASE_PATH || (() => {
   const dir = path.join(process.cwd(), 'data');
@@ -10,7 +11,31 @@ const DB_PATH = process.env.DATABASE_PATH || (() => {
 
 function initDb() {
   const db = new Database(DB_PATH);
+  // Next spins up several build/runtime workers that all open this file and
+  // run the schema + migrations at once. Three things keep that from throwing
+  // SQLITE_BUSY, and the order matters:
+  //   1. busy_timeout FIRST — switching to WAL is itself a write that needs a
+  //      lock, so setting it after would leave that pragma racing with a zero
+  //      timeout (this is exactly what kept failing the Docker build).
+  //   2. WAL, so readers do not block the writer.
+  //   3. BEGIN IMMEDIATE below, so one worker takes the write lock and
+  //      completes the whole migration while the others queue behind it.
+  db.pragma('busy_timeout = 15000');
   db.pragma('journal_mode = WAL');
+
+  db.exec('BEGIN IMMEDIATE');
+  try {
+    migrate(db);
+    db.exec('COMMIT');
+  } catch (err) {
+    db.exec('ROLLBACK');
+    throw err;
+  }
+
+  return db;
+}
+
+function migrate(db) {
   db.exec(`
     CREATE TABLE IF NOT EXISTS demo_requests (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -49,9 +74,24 @@ function initDb() {
       status TEXT DEFAULT 'open',
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
+    CREATE TABLE IF NOT EXISTS foodcost_requests (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      phone TEXT NOT NULL,
+      venue TEXT,
+      contact TEXT,
+      venues_count TEXT,
+      current_system TEXT,
+      revenue_band TEXT,
+      lang TEXT DEFAULT 'uz',
+      source TEXT,
+      ip TEXT,
+      user_agent TEXT,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
     CREATE TABLE IF NOT EXISTS posts (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       title TEXT NOT NULL,
+      slug TEXT,
       excerpt TEXT,
       body TEXT,
       category TEXT,
@@ -61,6 +101,9 @@ function initDb() {
       lang TEXT DEFAULT 'en',
       featured INTEGER DEFAULT 0,
       status TEXT DEFAULT 'draft',
+      meta_title TEXT,
+      meta_description TEXT,
+      keywords TEXT,
       published_at DATETIME,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -69,16 +112,29 @@ function initDb() {
 
   // Migrations: add columns to posts table when upgrading an existing DB
   const cols = db.prepare("PRAGMA table_info(posts)").all();
-  if (!cols.some(c => c.name === 'body')) {
-    db.exec('ALTER TABLE posts ADD COLUMN body TEXT');
-  }
-  if (!cols.some(c => c.name === 'updated_at')) {
+  const has = (name) => cols.some((c) => c.name === name);
+  if (!has('body')) db.exec('ALTER TABLE posts ADD COLUMN body TEXT');
+  if (!has('updated_at')) {
     // No dynamic default allowed in ALTER; seed from created_at, maintained by app.
     db.exec('ALTER TABLE posts ADD COLUMN updated_at DATETIME');
     db.exec('UPDATE posts SET updated_at = COALESCE(published_at, created_at) WHERE updated_at IS NULL');
   }
+  if (!has('slug')) db.exec('ALTER TABLE posts ADD COLUMN slug TEXT');
+  if (!has('meta_title')) db.exec('ALTER TABLE posts ADD COLUMN meta_title TEXT');
+  if (!has('meta_description')) db.exec('ALTER TABLE posts ADD COLUMN meta_description TEXT');
+  if (!has('keywords')) db.exec('ALTER TABLE posts ADD COLUMN keywords TEXT');
 
-  return db;
+  // Backfill slugs for any posts missing one (transliterated from title).
+  const missing = db.prepare("SELECT id, title FROM posts WHERE slug IS NULL OR slug = ''").all();
+  if (missing.length) {
+    const exists = db.prepare('SELECT 1 FROM posts WHERE slug = ?');
+    const setSlug = db.prepare('UPDATE posts SET slug = ? WHERE id = ?');
+    for (const p of missing) {
+      const base = slugify(p.title);
+      const slug = uniqueSlug(base, (s) => !!exists.get(s));
+      setSlug.run(slug, p.id);
+    }
+  }
 }
 
 // Singleton to survive HMR in development

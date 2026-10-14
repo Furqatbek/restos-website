@@ -67,6 +67,30 @@ describe('POST /api/posts', () => {
     const data = await create({ ...VALID, lang: 'uz' });
     expect(data.lang).toBe('uz');
   });
+
+  test('auto-generates a slug from the title', async () => {
+    const data = await create({ ...VALID, title: 'How We Cut Food Cost' });
+    expect(data.slug).toBe('how-we-cut-food-cost');
+  });
+
+  test('makes slugs unique on collision', async () => {
+    const a = await create({ ...VALID, title: 'Same Title' });
+    const b = await create({ ...VALID, title: 'Same Title' });
+    expect(a.slug).toBe('same-title');
+    expect(b.slug).toBe('same-title-2');
+  });
+
+  test('stores explicit SEO meta fields', async () => {
+    const data = await create({
+      ...VALID,
+      meta_title: 'SEO Title',
+      meta_description: 'SEO description.',
+      keywords: 'pos, kassa',
+    });
+    expect(data.meta_title).toBe('SEO Title');
+    expect(data.meta_description).toBe('SEO description.');
+    expect(data.keywords).toBe('pos, kassa');
+  });
 });
 
 describe('GET /api/posts', () => {
