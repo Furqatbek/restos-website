@@ -3,7 +3,14 @@ import { DEFAULT_LOCALE, isLocale, HTML_LANG } from '@/lib/locale';
 
 const BASE = 'https://restos.uz';
 
-export const revalidate = 3600;
+// Read from SQLite, which lives on a runtime volume (sqlite_data:/app/data).
+// `npm run build` runs inside `docker build`, where that volume is not mounted,
+// so a statically prerendered version of this route is baked against an EMPTY
+// database and then served for the whole revalidate window. That is how a
+// rebuild emptied the blog listing, the feed and the sitemap while every post
+// was still in the database. Render per request instead; nginx caches HTML for
+// 60s, which absorbs any burst.
+export const dynamic = 'force-dynamic';
 
 function esc(s) {
   return String(s ?? '')

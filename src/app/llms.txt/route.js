@@ -5,13 +5,14 @@ import { DEFAULT_LOCALE, isLocale } from '@/lib/locale';
 
 const BASE = 'https://restos.uz';
 
-// llms.txt — a curated, plain-text map of the site for AI assistants
-// (llmstxt.org). Not every crawler honours it yet, but it is cheap, it costs
-// nothing to serve, and it lets an assistant answer "what is RestOS, what does
-// it cost, who is it for" without guessing from rendered HTML.
-//
-// Generated from the same data the site renders, so it cannot drift.
-export const revalidate = 3600;
+// Read from SQLite, which lives on a runtime volume (sqlite_data:/app/data).
+// `npm run build` runs inside `docker build`, where that volume is not mounted,
+// so a statically prerendered version of this route is baked against an EMPTY
+// database and then served for the whole revalidate window. That is how a
+// rebuild emptied the blog listing, the feed and the sitemap while every post
+// was still in the database. Render per request instead; nginx caches HTML for
+// 60s, which absorbs any burst.
+export const dynamic = 'force-dynamic';
 
 function landingLines() {
   const out = [];
