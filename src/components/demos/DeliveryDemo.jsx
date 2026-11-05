@@ -4,12 +4,12 @@ import { useDemoLang } from '@/context/AppContext';
 
 export default function DeliveryDemo() {
   const D = useDemoLang().delivery;
-  const [orders, setOrders] = useState({ uzum: 18, express24: 12, yandex: 9, wolt: 6, own: 23 });
+  const [orders, setOrders] = useState({ uzum: 18, express24: 12, yandex: 9, own: 23 });
 
   useEffect(() => {
     const t = setInterval(() => {
       setOrders(o => {
-        const k = ['uzum', 'express24', 'yandex', 'wolt', 'own'][Math.floor(Math.random() * 5)];
+        const k = ['uzum', 'express24', 'yandex', 'own'][Math.floor(Math.random() * 4)];
         return { ...o, [k]: o[k] + 1 };
       });
     }, 2200);
@@ -24,7 +24,6 @@ export default function DeliveryDemo() {
     { k: 'uzum', nm: 'Uzum Tezkor', bg: '#7000ff', sym: 'U' },
     { k: 'express24', nm: 'Express24', bg: '#ff6b00', sym: 'E' },
     { k: 'yandex', nm: 'Yandex Eats', bg: '#ff3d00', sym: 'Y' },
-    { k: 'wolt', nm: 'Wolt', bg: '#00c2e8', sym: 'W' },
     { k: 'own', nm: D.direct, bg: '#0f2d24', sym: '⌂' },
   ];
 

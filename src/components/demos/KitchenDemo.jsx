@@ -10,7 +10,7 @@ export default function KitchenDemo() {
     { id: 2480, tbl: 'BAR', time: '00:42', items: ['2× Espresso', '1× Croissant'], state: 'new' },
     { id: 2476, tbl: 'T03', time: '06:58', items: ['4× Manti', '2× Ayran'], state: 'ready' },
     { id: 2477, tbl: 'T15', time: '05:20', items: ['1× Shashlik mix'], state: 'firing' },
-    { id: 2481, tbl: 'D·W', time: '00:10', items: ['2× Plov', '2× Samsa'], state: 'new' },
+    { id: 2481, tbl: 'D·U', time: '00:10', items: ['2× Plov', '2× Samsa'], state: 'new' },
   ]);
 
   useEffect(() => {

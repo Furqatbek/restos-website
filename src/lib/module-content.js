@@ -11,47 +11,50 @@
 // double-bonus day, a digital stamp card, or refund/expiry entries in the
 // ledger. Add them only once the product is confirmed to do them.
 //
-// Written 2026-11-05 for owner review. Pages stay noindex until reviewed and
-// added to `indexed` in module-pages.js.
+// Reviewed and approved by the owner on 2026-11-05, with two corrections:
+//   - Wolt is not integrated. Delivery is Uzum Tezkor, Express24, Yandex Eats.
+//   - Printers and kitchen screens are installed on request, sized to the
+//     number of kitchen stations — not "use the hardware you already have".
+// Delivery, KDS and Loyalty are indexed in ru and uz (see module-pages.js).
 
 export const MODULE_CONTENT = {
   delivery: {
     ru: {
       sections: [
-        { h2: 'Четыре агрегатора — четыре планшета',
-          body: 'В типичном кафе в Ташкенте у стойки стоят несколько планшетов: Uzum Tezkor, Express24, Yandex Eats, Wolt. Каждый пищит по-своему, у каждого своё меню, свои стоп-листы и свой отчёт в конце дня. В час пик кассир переключается между ними, заказ переписывают на кухню вручную, а когда блюдо закончилось, его приходится снимать в четырёх местах. Ошибки здесь не случайность — это сама схема работы.' },
+        { h2: 'Три агрегатора — три планшета',
+          body: 'В типичном кафе в Ташкенте у стойки стоят несколько планшетов: Uzum Tezkor, Express24, Yandex Eats. Каждый пищит по-своему, у каждого своё меню, свои стоп-листы и свой отчёт в конце дня. В час пик кассир переключается между ними, заказ переписывают на кухню вручную, а когда блюдо закончилось, его приходится снимать в трёх местах. Ошибки здесь не случайность — это сама схема работы.' },
         { h2: 'Все заказы — в одном окне',
-          body: 'Модуль доставки собирает заказы Uzum Tezkor, Express24, Yandex Eats и Wolt в одну ленту прямо в кассе. Рядом идут заказы с вашего собственного сайта. Не нужно держать отдельный планшет под каждый сервис и переключаться между ними: всё видно на одном экране и печатается на одном принтере.' },
+          body: 'Модуль доставки собирает заказы Uzum Tezkor, Express24 и Yandex Eats в одну ленту прямо в кассе. Рядом идут заказы с вашего собственного сайта. Не нужно держать отдельный планшет под каждый сервис и переключаться между ними: всё видно на одном экране и печатается на одном принтере.' },
         { h2: 'Меню синхронизируется само',
-          body: 'Меню и цены ведутся в одном месте и уходят во все подключённые сервисы. Блюдо закончилось — вы снимаете его один раз, а не четыре. Это убирает самую частую причину отмен и плохих отзывов: заказ на то, чего на кухне уже нет.' },
+          body: 'Меню и цены ведутся в одном месте и уходят во все подключённые сервисы. Блюдо закончилось — вы снимаете его один раз, а не три. Это убирает самую частую причину отмен и плохих отзывов: заказ на то, чего на кухне уже нет.' },
         { h2: 'Доставка — часть общей системы',
-          body: 'Заказ с агрегатора попадает туда же, куда и заказ из зала: на кухонный экран, в списание склада и в отчёты. Поэтому выручка по каждому каналу видна рядом с остальными цифрами, а не в четырёх разных личных кабинетах. Если у вас есть свои курьеры, для них есть отдельный модуль.' },
+          body: 'Заказ с агрегатора попадает туда же, куда и заказ из зала: на кухонный экран, в списание склада и в отчёты. Поэтому выручка по каждому каналу видна рядом с остальными цифрами, а не в трёх разных личных кабинетах. Если у вас есть свои курьеры, для них есть отдельный модуль.' },
         { h2: 'Что нужно для запуска',
-          body: 'Отдельное оборудование не требуется: модуль работает на iPad, Android-планшете или ПК, которые у вас уже есть, и с вашими принтерами. При запуске мы сами импортируем меню, настраиваем склад и обучаем персонал. Доставка входит в тариф «Сервис» и выше.' },
+          body: 'Принтеры и кухонные экраны мы устанавливаем по запросу — их количество подбираем по числу цехов на вашей кухне. При запуске мы сами импортируем меню, настраиваем склад и обучаем персонал. Доставка входит в тариф «Сервис» и выше.' },
       ],
       faqs: [
-        ['Какие сервисы доставки подключаются?', 'Uzum Tezkor, Express24, Yandex Eats и Wolt. Заказы с них падают прямо в кассу — без второго планшета.'],
-        ['Нужно ли менять оборудование?', 'Нет. Модуль работает на iPad, Android-планшете или ПК, а ваши принтеры подключаются как есть.'],
+        ['Какие сервисы доставки подключаются?', 'Uzum Tezkor, Express24 и Yandex Eats. Заказы с них падают прямо в кассу — без второго планшета.'],
+        ['Нужно ли докупать оборудование?', 'Принтеры и экраны устанавливаем по запросу. Их количество зависит от числа цехов на вашей кухне.'],
         ['В какой тариф входит доставка?', 'В тариф «Сервис» и все тарифы выше.'],
         ['Мы уже работаем в iiko или r_keeper. Можно перейти?', 'Да. Переносим ваше меню, склад и историю, оборудование остаётся ваше. Если не подойдёт — вернётесь обратно, и с этим мы тоже поможем.'],
       ],
     },
     uz: {
       sections: [
-        { h2: "To'rtta agregator — to'rtta planshet",
-          body: "Toshkentdagi oddiy kafeda kassa yonida bir nechta planshet turadi: Uzum Tezkor, Express24, Yandex Eats, Wolt. Har biri o'zicha signal beradi, har birining o'z menyusi, o'z stop-listi va kun oxirida o'z hisoboti bor. Gavjum paytda kassir ular orasida almashib yuradi, buyurtma oshxonaga qo'lda ko'chiriladi, taom tugasa esa uni to'rt joyda o'chirish kerak. Bu yerda xato tasodif emas — ish tartibining o'zi shunday." },
+        { h2: 'Uchta agregator — uchta planshet',
+          body: "Toshkentdagi oddiy kafeda kassa yonida bir nechta planshet turadi: Uzum Tezkor, Express24, Yandex Eats. Har biri o'zicha signal beradi, har birining o'z menyusi, o'z stop-listi va kun oxirida o'z hisoboti bor. Gavjum paytda kassir ular orasida almashib yuradi, buyurtma oshxonaga qo'lda ko'chiriladi, taom tugasa esa uni uch joyda o'chirish kerak. Bu yerda xato tasodif emas — ish tartibining o'zi shunday." },
         { h2: 'Barcha buyurtmalar — bitta oynada',
-          body: "Yetkazib berish moduli Uzum Tezkor, Express24, Yandex Eats va Wolt buyurtmalarini to'g'ridan-to'g'ri kassadagi bitta lentaga yig'adi. Yonida o'z saytingizdan kelgan buyurtmalar ham turadi. Har bir xizmat uchun alohida planshet saqlash va ular orasida almashib yurish shart emas: hammasi bitta ekranda ko'rinadi va bitta printerda chop etiladi." },
+          body: "Yetkazib berish moduli Uzum Tezkor, Express24 va Yandex Eats buyurtmalarini to'g'ridan-to'g'ri kassadagi bitta lentaga yig'adi. Yonida o'z saytingizdan kelgan buyurtmalar ham turadi. Har bir xizmat uchun alohida planshet saqlash va ular orasida almashib yurish shart emas: hammasi bitta ekranda ko'rinadi va bitta printerda chop etiladi." },
         { h2: "Menyu o'zi sinxronlanadi",
-          body: "Menyu va narxlar bitta joyda yuritiladi va barcha ulangan xizmatlarga yuboriladi. Taom tugadimi — uni to'rt marta emas, bir marta o'chirasiz. Bu bekor qilingan buyurtmalar va yomon sharhlarning eng ko'p uchraydigan sababini yo'qotadi: oshxonada allaqachon yo'q taomga buyurtma." },
+          body: "Menyu va narxlar bitta joyda yuritiladi va barcha ulangan xizmatlarga yuboriladi. Taom tugadimi — uni uch marta emas, bir marta o'chirasiz. Bu bekor qilingan buyurtmalar va yomon sharhlarning eng ko'p uchraydigan sababini yo'qotadi: oshxonada allaqachon yo'q taomga buyurtma." },
         { h2: 'Yetkazib berish — umumiy tizimning bir qismi',
-          body: "Agregatordan kelgan buyurtma zaldagi buyurtma boradigan joyga boradi: oshxona ekraniga, ombor hisobiga va hisobotlarga. Shuning uchun har bir kanal bo'yicha tushum to'rtta alohida shaxsiy kabinetda emas, boshqa raqamlar yonida ko'rinadi. O'z kuryerlaringiz bo'lsa, ular uchun alohida modul bor." },
+          body: "Agregatordan kelgan buyurtma zaldagi buyurtma boradigan joyga boradi: oshxona ekraniga, ombor hisobiga va hisobotlarga. Shuning uchun har bir kanal bo'yicha tushum uchta alohida shaxsiy kabinetda emas, boshqa raqamlar yonida ko'rinadi. O'z kuryerlaringiz bo'lsa, ular uchun alohida modul bor." },
         { h2: 'Ishga tushirish uchun nima kerak',
-          body: "Alohida uskuna kerak emas: modul sizda bor iPad, Android planshet yoki kompyuterda ishlaydi va printerlaringiz bilan ulanadi. Ishga tushirishda menyuni o'zimiz import qilamiz, omborni sozlaymiz va xodimlarni o'qitamiz. Yetkazib berish «Servis» va undan yuqori tariflarga kiradi." },
+          body: "Printerlar va oshxona ekranlarini so'rov bo'yicha o'rnatamiz — ularning sonini oshxonangizdagi sexlar soniga qarab tanlaymiz. Ishga tushirishda menyuni o'zimiz import qilamiz, omborni sozlaymiz va xodimlarni o'qitamiz. Yetkazib berish «Servis» va undan yuqori tariflarga kiradi." },
       ],
       faqs: [
-        ['Qaysi yetkazib berish xizmatlari ulanadi?', "Uzum Tezkor, Express24, Yandex Eats va Wolt. Ulardan kelgan buyurtmalar to'g'ridan-to'g'ri kassangizga tushadi — ikkinchi planshetsiz."],
-        ['Uskunani almashtirish kerakmi?', "Yo'q. Modul iPad, Android planshet yoki kompyuterda ishlaydi, printerlaringiz esa borligicha ulanadi."],
+        ['Qaysi yetkazib berish xizmatlari ulanadi?', "Uzum Tezkor, Express24 va Yandex Eats. Ulardan kelgan buyurtmalar to'g'ridan-to'g'ri kassangizga tushadi — ikkinchi planshetsiz."],
+        ['Qo\'shimcha uskuna sotib olish kerakmi?', "Printerlar va ekranlarni so'rov bo'yicha o'rnatamiz. Ularning soni oshxonangizdagi sexlar soniga bog'liq."],
         ['Yetkazib berish qaysi tarifga kiradi?', '«Servis» va undan yuqori barcha tariflarga.'],
         ["Biz iiko yoki r_keeper'da ishlaymiz. O'tish mumkinmi?", "Ha. Menyu, ombor va tarixingizni ko'chiramiz, uskunangiz o'zingizda qoladi. To'g'ri kelmasa — ortga qaytasiz, bunda ham yordam beramiz."],
       ],
@@ -70,10 +73,10 @@ export const MODULE_CONTENT = {
         { h2: 'Зал и доставка на одном экране',
           body: 'Заказы из зала, с бара и с сервисов доставки приходят на тот же экран и стоят в одной очереди. Кухня работает с одним потоком, а не с несколькими каналами одновременно. Это особенно заметно в обед, когда зал и доставка пиковеют в одно и то же время.' },
         { h2: 'Что нужно для запуска',
-          body: 'Подойдёт планшет или экран, который у вас уже есть: iPad, Android или ПК. При запуске мы обучаем персонал, который будет работать с экраном, — чтобы кухня перешла с бумаги на экран вся сразу, а не по одному повару. Кухонный экран входит уже в базовый тариф «Касса».' },
+          body: 'Кухонные экраны и принтеры мы устанавливаем по запросу — по числу цехов на вашей кухне. При запуске мы обучаем персонал, который будет работать с экраном, — чтобы кухня перешла с бумаги на экран вся сразу, а не по одному повару. Кухонный экран входит уже в базовый тариф «Касса».' },
       ],
       faqs: [
-        ['Нужен ли специальный кухонный монитор?', 'Нет. Подойдёт iPad, Android-планшет или ПК, который у вас уже есть.'],
+        ['Нужен ли кухонный монитор?', 'Экраны и принтеры устанавливаем по запросу. Их количество зависит от числа цехов на вашей кухне.'],
         ['Как тикет попадает в нужный цех?', 'Автоматически: заказ сразу распределяется по цехам, и каждый видит свои позиции.'],
         ['В какой тариф входит KDS?', 'В базовый тариф «Касса» и все тарифы выше.'],
         ['Официанту нужно ходить на кухню проверять заказ?', 'Нет. Когда блюдо готово, повар отмечает тикет, и официанта вызывают голосом.'],
@@ -91,10 +94,10 @@ export const MODULE_CONTENT = {
         { h2: 'Zal va yetkazib berish — bitta ekranda',
           body: "Zaldan, bardan va yetkazib berish xizmatlaridan kelgan buyurtmalar bitta ekranga tushadi va bitta navbatda turadi. Oshxona bir vaqtning o'zida bir nechta kanal bilan emas, bitta oqim bilan ishlaydi. Bu ayniqsa tushlik paytida, zal va yetkazib berish bir vaqtda gavjum bo'lganda sezilarli." },
         { h2: 'Ishga tushirish uchun nima kerak',
-          body: "Sizda bor planshet yoki ekran yetarli: iPad, Android yoki kompyuter. Ishga tushirishda ekran bilan ishlaydigan xodimlarni o'qitamiz — oshxona qog'ozdan ekranga oshpazma-oshpaz emas, hammasi birga o'tishi uchun. Oshxona ekrani asosiy «Kassa» tarifiga allaqachon kiradi." },
+          body: "Oshxona ekranlari va printerlarni so'rov bo'yicha o'rnatamiz — oshxonangizdagi sexlar soniga qarab. Ishga tushirishda ekran bilan ishlaydigan xodimlarni o'qitamiz — oshxona qog'ozdan ekranga oshpazma-oshpaz emas, hammasi birga o'tishi uchun. Oshxona ekrani asosiy «Kassa» tarifiga allaqachon kiradi." },
       ],
       faqs: [
-        ['Maxsus oshxona monitori kerakmi?', "Yo'q. Sizda bor iPad, Android planshet yoki kompyuter yetarli."],
+        ['Oshxona monitori kerakmi?', "Ekranlar va printerlarni so'rov bo'yicha o'rnatamiz. Ularning soni oshxonangizdagi sexlar soniga bog'liq."],
         ['Tiket kerakli sexga qanday tushadi?', "Avtomatik: buyurtma darhol sexlar bo'yicha taqsimlanadi va har kim o'z pozitsiyalarini ko'radi."],
         ['KDS qaysi tarifga kiradi?', "Asosiy «Kassa» tarifiga va undan yuqori barcha tariflarga."],
         ["Ofitsiant buyurtmani tekshirish uchun oshxonaga borishi kerakmi?", "Yo'q. Taom tayyor bo'lganda oshpaz tiketni belgilaydi va ofitsiant ovozli chaqiriq bilan chaqiriladi."],

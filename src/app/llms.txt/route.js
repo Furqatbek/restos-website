@@ -64,7 +64,7 @@ export function GET() {
 - Setup time: 48 hours to the first order, including menu import and staff training.
 - Runs on existing hardware: any iPad, Android tablet or PC; existing printers and terminals.
 - Works offline: the POS keeps selling without internet and syncs when the connection returns.
-- Delivery integrations: Uzum Tezkor, Express24, Yandex Eats, Wolt — all in one inbox, on one printer.
+- Delivery integrations: Uzum Tezkor, Express24, Yandex Eats — all in one inbox, on one printer.
 - Languages: Russian, Uzbek (Latin), Uzbek (Cyrillic), Karakalpak, English.
 - Contact: +998 94 114 3232 · https://t.me/restos_blog · https://instagram.com/restos.uz
 

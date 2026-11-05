@@ -37,9 +37,9 @@ export const MODULES = {
   },
   waiter:    { slug: 'waiter-app',      tier: 1, related: ['pos', 'kitchen', 'payment'] },
   self:      { slug: 'qr-menu',         tier: 0, related: ['payment', 'loyalty', 'pos'] },
-  delivery:  { slug: 'delivery',        tier: 1, related: ['courier', 'kitchen', 'pos'] },
+  delivery:  { slug: 'delivery',        tier: 1, related: ['courier', 'kitchen', 'pos'], indexed: ['ru', 'uz'] },
   payment:   { slug: 'payments',        tier: 0, related: ['pos', 'finance', 'self'] },
-  kitchen:   { slug: 'kitchen-display', tier: 0, related: ['pos', 'waiter', 'inventory'] },
+  kitchen:   { slug: 'kitchen-display', tier: 0, related: ['pos', 'waiter', 'inventory'], indexed: ['ru', 'uz'] },
   inventory: {
     slug: 'inventory',
     tier: 1,
@@ -48,7 +48,7 @@ export const MODULES = {
   },
   analytics: { slug: 'analytics',       tier: 0, related: ['finance', 'inventory', 'marketing'] },
   courier:   { slug: 'courier',         tier: 1, related: ['delivery', 'kitchen', 'analytics'] },
-  loyalty:   { slug: 'loyalty',         tier: 1, related: ['marketing', 'self', 'analytics'] },
+  loyalty:   { slug: 'loyalty',         tier: 1, related: ['marketing', 'self', 'analytics'], indexed: ['ru', 'uz'] },
   finance:   { slug: 'finance',         tier: 2, related: ['analytics', 'inventory', 'payment'] },
   marketing: { slug: 'marketing',       tier: 2, related: ['loyalty', 'analytics', 'delivery'] },
 };

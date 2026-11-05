@@ -31,7 +31,7 @@ export const LANDING_PAGES = {
         },
         {
           h2: 'Интеграции с доставкой и оплатой',
-          body: 'Uzum Tezkor, Express24, Yandex Eats, Wolt — в одном окне, на один принтер. Оплата картой, кошельком, Click и Payme, чаевые и разделение счёта — всё сверяется автоматически.',
+          body: 'Uzum Tezkor, Express24, Yandex Eats — в одном окне, на один принтер. Оплата картой, кошельком, Click и Payme, чаевые и разделение счёта — всё сверяется автоматически.',
         },
       ],
       faqs: [
@@ -186,7 +186,7 @@ export const LANDING_PAGES = {
       ],
       faqs: [
         ['Kichik kafe uchun ham foydalimi?', 'Ha. Counter tarifi aynan kafe, kiosk va yakka nuqtalar uchun mo‘ljallangan, xodimlar soni cheklanmagan.'],
-        ['Yandex Eats, Wolt bilan ishlaydimi?', 'Ha, barcha yetkazib berish agregatorlari bitta oynada, bitta printerda birlashtiriladi.'],
+        ['Uzum Tezkor va Yandex Eats bilan ishlaydimi?', 'Ha. Uzum Tezkor, Express24 va Yandex Eats buyurtmalari bitta oynada, bitta printerda birlashtiriladi.'],
         ['Internetsiz ishlaydimi?', 'Ha, offline rejimda savdo davom etadi va aloqa tiklangach avtomatik sinxronlanadi.'],
       ],
     },
