@@ -1,6 +1,7 @@
 import db from '@/lib/db';
 import { LOCALES, DEFAULT_LOCALE, HTML_LANG, isLocale } from '@/lib/locale';
 import { allLandingParams } from '@/lib/landing-pages';
+import { MODULE_ORDER, MODULES, isIndexable } from '@/lib/module-pages';
 
 const BASE = 'https://restos.uz';
 
@@ -72,5 +73,15 @@ export default function sitemap() {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...landingRoutes, ...postRoutes];
+  // Module pages — only the ones switched on for indexing (see module-pages.js).
+  const moduleRoutes = LOCALES.flatMap((l) =>
+    MODULE_ORDER.filter((k) => isIndexable(k, l)).map((k) => ({
+      url: `${BASE}/${l}/modules/${MODULES[k].slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    })),
+  );
+
+  return [...staticRoutes, ...landingRoutes, ...moduleRoutes, ...postRoutes];
 }

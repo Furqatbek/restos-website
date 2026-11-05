@@ -5,31 +5,10 @@ import { track } from '@/lib/track';
 import { I18N } from '@/lib/i18n';
 import { LOCALE } from '@/lib/locale-extras';
 import Icon from './Icon';
-import WaiterDemo from './demos/WaiterDemo';
-import SelfDemo from './demos/SelfDemo';
-import DeliveryDemo from './demos/DeliveryDemo';
-import PaymentDemo from './demos/PaymentDemo';
-import KitchenDemo from './demos/KitchenDemo';
-import InventoryDemo from './demos/InventoryDemo';
-import AnalyticsDemo from './demos/AnalyticsDemo';
-import CourierDemo from './demos/CourierDemo';
-import LoyaltyDemo from './demos/LoyaltyDemo';
-import FinanceDemo from './demos/FinanceDemo';
-import PosDemo from './demos/PosDemo';
-import MarketingDemo from './demos/MarketingDemo';
-
-const demoMap = {
-  pos: PosDemo, waiter: WaiterDemo, self: SelfDemo, delivery: DeliveryDemo,
-  payment: PaymentDemo, kitchen: KitchenDemo, inventory: InventoryDemo,
-  analytics: AnalyticsDemo, courier: CourierDemo, loyalty: LoyaltyDemo,
-  finance: FinanceDemo, marketing: MarketingDemo,
-};
-const iconMap = {
-  pos: 'pos', waiter: 'waiter', self: 'self', delivery: 'delivery',
-  payment: 'payment', kitchen: 'kitchen', inventory: 'inventory',
-  analytics: 'analytics', courier: 'courier', loyalty: 'loyalty',
-  finance: 'finance', marketing: 'marketing',
-};
+import { DEMOS, MODULE_ICONS } from './demos';
+import { moduleSlug } from '@/lib/module-pages';
+import { localePath } from '@/lib/locale';
+import Link from 'next/link';
 
 export default function ModulesShowcase() {
   const lang = useLang();
@@ -39,11 +18,11 @@ export default function ModulesShowcase() {
 
   const modules = Object.keys(L.modules).map(key => ({
     key,
-    icon: iconMap[key],
+    icon: MODULE_ICONS[key],
     title: L.modules[key].title,
     desc: L.modules[key].desc,
     kpis: L.modules[key].kpis,
-    Demo: demoMap[key],
+    Demo: DEMOS[key],
   }));
 
   const current = modules[active];
@@ -81,6 +60,11 @@ export default function ModulesShowcase() {
                 </div>
                 <h3 className="demo-title">{current?.title}</h3>
                 <p className="demo-desc">{current?.desc}</p>
+                {current && (
+                  <Link className="demo-more" href={localePath(lang, `/modules/${moduleSlug(current.key)}`)}>
+                    {L.ui.learnMore} <Icon name="arrow" size={13}/>
+                  </Link>
+                )}
               </div>
               <span className="demo-badge">● {L.ui.liveDemo}</span>
             </div>

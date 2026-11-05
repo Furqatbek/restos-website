@@ -30,7 +30,7 @@ export const LOCALE = {
         { name:"Group",   desc:"Multi-site and hotel F&B.",          features:["Everything in Service","Unlimited venues","Finance + P&L","Marketing automation","Franchise controls","Custom integrations","Dedicated manager"] },
       ],
     },
-    ui:{ module:"Module", of:"/", liveDemo:"Live demo" },
+    ui:{ module:"Module", of:"/", liveDemo:"Live demo", includedIn:"Included in", andAbove:"and above", related:"Works with", allModules:"All 12 modules", learnMore:"More about this module", readMore:"Read the full guide", home:"Home" },
     footer:{
       tagline:"The all-in-one restaurant & café management system for modern hospitality — Tashkent, Uzbekistan.",
       product:"Product", company:"Company", resources:"Resources", contact:"Contact",
@@ -71,7 +71,7 @@ export const LOCALE = {
         { name:"Сеть",   desc:"Сети и F&B в отелях.",            features:["Всё из «Сервис»","Точек — без лимита","Финансы + P&L","Маркетинг-авто","Контроль франшиз","Интеграции под ключ","Персональный менеджер"] },
       ],
     },
-    ui:{ module:"Модуль", of:"из", liveDemo:"Живое демо" },
+    ui:{ module:"Модуль", of:"из", liveDemo:"Живое демо", includedIn:"Входит в тариф", andAbove:"и выше", related:"Работает вместе с", allModules:"Все 12 модулей", learnMore:"Подробнее о модуле", readMore:"Читать подробное руководство", home:"Главная" },
     footer:{
       tagline:"Система автоматизации ресторанов и кафе для современного бизнеса — Ташкент, Узбекистан.",
       product:"Продукт", company:"Компания", resources:"Ресурсы", contact:"Контакты",
@@ -112,7 +112,7 @@ export const LOCALE = {
         { name:"Tarmoq", desc:"Tarmoq va mehmonxona F&B.",        features:["«Servis»-dagi barchasi","Cheksiz nuqta","Moliya + P&L","Marketing avto","Franshiza nazorat","Maxsus integratsiya","Shaxsiy menejer"] },
       ],
     },
-    ui:{ module:"Modul", of:"/", liveDemo:"Jonli demo" },
+    ui:{ module:"Modul", of:"/", liveDemo:"Jonli demo", includedIn:"Tarifga kiradi", andAbove:"va undan yuqori", related:"Birga ishlaydi", allModules:"Barcha 12 modul", learnMore:"Modul haqida batafsil", readMore:"To'liq qo'llanmani o'qish", home:"Bosh sahifa" },
     footer:{
       tagline:"Restoran va kafelar uchun zamonaviy boshqaruv tizimi — Toshkent, O'zbekiston.",
       product:"Mahsulot", company:"Kompaniya", resources:"Resurslar", contact:"Aloqa",
@@ -153,7 +153,7 @@ export const LOCALE = {
         { name:"Тармоқ", desc:"Тармоқ ва меҳмонхона F&B.",      features:["«Сервис»-даги барчаси","Чексиз нуқта","Молия + P&L","Маркетинг авто","Франшиза назорат","Махсус интеграция","Шахсий менежер"] },
       ],
     },
-    ui:{ module:"Модул", of:"/", liveDemo:"Жонли демо" },
+    ui:{ module:"Модул", of:"/", liveDemo:"Жонли демо", includedIn:"Тарифга киради", andAbove:"ва ундан юқори", related:"Бирга ишлайди", allModules:"Барча 12 модул", learnMore:"Модул ҳақида батафсил", readMore:"Тўлиқ қўлланмани ўқиш", home:"Бош саҳифа" },
     footer:{
       tagline:"Ресторан ва кафелар учун замонавий бошқарув тизими — Тошкент, Ўзбекистон.",
       product:"Маҳсулот", company:"Компания", resources:"Ресурслар", contact:"Алоқа",
@@ -194,7 +194,7 @@ export const LOCALE = {
         { name:"Tarmaq", desc:"Tarmaq hám miymanxana F&B.",       features:["«Servis»-daǵı hámmesi","Sheksiz orın","Qarjı + P&L","Marketing avto","Franshiza baqlaw","Arnawlı integraciya","Jeke menejer"] },
       ],
     },
-    ui:{ module:"Modul", of:"/", liveDemo:"Janlı demo" },
+    ui:{ module:"Modul", of:"/", liveDemo:"Janlı demo", includedIn:"Tarifke kiredi", andAbove:"hám onnan joqarı", related:"Birge isleydi", allModules:"Barlıq 12 modul", learnMore:"Modul haqqında tolıǵıraq", readMore:"Tolıq qollanbanı oqıw", home:"Bas bet" },
     footer:{
       tagline:"Restoran hám kafeler ushın zamanagóy basqarıw sistemasy — Tashkent, Ózbekstan.",
       product:"Ónim", company:"Kompaniya", resources:"Resurslar", contact:"Baylanıs",
