@@ -82,6 +82,21 @@ export default function ModuleContent({ moduleKey }) {
         </section>
       )}
 
+      {content?.faqs?.length > 0 && (
+        <section className="section module-faq" style={{ paddingTop: 0 }}>
+          <div className="wrap">
+            <div className="faq-list module-faq-list">
+              {content.faqs.map(([q, a], i) => (
+                <details className="faq-item" key={i} open={i === 0}>
+                  <summary>{q}</summary>
+                  <p>{a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {landing && (
         <section className="section module-guide" style={{ paddingTop: 0 }}>
           <div className="wrap">

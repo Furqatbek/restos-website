@@ -16,6 +16,8 @@
 // A test refuses an indexed page with fewer than MIN_INDEXED_WORDS words, so a
 // page cannot be switched on before it has earned it.
 
+import { MODULE_CONTENT } from './module-content';
+
 export const MIN_INDEXED_WORDS = 300;
 
 // Order matches the homepage Modules section, so "Module 04 / 12" agrees.
@@ -55,7 +57,7 @@ export const MODULES = {
 // the rule at the top. Shape:
 //   content: { ru: { sections: [{ h2, body }], faqs: [[q, a]] } }
 for (const key of MODULE_ORDER) {
-  MODULES[key].content = MODULES[key].content || {};
+  MODULES[key].content = MODULE_CONTENT[key] || MODULES[key].content || {};
   MODULES[key].indexed = MODULES[key].indexed || [];
 }
 

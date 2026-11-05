@@ -7,7 +7,7 @@ import { pageMetadata } from '@/lib/seo';
 import { LOCALE } from '@/lib/locale-extras';
 import { LOCALES, HTML_LANG, DEFAULT_LOCALE, isLocale } from '@/lib/locale';
 import {
-  MODULE_ORDER, moduleKeyForSlug, allModuleParams, isIndexable,
+  MODULE_ORDER, moduleKeyForSlug, allModuleParams, isIndexable, moduleContent,
 } from '@/lib/module-pages';
 
 const BASE = 'https://restos.uz';
@@ -63,9 +63,17 @@ export default function ModulePage({ params }) {
     ],
   };
 
+  const faqs = moduleContent(key, lang)?.faqs || [];
+  const faqLd = faqs.length ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  } : null;
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      {faqLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />}
       <Nav activePage="modules"/>
       <ModuleContent moduleKey={key}/>
       <CtaBand/>
