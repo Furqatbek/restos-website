@@ -198,7 +198,11 @@ a { color: inherit; text-decoration: none; }
 .demo-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
 .demo-title { font-family: var(--serif); font-size: 40px; line-height: 1.05; letter-spacing: -0.015em; color: var(--forest); margin: 0; }
 .demo-desc { margin-top: 8px; color: var(--ink-soft); font-size: 15px; max-width: 420px; }
-.demo-badge { font-family: var(--mono); font-size: 11px; padding: 6px 10px; border-radius: 999px; background: var(--cream-2); border: 1px solid var(--line); color: var(--muted); white-space: nowrap; text-transform: uppercase; letter-spacing: 0.04em; }
+.demo-badge { display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 11px; padding: 6px 10px; border-radius: 999px; background: var(--cream-2); border: 1px solid var(--line); color: var(--muted); white-space: nowrap; text-transform: uppercase; letter-spacing: 0.04em; }
+/* The "live" light: a green dot with a slow pulse ring, like an on-air lamp. */
+.live-dot { flex: 0 0 auto; width: 7px; height: 7px; border-radius: 50%; background: #22a35e; box-shadow: 0 0 0 0 rgba(34,163,94,0.55); animation: live-pulse 2s ease-out infinite; }
+@keyframes live-pulse { 0% { box-shadow: 0 0 0 0 rgba(34,163,94,0.55); } 70% { box-shadow: 0 0 0 6px rgba(34,163,94,0); } 100% { box-shadow: 0 0 0 0 rgba(34,163,94,0); } }
+@media (prefers-reduced-motion: reduce) { .live-dot { animation: none; box-shadow: 0 0 0 3px rgba(34,163,94,0.18); } }
 .demo-body { flex: 1; display: flex; align-items: stretch; }
 .demo-footer { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line); display: flex; gap: 20px; flex-wrap: wrap; }
 .demo-kpi { font-size: 13px; color: var(--ink-soft); display: flex; align-items: baseline; gap: 8px; }

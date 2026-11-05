@@ -66,7 +66,7 @@ export default function ModulesShowcase() {
                   </Link>
                 )}
               </div>
-              <span className="demo-badge">● {L.ui.liveDemo}</span>
+              <span className="demo-badge"><span className="live-dot" aria-hidden="true"/>{L.ui.liveDemo}</span>
             </div>
             <div className="demo-body">
               {Demo && <Demo/>}

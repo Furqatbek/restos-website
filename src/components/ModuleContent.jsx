@@ -54,7 +54,7 @@ export default function ModuleContent({ moduleKey }) {
           <div className="module-demo">
             <div className="demo-header">
               <div className="module-demo-ico"><Icon name={MODULE_ICONS[moduleKey]} size={18}/></div>
-              <span className="demo-badge">● {L.ui.liveDemo}</span>
+              <span className="demo-badge"><span className="live-dot" aria-hidden="true"/>{L.ui.liveDemo}</span>
             </div>
             <div className="demo-body">{Demo && <Demo/>}</div>
             <div className="demo-footer">
