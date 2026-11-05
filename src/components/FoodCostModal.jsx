@@ -117,21 +117,24 @@ export default function FoodCostModal() {
   };
 
   return (
-    <div className="modal-backdrop" onClick={() => setOpen(false)}>
-      <div className="modal" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true">
+    <div className="modal-overlay" onClick={() => setOpen(false)}>
+      {/* modal-solo: this dialog has no .modal-aside, so it overrides the
+          two-column grid .modal uses for the demo modal. Without it the
+          close button, heading, lede and form are laid out as grid cells. */}
+      <div className="modal modal-solo" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true">
         <button className="modal-close" onClick={() => setOpen(false)} aria-label={c.close}>
           <Icon name="close" size={16}/>
         </button>
 
         {state === 'done' ? (
-          <div className="modal-done">
-            <h3>{c.done}</h3>
-            <p>{c.doneSub}</p>
+          <div className="modal-inner modal-done">
+            <h3 className="modal-title">{c.done}</h3>
+            <p className="modal-sub">{c.doneSub}</p>
             <button className="btn btn-primary btn-lg" onClick={() => setOpen(false)}>{c.close}</button>
           </div>
         ) : (
-          <>
-            <h3>{c.title}</h3>
+          <div className="modal-inner">
+            <h3 className="modal-title">{c.title}</h3>
             <p className="modal-sub">{c.sub}</p>
             <form onSubmit={submit} className="modal-form">
               <label>
@@ -174,7 +177,7 @@ export default function FoodCostModal() {
                 {state === 'sending' ? c.sending : c.submit} <Icon name="arrow" size={14}/>
               </button>
             </form>
-          </>
+          </div>
         )}
       </div>
     </div>
