@@ -6,6 +6,17 @@
 //   eyebrow, h1, lede, sections: [{ h2, body }], faqs: [[q, a]] }
 // `body` and answers are plain text (rendered as paragraphs).
 
+import { MONTHLY_UZS } from './pricing';
+
+// "300 000" — prices are quoted from pricing.js so a reprice cannot leave a
+// landing page (and its FAQPage rich result) quoting the old number.
+const uzs = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+
+// Date the copy below last changed. The sitemap reports it as <lastmod>; a
+// date that moves on every request is one search engines learn to ignore.
+// Bump it when you edit a landing page.
+export const LANDING_UPDATED = '2026-11-06';
+
 export const LANDING_PAGES = {
   ru: {
     'pos-sistema-dlya-kafe-i-restoranov': {
@@ -37,7 +48,7 @@ export const LANDING_PAGES = {
       faqs: [
         ['Нужно ли новое оборудование?', 'Касса работает на iPad, Android-планшете или ПК. Принтеры и кухонные экраны мы устанавливаем по запросу — их количество подбираем по числу цехов на вашей кухне.'],
         ['За сколько можно запуститься?', '48 часов до первого заказа. Мы импортируем ваше меню и обучаем персонал.'],
-        ['Сколько стоит?', 'От 300 000 сум в месяц за заведение, без ограничения по числу сотрудников. Есть бесплатный пробный период.'],
+        ['Сколько стоит?', `От ${uzs(MONTHLY_UZS.counter)} сум в месяц за заведение, без ограничения по числу сотрудников. Есть бесплатный пробный период.`],
       ],
     },
     'avtomatizatsiya-restorana': {
@@ -127,7 +138,7 @@ export const LANDING_PAGES = {
       faqs: [
         ['Yangi uskuna kerakmi?', 'Kassa iPad, Android planshet yoki kompyuterda ishlaydi. Printer va oshxona ekranlarini so‘rov bo‘yicha o‘rnatamiz — oshxonangizdagi sexlar soniga qarab.'],
         ['Qancha vaqtda ishga tushadi?', 'Birinchi buyurtmagacha 48 soat. Menyuni import qilamiz va xodimlarni o‘qitamiz.'],
-        ['Narxi qancha?', 'Bir muassasa uchun oyiga 300 000 so‘mdan, xodimlar soni cheklanmagan. Bepul sinov muddati bor.'],
+        ['Narxi qancha?', `Bir muassasa uchun oyiga ${uzs(MONTHLY_UZS.counter)} so‘mdan, xodimlar soni cheklanmagan. Bepul sinov muddati bor.`],
       ],
     },
     'restoran-avtomatizatsiyasi': {
@@ -166,7 +177,7 @@ export const LANDING_PAGES = {
       keyword: 'kafe uchun dastur',
       title: 'Kafe uchun dastur — RestOS savdo va hisob tizimi',
       description:
-        'Kafe uchun dastur: kassa, ombor hisobi, QR-menyu, yetkazib berish va sodiqlik dasturi bitta tizimda. 48 soatda ishga tushadi, iPad, Android planshet yoki kompyuterda ishlaydi.',
+        'Kafe uchun dastur: kassa, ombor hisobi, QR-menyu, yetkazib berish va sodiqlik bitta tizimda. 48 soatda ishga tushadi, iPad, Android yoki kompyuterda ishlaydi.',
       eyebrow: 'Kafe uchun dastur',
       h1: 'Kafe uchun dastur — hammasi bitta tizimda',
       lede: 'Kassa, ombor, QR-menyu va sodiqlik — kafengizni bitta oynadan boshqaring. Alohida beshta obuna o‘rniga bitta tizim.',

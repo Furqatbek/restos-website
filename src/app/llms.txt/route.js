@@ -1,7 +1,9 @@
 import db from '@/lib/db';
 import { llmsPricingLine } from '@/lib/pricing';
 import { LANDING_PAGES } from '@/lib/landing-pages';
-import { DEFAULT_LOCALE, isLocale } from '@/lib/locale';
+import { DEFAULT_LOCALE, LOCALES, isLocale } from '@/lib/locale';
+import { MODULE_ORDER, MODULES, isIndexable, moduleContent } from '@/lib/module-pages';
+import { LOCALE } from '@/lib/locale-extras';
 
 const BASE = 'https://restos.uz';
 
@@ -22,6 +24,18 @@ function landingLines() {
     }
   }
   return out;
+}
+
+// One line per module page that is open to search, so an assistant can cite
+// the page that answers the question rather than the homepage.
+function moduleLines() {
+  return LOCALES.flatMap((lang) =>
+    MODULE_ORDER.filter((k) => isIndexable(k, lang)).map((k) => {
+      const c = moduleContent(k, lang)?.meta;
+      const name = c?.title || LOCALE[lang].modules[k].title;
+      const desc = c?.description || LOCALE[lang].modules[k].desc;
+      return `- [${name}](${BASE}/${lang}/modules/${MODULES[k].slug}) (${lang}): ${desc}`;
+    }));
 }
 
 function postLines() {
@@ -82,6 +96,10 @@ For example the homepage in Russian is ${BASE}/ru and the blog is ${BASE}/ru/blo
 ## Solutions
 
 ${landingLines().join('\n')}
+
+## Modules
+
+${moduleLines().join('\n')}
 
 ## Recent articles
 

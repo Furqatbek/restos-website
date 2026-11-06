@@ -1,7 +1,7 @@
 import db from '@/lib/db';
 import { LOCALES, DEFAULT_LOCALE, HTML_LANG, isLocale } from '@/lib/locale';
-import { allLandingParams } from '@/lib/landing-pages';
-import { MODULE_ORDER, MODULES, isIndexable } from '@/lib/module-pages';
+import { allLandingParams, landingAlternates, LANDING_UPDATED } from '@/lib/landing-pages';
+import { MODULE_ORDER, MODULES, MODULES_UPDATED, isIndexable } from '@/lib/module-pages';
 
 const BASE = 'https://restos.uz';
 
@@ -65,22 +65,34 @@ export default function sitemap() {
     })),
   );
 
-  // Keyword landing pages — single-language, self-canonical.
-  const landingRoutes = allLandingParams().map(({ lang, slug }) => ({
-    url: `${BASE}/${lang}/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly',
-    priority: 0.8,
-  }));
+  // Keyword landing pages. Each is self-canonical; the ones with a declared
+  // translation carry the same hreflang pair the page itself emits.
+  const landingRoutes = allLandingParams().map(({ lang, slug }) => {
+    const languages = landingAlternates(lang, slug);
+    return {
+      url: `${BASE}/${lang}/${slug}`,
+      lastModified: new Date(LANDING_UPDATED),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+      ...(languages ? { alternates: { languages } } : {}),
+    };
+  });
 
   // Module pages — only the ones switched on for indexing (see module-pages.js).
+  // hreflang links only the indexed translations, as the page does.
   const moduleRoutes = LOCALES.flatMap((l) =>
-    MODULE_ORDER.filter((k) => isIndexable(k, l)).map((k) => ({
-      url: `${BASE}/${l}/modules/${MODULES[k].slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    })),
+    MODULE_ORDER.filter((k) => isIndexable(k, l)).map((k) => {
+      const indexed = LOCALES.filter((x) => isIndexable(k, x));
+      return {
+        url: `${BASE}/${l}/modules/${MODULES[k].slug}`,
+        lastModified: new Date(MODULES_UPDATED),
+        changeFrequency: 'monthly',
+        priority: 0.7,
+        ...(indexed.length > 1
+          ? { alternates: { languages: Object.fromEntries(indexed.map((x) => [HTML_LANG[x], `${BASE}/${x}/modules/${MODULES[k].slug}`])) } }
+          : {}),
+      };
+    }),
   );
 
   return [...staticRoutes, ...landingRoutes, ...moduleRoutes, ...postRoutes];

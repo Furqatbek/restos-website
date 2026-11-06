@@ -7,6 +7,7 @@ import { I18N } from '@/lib/i18n';
 import { localePath, isLocale, DEFAULT_LOCALE, OG_LOCALE } from '@/lib/locale';
 import { getLandingPage, allLandingParams, landingAlternates } from '@/lib/landing-pages';
 import { offerLowPrice, offerHighPrice } from '@/lib/pricing';
+import { LOCALE } from '@/lib/locale-extras';
 
 const BASE = 'https://restos.uz';
 
@@ -34,7 +35,9 @@ export function generateMetadata({ params }) {
     alt: page.h1,
   };
   return {
-    title: page.title,
+    // `absolute` skips the layout's "%s | RestOS" template: these titles
+    // already end in "— RestOS", and Google showed it twice.
+    title: { absolute: page.title },
     description: page.description,
     keywords: [page.keyword],
     alternates: { canonical: url, ...(languages ? { languages } : {}) },
@@ -77,7 +80,7 @@ export default function LandingPage({ params }) {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: `${BASE}/${lang}` },
+      { '@type': 'ListItem', position: 1, name: (LOCALE[lang] || LOCALE.en).ui.home, item: `${BASE}/${lang}` },
       { '@type': 'ListItem', position: 2, name: page.h1, item: url },
     ],
   };

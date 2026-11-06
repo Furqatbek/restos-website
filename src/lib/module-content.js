@@ -26,9 +26,14 @@
 // of payment methods, a payout schedule, or a fee. Finance mentions VAT only
 // as the module description does ("НДС" / "QQS"), not as tax compliance.
 
+// `meta` is what a search engine shows: the <title> (the layout appends
+// " | RestOS", so keep it under ~50 characters) and the meta description
+// (~120-160). The page's h1 stays the short module name. Same source rule.
 export const MODULE_CONTENT = {
   delivery: {
     ru: {
+      meta: { title: "Uzum Tezkor, Express24 и Yandex Eats в одной кассе",
+        description: "Заказы агрегаторов доставки — одной лентой в кассе, на одном принтере. Меню и стоп-листы синхронизируются сами, без отдельного планшета под каждый сервис." },
       sections: [
         { h2: 'Три агрегатора — три планшета',
           body: 'В типичном кафе в Ташкенте у стойки стоят несколько планшетов: Uzum Tezkor, Express24, Yandex Eats. Каждый пищит по-своему, у каждого своё меню, свои стоп-листы и свой отчёт в конце дня. В час пик кассир переключается между ними, заказ переписывают на кухню вручную, а когда блюдо закончилось, его приходится снимать в трёх местах. Ошибки здесь не случайность — это сама схема работы.' },
@@ -49,6 +54,8 @@ export const MODULE_CONTENT = {
       ],
     },
     uz: {
+      meta: { title: "Uzum Tezkor, Express24, Yandex Eats bitta kassada",
+        description: "Yetkazib berish agregatorlari buyurtmalari kassada bitta lentada, bitta printerda. Menyu va stop-listlar o'zi sinxronlanadi — har bir xizmatga alohida planshetsiz." },
       sections: [
         { h2: 'Uchta agregator — uchta planshet',
           body: "Toshkentdagi oddiy kafeda kassa yonida bir nechta planshet turadi: Uzum Tezkor, Express24, Yandex Eats. Har biri o'zicha signal beradi, har birining o'z menyusi, o'z stop-listi va kun oxirida o'z hisoboti bor. Gavjum paytda kassir ular orasida almashib yuradi, buyurtma oshxonaga qo'lda ko'chiriladi, taom tugasa esa uni uch joyda o'chirish kerak. Bu yerda xato tasodif emas — ish tartibining o'zi shunday." },
@@ -72,6 +79,8 @@ export const MODULE_CONTENT = {
 
   kitchen: {
     ru: {
+      meta: { title: "Кухонный экран (KDS) для ресторана",
+        description: "Заказы сразу на кухонном экране, по цехам. Время с момента заказа и отметка о задержке. Повар отмечает готовность — официанта вызывают голосом." },
       sections: [
         { h2: 'Почему бумажный тикет подводит в час пик',
           body: 'Официант пишет заказ на бумаге, несёт на кухню, бумажка ложится в общую кучу. В час пик тикеты теряются, путаются и залипают на краю стола. Повар не видит, какой заказ ждёт дольше всех, а официант не знает, готово ли блюдо, пока не сходит проверить. Гость всё это время ждёт.' },
@@ -93,6 +102,8 @@ export const MODULE_CONTENT = {
       ],
     },
     uz: {
+      meta: { title: "Restoran uchun oshxona ekrani (KDS)",
+        description: "Buyurtmalar darhol oshxona ekranida, sexlar bo'yicha. Kutish vaqti va kechikish belgisi. Taom tayyor bo'lsa, ofitsiant ovoz bilan chaqiriladi." },
       sections: [
         { h2: "Nega qog'oz tiket gavjum paytda pand beradi",
           body: "Ofitsiant buyurtmani qog'ozga yozadi, oshxonaga olib boradi, qog'oz esa umumiy uyumga tushadi. Gavjum paytda tiketlar yo'qoladi, chalkashadi va stol chetida qolib ketadi. Oshpaz qaysi buyurtma eng uzoq kutayotganini ko'rmaydi, ofitsiant esa borib tekshirmaguncha taom tayyorligini bilmaydi. Mehmon bu vaqt davomida kutadi." },
@@ -117,6 +128,8 @@ export const MODULE_CONTENT = {
 
   loyalty: {
     ru: {
+      meta: { title: "Программа лояльности для кафе и ресторана",
+        description: "Гость узнаётся на кассе по номеру телефона — без карт. Баллы с чека, уровни, рефералы и акции, история визитов каждого гостя." },
       sections: [
         { h2: 'Вы знаете своих постоянных гостей по имени?',
           body: 'У каждого кафе есть постоянные гости. Но большинство владельцев не могут назвать и десятка из них. Бумажная карта с печатями этого не меняет: её теряют, её подделывают чужой ручкой, а когда она заполнена, вы отдаёте бесплатный кофе, так и не узнав, чей это был кофе.' },
@@ -140,6 +153,8 @@ export const MODULE_CONTENT = {
       ],
     },
     uz: {
+      meta: { title: "Kafe va restoran uchun loyallik dasturi",
+        description: "Mehmon kassada telefon raqami orqali taniladi — kartasiz. Chekdan ballar, darajalar, do'st taklifi va aksiyalar, har bir mehmonning tashriflar tarixi." },
       sections: [
         { h2: 'Doimiy mehmonlaringizni ism bilan bilasizmi?',
           body: "Har bir kafeda doimiy mehmonlar bor. Ammo ko'pchilik egalar ulardan o'ntasini ham nomma-nom ayta olmaydi. Muhrli qog'oz karta buni o'zgartirmaydi: u yo'qoladi, birovning ruchkasi bilan soxtalashtiriladi, to'lganda esa bepul kofeni berasiz-u, bu kimning kofesi bo'lganini bilmay qolasiz." },
@@ -165,6 +180,8 @@ export const MODULE_CONTENT = {
   },
   pos: {
     ru: {
+      meta: { title: "POS-касса для кафе и ресторана",
+        description: "Касса на iPad, Android или ПК: заказ меньше чем за 12 секунд, работа без интернета, сплит счёта и чаевые. Осваивается за одну смену." },
       sections: [
         { h2: "Касса, которую осваивают за смену",
           body: "В час пик касса — самое узкое место заведения. Если новому сотруднику нужна неделя, чтобы разобраться в интерфейсе, всю эту неделю очередь движется медленнее, чем могла бы. Касса RestOS рассчитана на палец, а не на мышку: категории меню на экране, заказ собирается в несколько касаний. Новый сотрудник осваивает её за одну смену." },
@@ -187,6 +204,8 @@ export const MODULE_CONTENT = {
       ],
     },
     uz: {
+      meta: { title: "Kafe va restoran uchun POS-kassa",
+        description: "iPad, Android yoki kompyuterdagi kassa: buyurtma 12 soniyadan kam vaqtda, internetsiz ishlaydi, hisobni bo'lish va choychaqa. Bir smenada o'rganiladi." },
       sections: [
         { h2: "Bir smenada o'rganiladigan kassa",
           body: "Gavjum soatlarda kassa muassasaning eng tor joyi bo'ladi. Agar yangi xodimga interfeysni tushunish uchun bir hafta kerak bo'lsa, o'sha hafta davomida navbat bo'lishi mumkin bo'lganidan sekinroq yuradi. RestOS kassasi sichqoncha uchun emas, barmoq uchun qilingan: menyu toifalari ekranda, buyurtma bir necha teginishda yig'iladi. Yangi xodim uni bir smenada o'rganib oladi." },
@@ -211,6 +230,8 @@ export const MODULE_CONTENT = {
   },
   waiter: {
     ru: {
+      meta: { title: "Приложение официанта для ресторана",
+        description: "Заказ принимается у стола и сразу уходит на кухню, счёт делится в том же приложении. iOS и Android. Меньше ошибок и беготни к кассе." },
       sections: [
         { h2: "Сколько шагов делает официант до кухни",
           body: "Официант принимает заказ, идёт к кассе, пробивает его, потом несёт бумажку на кухню. Каждый этап — время, которое гость ждёт, и место, где заказ может потеряться или исказиться. В час пик официант больше ходит, чем обслуживает." },
@@ -235,6 +256,8 @@ export const MODULE_CONTENT = {
       ],
     },
     uz: {
+      meta: { title: "Restoran uchun ofitsiant ilovasi",
+        description: "Buyurtma stol yonida olinadi va darhol oshxonaga ketadi, hisob o'sha ilovada bo'linadi. iOS va Android. Kamroq xato va kassaga kamroq yugurish." },
       sections: [
         { h2: "Ofitsiant oshxonagacha necha qadam bosadi",
           body: "Ofitsiant buyurtmani oladi, kassaga boradi, uni kiritadi, keyin qog'ozni oshxonaga olib boradi. Har bir bosqich — mehmon kutadigan vaqt va buyurtma yo'qolishi yoki buzilishi mumkin bo'lgan joy. Gavjum soatlarda ofitsiant xizmat qilishdan ko'ra ko'proq yuradi." },
@@ -261,6 +284,8 @@ export const MODULE_CONTENT = {
   },
   self: {
     ru: {
+      meta: { title: "QR-меню для кафе и ресторана",
+        description: "Гость сканирует QR-код, заказывает и платит с телефона. Меню обновляется в один клик и совпадает с меню на сайте заведения." },
       sections: [
         { h2: "Бумажное меню устаревает быстрее, чем его печатают",
           body: "Цены выросли, блюдо закончилось, появилось новое — а напечатанное меню об этом не знает. Перепечатка стоит денег и времени, поэтому её откладывают, и гость заказывает то, чего уже нет." },
@@ -287,6 +312,8 @@ export const MODULE_CONTENT = {
       ],
     },
     uz: {
+      meta: { title: "Kafe va restoran uchun QR-menyu",
+        description: "Mehmon QR-kodni skanlaydi, telefonidan buyurtma beradi va to'laydi. Menyu bir klikda yangilanadi va muassasa saytidagi menyu bilan bir xil." },
       sections: [
         { h2: "Qog'oz menyu chop etilishidan tezroq eskiradi",
           body: "Narxlar oshdi, taom tugadi, yangisi paydo bo'ldi — chop etilgan menyu esa bundan bexabar. Qayta chop etish pul va vaqt talab qiladi, shuning uchun uni keyinga qoldirishadi, mehmon esa allaqachon yo'q narsani buyurtma qiladi." },
@@ -315,6 +342,8 @@ export const MODULE_CONTENT = {
   },
   payment: {
     ru: {
+      meta: { title: "Оплата в ресторане: Click, Payme, сплит и чаевые",
+        description: "Карты и кошельки, включая Click и Payme, — в той же кассе, где пробит заказ. Разделение счёта, чаевые и автоматическая сверка платежей." },
       sections: [
         { h2: "Конец смены — время сверки",
           body: "Карта, кошелёк, наличные, часть суммы одним способом, часть другим, плюс чаевые. В конце смены кто-то сидит и сводит, сколько пришло каким способом и совпадает ли это с кассой. Расхождения находят через неделю, когда разбираться уже поздно." },
@@ -341,6 +370,8 @@ export const MODULE_CONTENT = {
       ],
     },
     uz: {
+      meta: { title: "Restoranda to'lov: Click, Payme, split, choychaqa",
+        description: "Karta va hamyonlar, jumladan Click va Payme, buyurtma kiritilgan kassaning o'zida. Hisobni bo'lish, choychaqa va to'lovlarni avtomatik solishtirish." },
       sections: [
         { h2: "Smena oxiri — solishtirish vaqti",
           body: "Karta, hamyon, naqd pul, summaning bir qismi bir usulda, bir qismi boshqasida, ustiga choychaqa. Smena oxirida kimdir o'tirib, qaysi usulda qancha kelganini va bu kassaga mos kelishini hisoblaydi. Farqlar bir haftadan keyin topiladi — tushunish uchun kech bo'lganda." },
@@ -369,6 +400,8 @@ export const MODULE_CONTENT = {
   },
   inventory: {
     ru: {
+      meta: { title: "Складской учёт и фудкост ресторана",
+        description: "Каждая продажа списывает сырьё по техкарте, фудкост по каждому блюду виден каждый день. Оповещения о заканчивающихся позициях и расхождениях." },
       sections: [
         { h2: "Склад, который знает правду только после инвентаризации",
           body: "В большинстве кафе реальные остатки известны раз в месяц — после инвентаризации. Всё, что между ними, — догадка. Если повар кладёт больше нормы или продукт уходит без чека, это обнаруживается тогда, когда деньги уже потеряны." },
@@ -393,6 +426,8 @@ export const MODULE_CONTENT = {
       ],
     },
     uz: {
+      meta: { title: "Restoran uchun ombor hisobi va fudkost",
+        description: "Har bir savdo texkarta bo'yicha xomashyoni hisobdan chiqaradi, har bir taomning fudkosti har kuni ko'rinadi. Tugayotgan pozitsiyalar va farqlar haqida ogohlantirish." },
       sections: [
         { h2: "Haqiqatni faqat inventarizatsiyadan keyin biladigan ombor",
           body: "Ko'pchilik kafelarda haqiqiy qoldiqlar oyda bir marta — inventarizatsiyadan keyin ma'lum bo'ladi. Oradagi hamma narsa — taxmin. Agar oshpaz me'yordan ko'p solsa yoki mahsulot cheksiz chiqib ketsa, bu pul allaqachon yo'qotilganda aniqlanadi." },
@@ -419,6 +454,8 @@ export const MODULE_CONTENT = {
   },
   analytics: {
     ru: {
+      meta: { title: "Аналитика ресторана: 10 готовых отчётов",
+        description: "Выручка, средний чек, гости и оборачиваемость столов — из коробки. Ежедневная сводка в Telegram, выгрузка в Excel и PDF." },
       sections: [
         { h2: "Отчётов много — открывают единицы",
           body: "В большинстве систем отчётов десятки, но владелец смотрит два-три, а остальные никто не открывает. Нужные цифры приходится собирать самому, обычно поздно вечером и в таблице." },
@@ -446,6 +483,8 @@ export const MODULE_CONTENT = {
       ],
     },
     uz: {
+      meta: { title: "Restoran analitikasi: 10 ta tayyor hisobot",
+        description: "Tushum, o'rtacha chek, mehmonlar va stollar aylanmasi — qutidan tayyor. Kunlik xulosa Telegram'da, Excel va PDF'ga eksport." },
       sections: [
         { h2: "Hisobot ko'p — ochadiganlar kam",
           body: "Ko'pchilik tizimlarda o'nlab hisobotlar bor, lekin egasi ikki-uchtasini ko'radi, qolganini hech kim ochmaydi. Kerakli raqamlarni o'zingiz yig'ishingiz kerak bo'ladi — odatda kech kechqurun, jadvalda." },
@@ -475,6 +514,8 @@ export const MODULE_CONTENT = {
   },
   courier: {
     ru: {
+      meta: { title: "Свои курьеры: трекинг и рейсы доставки",
+        description: "Видно, где каждый курьер, время прибытия пересчитывается в пути, заказы объединяются в рейсы. Приложение курьера работает в Telegram." },
       sections: [
         { h2: "Свои курьеры и диспетчер на телефоне",
           body: "Если у вас свои курьеры, кто-то весь вечер висит на телефоне: кому отдать заказ, где сейчас водитель, когда он вернётся. Гость звонит спросить, где его еда, и никто не может ответить точно." },
@@ -501,6 +542,8 @@ export const MODULE_CONTENT = {
       ],
     },
     uz: {
+      meta: { title: "O'z kuryerlaringiz: kuzatuv va reyslar",
+        description: "Har bir kuryer qayerdaligi ko'rinadi, yetib kelish vaqti yo'lda qayta hisoblanadi, buyurtmalar reyslarga birlashtiriladi. Kuryer ilovasi Telegram'da ishlaydi." },
       sections: [
         { h2: "O'z kuryerlaringiz va telefondagi dispetcher",
           body: "Agar o'z kuryerlaringiz bo'lsa, kimdir butun oqshom telefonda o'tiradi: buyurtmani kimga berish, haydovchi hozir qayerda, qachon qaytadi. Mehmon taomi qayerdaligini so'rab qo'ng'iroq qiladi, hech kim aniq javob bera olmaydi." },
@@ -529,6 +572,8 @@ export const MODULE_CONTENT = {
   },
   finance: {
     ru: {
+      meta: { title: "P&L ресторана в реальном времени",
+        description: "Отчёт о прибылях и убытках с начала месяца на сегодня, расчёт зарплаты по сменам, данные для НДС и автоматическая сверка." },
       sections: [
         { h2: "Прибыль узнаёте в конце месяца — когда уже поздно",
           body: "Выручка видна каждый день, а прибыль — только когда бухгалтер сведёт месяц. Если месяц оказался убыточным, вы узнаёте об этом тогда, когда исправлять уже нечего." },
@@ -554,6 +599,8 @@ export const MODULE_CONTENT = {
       ],
     },
     uz: {
+      meta: { title: "Restoranning jonli P&L hisoboti",
+        description: "Oy boshidan bugungacha foyda va zararlar hisoboti, smenalar bo'yicha ish haqi, QQS uchun ma'lumotlar va avtomatik solishtirish." },
       sections: [
         { h2: "Foydani oy oxirida bilasiz — kech bo'lganda",
           body: "Tushum har kuni ko'rinadi, foyda esa faqat buxgalter oyni yopganda. Oy zarar bilan yakunlangan bo'lsa, buni tuzatadigan narsa qolmaganda bilasiz." },
@@ -581,6 +628,8 @@ export const MODULE_CONTENT = {
   },
   marketing: {
     ru: {
+      meta: { title: "Сеты, комбо и акции для ресторана",
+        description: "Сеты, комбо и предложения на ограниченное время в одном редакторе — сразу во всех каналах продаж. A/B-тесты показывают, что работает." },
       sections: [
         { h2: "Акция, о которой узнали три человека",
           body: "Чтобы запустить акцию, нужно поменять цену на кассе, в меню, на сайте и в приложениях доставки. Где-то забыли — и гость видит одну цену, а пробивают ему другую. Поэтому акции запускают редко, а их результат никто не считает." },
@@ -606,6 +655,8 @@ export const MODULE_CONTENT = {
       ],
     },
     uz: {
+      meta: { title: "Restoran uchun setlar, kombolar va aksiyalar",
+        description: "Setlar, kombolar va cheklangan muddatli takliflar bitta muharrirda — barcha savdo kanallarida birdaniga. A/B testlar nima ishlashini ko'rsatadi." },
       sections: [
         { h2: "Uch kishi bilgan aksiya",
           body: "Aksiyani boshlash uchun narxni kassada, menyuda, saytda va yetkazib berish ilovalarida o'zgartirish kerak. Qayerdadir unutishadi — mehmon bir narxni ko'radi, unga esa boshqasi kiritiladi. Shuning uchun aksiyalar kam boshlanadi, ularning natijasini esa hech kim hisoblamaydi." },

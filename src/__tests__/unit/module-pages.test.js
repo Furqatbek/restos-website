@@ -5,7 +5,7 @@ import { LOCALE } from '@/lib/locale-extras';
 import { getLandingPage } from '@/lib/landing-pages';
 import {
   MODULES, MODULE_ORDER, MIN_INDEXED_WORDS, allModuleParams,
-  moduleKeyForSlug, contentWords,
+  moduleKeyForSlug, contentWords, moduleContent,
 } from '@/lib/module-pages';
 
 describe('module pages', () => {
@@ -81,5 +81,20 @@ describe('module pages', () => {
         .filter((lang) => !LOCALES.includes(lang) || contentWords(k, lang) < MIN_INDEXED_WORDS)
         .map((lang) => `${k}/${lang}: ${contentWords(k, lang)} words (need ${MIN_INDEXED_WORDS})`));
     expect(tooThin).toEqual([]);
+  });
+
+  // What Google shows in results. The layout appends " | RestOS" (9 chars), so a
+  // title over ~51 is cut off; a description outside ~100-165 is either thin or
+  // truncated, and Google tends to replace it with its own snippet.
+  it('gives every indexed page a search title and description that fit', () => {
+    const bad = MODULE_ORDER.flatMap((k) => MODULES[k].indexed.flatMap((lang) => {
+      const m = moduleContent(k, lang)?.meta;
+      if (!m?.title || !m?.description) return [`${k}/${lang}: no meta`];
+      const out = [];
+      if (m.title.length > 51) out.push(`${k}/${lang}: title ${m.title.length} chars`);
+      if (m.description.length < 100 || m.description.length > 165) out.push(`${k}/${lang}: description ${m.description.length} chars`);
+      return out;
+    }));
+    expect(bad).toEqual([]);
   });
 });

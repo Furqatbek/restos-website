@@ -25,7 +25,14 @@ export function generateMetadata({ params }) {
 
   const copy = (LOCALE[lang] || LOCALE.en).modules[key];
   const path = `/modules/${params.slug}`;
-  const meta = pageMetadata({ lang, path, title: copy.title, description: copy.desc });
+  // Written search title and description where the page has them; otherwise the
+  // short module name and tagline from the homepage.
+  const written = moduleContent(key, lang)?.meta;
+  const meta = pageMetadata({
+    lang, path,
+    title: written?.title || copy.title,
+    description: written?.description || copy.desc,
+  });
   const indexable = isIndexable(key, lang);
 
   // hreflang only between translations that are themselves indexable. Pointing

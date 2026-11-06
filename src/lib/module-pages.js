@@ -20,6 +20,10 @@ import { MODULE_CONTENT } from './module-content';
 
 export const MIN_INDEXED_WORDS = 300;
 
+// Date the module copy last changed, reported as <lastmod> in the sitemap.
+// Bump it when you edit module-content.js.
+export const MODULES_UPDATED = '2026-11-06';
+
 // Order matches the homepage Modules section, so "Module 04 / 12" agrees.
 export const MODULE_ORDER = [
   'pos', 'waiter', 'self', 'delivery', 'payment', 'kitchen',
