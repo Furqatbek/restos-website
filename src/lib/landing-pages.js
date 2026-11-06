@@ -15,7 +15,7 @@ export const LANDING_PAGES = {
         'POS система RestOS для кафе и ресторанов в Узбекистане: быстрые продажи, работа офлайн, интеграции с доставкой и кухней. Запуск за 48 часов.',
       eyebrow: 'POS система',
       h1: 'POS система для кафе и ресторанов',
-      lede: 'Касса, которая учится за одну смену, работает без интернета и связывает зал, кухню и склад в одну систему. Запуск за 48 часов — на вашем оборудовании.',
+      lede: 'Касса, которая учится за одну смену, работает без интернета и связывает зал, кухню и склад в одну систему. Запуск за 48 часов, касса работает на iPad, Android-планшете или ПК.',
       sections: [
         {
           h2: 'Быстрые продажи без обучения',
@@ -35,7 +35,7 @@ export const LANDING_PAGES = {
         },
       ],
       faqs: [
-        ['Нужно ли новое оборудование?', 'Нет. RestOS работает на любом iPad, Android-планшете или ПК. Ваши принтеры и терминалы подключаются как есть.'],
+        ['Нужно ли новое оборудование?', 'Касса работает на iPad, Android-планшете или ПК. Принтеры и кухонные экраны мы устанавливаем по запросу — их количество подбираем по числу цехов на вашей кухне.'],
         ['За сколько можно запуститься?', '48 часов до первого заказа. Мы импортируем ваше меню и обучаем персонал.'],
         ['Сколько стоит?', 'От 300 000 сум в месяц за заведение, без ограничения по числу сотрудников. Есть бесплатный пробный период.'],
       ],
@@ -109,7 +109,7 @@ export const LANDING_PAGES = {
         'RestOS — kafe va restoranlar uchun POS tizimi: tez savdo, internetsiz ishlash, yetkazib berish va oshxona bilan integratsiya. 48 soatda ishga tushirish.',
       eyebrow: 'POS tizimi',
       h1: 'Kafe va restoranlar uchun POS tizimi',
-      lede: 'Bir smenada o‘rganiladigan, internetsiz ishlaydigan va zal, oshxona hamda omborni bitta tizimga bog‘laydigan kassa. 48 soatda — o‘z uskunangizda.',
+      lede: 'Bir smenada o‘rganiladigan, internetsiz ishlaydigan va zal, oshxona hamda omborni bitta tizimga bog‘laydigan kassa. 48 soatda ishga tushadi, kassa iPad, Android planshet yoki kompyuterda ishlaydi.',
       sections: [
         {
           h2: 'O‘rgatishsiz tez savdo',
@@ -125,7 +125,7 @@ export const LANDING_PAGES = {
         },
       ],
       faqs: [
-        ['Yangi uskuna kerakmi?', 'Yo‘q. RestOS istalgan iPad, Android planshet yoki PK’da ishlaydi. Printer va terminallaringiz borligicha ulanadi.'],
+        ['Yangi uskuna kerakmi?', 'Kassa iPad, Android planshet yoki kompyuterda ishlaydi. Printer va oshxona ekranlarini so‘rov bo‘yicha o‘rnatamiz — oshxonangizdagi sexlar soniga qarab.'],
         ['Qancha vaqtda ishga tushadi?', 'Birinchi buyurtmagacha 48 soat. Menyuni import qilamiz va xodimlarni o‘qitamiz.'],
         ['Narxi qancha?', 'Bir muassasa uchun oyiga 300 000 so‘mdan, xodimlar soni cheklanmagan. Bepul sinov muddati bor.'],
       ],
@@ -166,7 +166,7 @@ export const LANDING_PAGES = {
       keyword: 'kafe uchun dastur',
       title: 'Kafe uchun dastur — RestOS savdo va hisob tizimi',
       description:
-        'Kafe uchun dastur: kassa, ombor hisobi, QR-menyu, yetkazib berish va sodiqlik dasturi bitta tizimda. 48 soatda ishga tushadi, o‘z uskunangizda ishlaydi.',
+        'Kafe uchun dastur: kassa, ombor hisobi, QR-menyu, yetkazib berish va sodiqlik dasturi bitta tizimda. 48 soatda ishga tushadi, iPad, Android planshet yoki kompyuterda ishlaydi.',
       eyebrow: 'Kafe uchun dastur',
       h1: 'Kafe uchun dastur — hammasi bitta tizimda',
       lede: 'Kassa, ombor, QR-menyu va sodiqlik — kafengizni bitta oynadan boshqaring. Alohida beshta obuna o‘rniga bitta tizim.',
