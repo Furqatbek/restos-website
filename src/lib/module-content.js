@@ -18,8 +18,10 @@
 // Delivery, KDS and Loyalty are indexed in ru and uz (see module-pages.js).
 //
 // POS, Waiter, QR menu, Payments, Inventory, Analytics, Courier, Finance and
-// Marketing were written on 2026-11-05 from the same sources and are NOT yet
-// indexed: they wait for the owner to approve the claims list. Not claimed for
+// Marketing were written on 2026-11-05 from the same sources; the owner
+// approved the claims list on 2026-11-06. All are indexed in ru and uz except
+// POS (both) and Inventory (ru), where a landing page already targets the same
+// searches. Not claimed for
 // payments, because the product has not been confirmed to do them: a number
 // of payment methods, a payout schedule, or a fee. Finance mentions VAT only
 // as the module description does ("НДС" / "QQS"), not as tax compliance.

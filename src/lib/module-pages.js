@@ -32,25 +32,27 @@ export const MODULES = {
     tier: 0,
     related: ['kitchen', 'payment', 'inventory'],
     // An indexed keyword landing page already targets POS searches in these
-    // locales. Link to it rather than compete with it.
+    // locales. Link to it rather than compete with it, so POS is not indexed.
     landing: { ru: 'pos-sistema-dlya-kafe-i-restoranov', uz: 'kafe-va-restoranlar-uchun-pos-tizimi' },
   },
-  waiter:    { slug: 'waiter-app',      tier: 1, related: ['pos', 'kitchen', 'payment'] },
-  self:      { slug: 'qr-menu',         tier: 0, related: ['payment', 'loyalty', 'pos'] },
+  waiter:    { slug: 'waiter-app',      tier: 1, related: ['pos', 'kitchen', 'payment'], indexed: ['ru', 'uz'] },
+  self:      { slug: 'qr-menu',         tier: 0, related: ['payment', 'loyalty', 'pos'], indexed: ['ru', 'uz'] },
   delivery:  { slug: 'delivery',        tier: 1, related: ['courier', 'kitchen', 'pos'], indexed: ['ru', 'uz'] },
-  payment:   { slug: 'payments',        tier: 0, related: ['pos', 'finance', 'self'] },
+  payment:   { slug: 'payments',        tier: 0, related: ['pos', 'finance', 'self'], indexed: ['ru', 'uz'] },
   kitchen:   { slug: 'kitchen-display', tier: 0, related: ['pos', 'waiter', 'inventory'], indexed: ['ru', 'uz'] },
   inventory: {
     slug: 'inventory',
     tier: 1,
     related: ['kitchen', 'analytics', 'finance'],
     landing: { ru: 'programma-skladskogo-ucheta-dlya-restorana' },
+    // ru stays noindex: the landing page above already targets those searches.
+    indexed: ['uz'],
   },
-  analytics: { slug: 'analytics',       tier: 0, related: ['finance', 'inventory', 'marketing'] },
-  courier:   { slug: 'courier',         tier: 1, related: ['delivery', 'kitchen', 'analytics'] },
+  analytics: { slug: 'analytics',       tier: 0, related: ['finance', 'inventory', 'marketing'], indexed: ['ru', 'uz'] },
+  courier:   { slug: 'courier',         tier: 1, related: ['delivery', 'kitchen', 'analytics'], indexed: ['ru', 'uz'] },
   loyalty:   { slug: 'loyalty',         tier: 1, related: ['marketing', 'self', 'analytics'], indexed: ['ru', 'uz'] },
-  finance:   { slug: 'finance',         tier: 2, related: ['analytics', 'inventory', 'payment'] },
-  marketing: { slug: 'marketing',       tier: 2, related: ['loyalty', 'analytics', 'delivery'] },
+  finance:   { slug: 'finance',         tier: 2, related: ['analytics', 'inventory', 'payment'], indexed: ['ru', 'uz'] },
+  marketing: { slug: 'marketing',       tier: 2, related: ['loyalty', 'analytics', 'delivery'], indexed: ['ru', 'uz'] },
 };
 
 // Written long-form content, per module, per language. Empty on purpose: see
