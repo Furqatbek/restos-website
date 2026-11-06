@@ -68,7 +68,7 @@ export const LANDING_PAGES = {
       ],
       faqs: [
         ['С чего начать автоматизацию?', 'Начните с POS-кассы и складского учёта — это даёт быстрый эффект. Остальные модули подключаются по мере роста, без миграции данных.'],
-        ['Подходит ли для одной точки и для сети?', 'Да. Тариф Counter — для кафе и одиночных точек, Group — для сетей и отельного F&B с неограниченным числом заведений.'],
+        ['Подходит ли для одной точки и для сети?', 'Да. Тариф «Касса» — для кафе и одиночных точек, «Сеть» — для сетей и отельного F&B с неограниченным числом заведений.'],
         ['Сколько времени занимает внедрение?', 'Базовый запуск — 48 часов. Полную автоматизацию со всеми модулями обычно разворачивают за неделю.'],
       ],
     },
@@ -158,7 +158,7 @@ export const LANDING_PAGES = {
       ],
       faqs: [
         ['Avtomatlashtirishni nimadan boshlash kerak?', 'POS-kassa va ombor hisobidan boshlang — bu tez natija beradi. Qolgan modullar o‘sish jarayonida, ma’lumotlarni ko‘chirmasdan ulanadi.'],
-        ['Bitta nuqta va tarmoq uchun mos keladimi?', 'Ha. Counter tarifi — kafe va yakka nuqtalar uchun, Group — tarmoq va mehmonxona F&B uchun cheksiz muassasalar bilan.'],
+        ['Bitta nuqta va tarmoq uchun mos keladimi?', 'Ha. «Kassa» tarifi — kafe va yakka nuqtalar uchun, «Tarmoq» — tarmoq va mehmonxona F&B uchun cheksiz muassasalar bilan.'],
         ['Joriy etish qancha vaqt oladi?', 'Asosiy ishga tushirish — 48 soat. To‘liq avtomatlashtirish odatda bir haftada amalga oshiriladi.'],
       ],
     },
@@ -185,7 +185,7 @@ export const LANDING_PAGES = {
         },
       ],
       faqs: [
-        ['Kichik kafe uchun ham foydalimi?', 'Ha. Counter tarifi aynan kafe, kiosk va yakka nuqtalar uchun mo‘ljallangan, xodimlar soni cheklanmagan.'],
+        ['Kichik kafe uchun ham foydalimi?', 'Ha. «Kassa» tarifi aynan kafe, kiosk va yakka nuqtalar uchun mo‘ljallangan, xodimlar soni cheklanmagan.'],
         ['Uzum Tezkor va Yandex Eats bilan ishlaydimi?', 'Ha. Uzum Tezkor, Express24 va Yandex Eats buyurtmalari bitta oynada, bitta printerda birlashtiriladi.'],
         ['Internetsiz ishlaydimi?', 'Ha, offline rejimda savdo davom etadi va aloqa tiklangach avtomatik sinxronlanadi.'],
       ],

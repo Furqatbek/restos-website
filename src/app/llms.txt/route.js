@@ -62,7 +62,7 @@ export function GET() {
 - Pricing: ${llmsPricingLine()};
   three tiers (Counter, Service, Group) plus custom pricing for groups. Free trial available.
 - Setup time: 48 hours to the first order, including menu import and staff training.
-- Runs on existing hardware: any iPad, Android tablet or PC; existing printers and terminals.
+- POS runs on iPad, Android tablet or PC. Printers and kitchen screens are installed on request, sized to the number of kitchen stations.
 - Works offline: the POS keeps selling without internet and syncs when the connection returns.
 - Delivery integrations: Uzum Tezkor, Express24, Yandex Eats — all in one inbox, on one printer.
 - Languages: Russian, Uzbek (Latin), Uzbek (Cyrillic), Karakalpak, English.

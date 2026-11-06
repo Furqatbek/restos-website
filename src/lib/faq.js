@@ -2,35 +2,35 @@
 // the server-rendered homepage (FAQPage JSON-LD for Google rich results).
 export const FAQS = {
   en: [
-    ['New hardware?', 'No. Runs on any iPad, Android or PC. Your printers and terminals just work.'],
+    ['New hardware?', 'POS runs on iPad, Android or PC. Printers and kitchen screens installed on request, sized to your kitchen stations.'],
     ['Setup time?', '48 hours to first order. We import your menu. We train your staff.'],
     ['One module at a time?', 'Yes. Start with POS. Add as you grow. One menu, one stock, one customer.'],
     ['Internet down?', 'Keeps selling offline. Syncs when back.'],
     ['Which delivery apps?', 'Uzum Tezkor, Express24, Yandex Eats — orders land straight in your POS. No second tablet.'],
   ],
   ru: [
-    ['Новое оборудование?', 'Нет. iPad, Android, ПК. Ваши принтеры и терминалы работают.'],
+    ['Новое оборудование?', 'Касса — на iPad, Android или ПК. Принтеры и кухонные экраны ставим по запросу, по числу цехов.'],
     ['Сроки запуска?', '48 часов до первого заказа. Импортируем меню. Обучаем персонал.'],
     ['По одному модулю?', 'Да. Начните с POS. Добавляйте по росту. Одно меню, склад, клиент.'],
     ['Нет интернета?', 'Продолжает продавать оффлайн. Синхронизация потом.'],
     ['Какие доставки?', 'Uzum Tezkor, Express24, Yandex Eats — заказы падают прямо в вашу кассу. Без второго планшета.'],
   ],
   uz: [
-    ['Yangi uskuna?', "Yo'q. iPad, Android, PC. Printer va terminallar ishlaydi."],
+    ['Yangi uskuna?', "Kassa — iPad, Android yoki PC'da. Printer va oshxona ekranlarini so'rov bo'yicha, sexlar soniga qarab o'rnatamiz."],
     ['Qancha vaqt?', '48 soat. Menyu import qilamiz. Xodimlarni o\'qitamiz.'],
     ['Bittadan?', 'Ha. POS-dan boshlang. O\'ssangiz qo\'shing.'],
     ['Internet yo\'q?', 'Offline sotadi. Qaytgach sinxronlanadi.'],
     ['Qaysi yetkazuvchilar?', 'Uzum Tezkor, Express24, Yandex Eats — buyurtmalar to‘g‘ridan-to‘g‘ri kassangizga tushadi. Ikkinchi planshetsiz.'],
   ],
   'uz-cyr': [
-    ['Янги ускуна?', 'Йўқ. iPad, Android, PC. Принтер ва терминаллар ишлайди.'],
+    ['Янги ускуна?', 'Касса — iPad, Android ёки PC’да. Принтер ва ошхона экранларини сўров бўйича, цехлар сонига қараб ўрнатамиз.'],
     ['Қанча вақт?', '48 соат. Меню импорт қиламиз. Ходимларни ўқитамиз.'],
     ['Биттадан?', 'Ҳа. POS-дан бошланг. Ўссангиз қўшинг.'],
     ['Интернет йўқ?', 'Оффлайн сотади. Қайтгач синхронланади.'],
     ['Қайси етказувчилар?', 'Uzum Tezkor, Express24, Yandex Eats — буюртмалар тўғридан-тўғри кассангизга тушади. Иккинчи планшетсиз.'],
   ],
   kaa: [
-    ['Jańa úskene?', 'Yaq. iPad, Android, PC. Printer hám terminallar isleydi.'],
+    ['Jańa úskene?', 'Kassa — iPad, Android yamasa PC’de. Printer hám as úy ekranların sorawǵa kóre, cexler sanına qarap ornatamız.'],
     ['Qansha waqıt?', '48 saat. Menyu import etemiz. Xızmetkerlerdi oqıtamız.'],
     ['Bir-birlep?', 'Awa. POS-tan baslań. Ósseńiz qosıń.'],
     ['Internet joq?', 'Oflayn satadı. Qaytqan soń sinxronlanadı.'],
