@@ -76,3 +76,26 @@ describe('GET /api/events', () => {
     expect(data[0].event_type).toBe('module_view');
   });
 });
+
+describe('funnel events', () => {
+  test('accepts the funnel event types', async () => {
+    for (const t of ['page_view', 'section_view', 'scroll_depth', 'page_leave', 'cta_click', 'contact_click', 'form_open', 'form_start', 'form_field', 'form_error', 'form_close', 'generate_lead']) {
+      const res = await POST(req('/api/events', { method: 'POST', body: { event_type: t, data: { path: '/uz' }, session_id: 's1' } }));
+      expect(res.status).toBe(200);
+    }
+  });
+
+  test('refuses oversized data', async () => {
+    const res = await POST(req('/api/events', { method: 'POST', body: { event_type: 'page_view', data: { x: 'a'.repeat(2000) } } }));
+    expect(res.status).toBe(413);
+  });
+
+  test('skips crawlers without storing them', async () => {
+    const res = await POST(req('/api/events', { method: 'POST', body: { event_type: 'page_view' }, headers: { 'User-Agent': 'Googlebot/2.1' } }));
+    expect((await res.json()).skipped).toBe('bot');
+  });
+
+  test('the event log needs the owner token', async () => {
+    expect((await GET(req('/api/events', { admin: false }))).status).toBe(401);
+  });
+});

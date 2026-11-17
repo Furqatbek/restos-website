@@ -19,7 +19,7 @@ export default function Migration() {
           <div className="eyebrow">{m.eyebrow}</div>
           <h2>{m.title}</h2>
           <p>{m.body}</p>
-          <button className="btn btn-outline btn-lg" onClick={openDemo}>
+          <button className="btn btn-outline btn-lg" onClick={() => openDemo('migration')}>
             {m.cta} <Icon name="arrow" size={14}/>
           </button>
         </div>

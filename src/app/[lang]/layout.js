@@ -9,6 +9,10 @@ import { offerLowPrice, offerHighPrice, priceRangeLabel, setupFeeSentence } from
 import '../globals.css';
 
 const GA_ID = 'G-2992TGBM5Y';
+// Meta (Instagram/Facebook) pixel, from Events Manager → Data sources. Empty
+// means off. When set, lib/track.js reports Lead and Contact to it, so an
+// Instagram campaign can be optimised for phone numbers rather than clicks.
+const META_PIXEL_ID = '';
 const BASE = 'https://restos.uz';
 
 const instrumentSerif = Instrument_Serif({
@@ -216,6 +220,11 @@ export default function RootLayout({ children, params }) {
         <Script id="ga-init" strategy="afterInteractive">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${GA_ID}');`}
         </Script>
+        {META_PIXEL_ID && (
+          <Script id="meta-pixel" strategy="afterInteractive">
+            {`!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${META_PIXEL_ID}');fbq('track','PageView');`}
+          </Script>
+        )}
       </body>
     </html>
   );

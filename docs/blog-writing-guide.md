@@ -13,6 +13,7 @@ Posts are created via the `POST /api/posts` endpoint. Publishing a post
 ## Minimal post
 
 Only `title` is required. Everything else has sensible defaults.
+
 > **Every write needs the owner token.** Set it once in your shell:
 > `export ADMIN_TOKEN=...` (the value of `ADMIN_TOKEN` in `/opt/restos/.env.local`).
 > Without it the API answers 401. Reading drafts needs it too; the public

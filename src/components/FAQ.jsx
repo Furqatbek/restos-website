@@ -8,7 +8,7 @@ export default function FAQ() {
   const t = I18N[lang] || I18N.en;
   const list = faqs[lang] || faqs.en;
   return (
-    <section className="section">
+    <section className="section" id="faq">
       <div className="wrap">
         <div className="faq">
           <div>

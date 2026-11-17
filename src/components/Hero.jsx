@@ -28,7 +28,7 @@ export default function Hero() {
   const innerPos = chipPos(inner.length, 33, -Math.PI / 2 + 0.3);
 
   return (
-    <section className="hero">
+    <section className="hero" id="hero">
       <div className="wrap">
         <div className="hero-grid">
           <div>
@@ -40,10 +40,10 @@ export default function Hero() {
             </h1>
             <p className="hero-sub">{t.hero.subtitle}</p>
             <div className="hero-ctas">
-              <button className="btn btn-primary btn-lg" onClick={openFoodCost}>
+              <button className="btn btn-primary btn-lg" onClick={() => openFoodCost('hero')}>
                 {t.hero.cta_primary} <Icon name="arrow" size={14}/>
               </button>
-              <button className="btn btn-outline btn-lg" onClick={openDemo}>
+              <button className="btn btn-outline btn-lg" onClick={() => openDemo('hero')}>
                 {t.hero.cta_secondary}
               </button>
             </div>

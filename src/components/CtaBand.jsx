@@ -12,7 +12,7 @@ export default function CtaBand() {
       <div className="wrap">
         <h2>{t.cta_band.title}</h2>
         <p>{t.cta_band.subtitle}</p>
-        <button className="btn btn-gold btn-lg" onClick={openFoodCost}>
+        <button className="btn btn-gold btn-lg" onClick={() => openFoodCost('cta_band')}>
           {t.cta_band.cta} <Icon name="arrow" size={14}/>
         </button>
       </div>

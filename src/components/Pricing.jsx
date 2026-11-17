@@ -82,7 +82,7 @@ export default function Pricing() {
               </ul>
               <button
                 className={'btn btn-lg ' + (tier.variant === 'gold' ? 'btn-gold' : 'btn-outline')}
-                onClick={openFoodCost}
+                onClick={() => openFoodCost(`pricing_${tier.key || 'custom'}`)}
               >
                 {tier.cta} <Icon name="arrow" size={14}/>
               </button>

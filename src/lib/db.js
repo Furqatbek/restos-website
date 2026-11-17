@@ -64,6 +64,9 @@ function migrate(db) {
       ip TEXT,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
+    -- The funnel report reads events by date and groups them by visit.
+    CREATE INDEX IF NOT EXISTS idx_events_created ON events (created_at);
+    CREATE INDEX IF NOT EXISTS idx_events_session ON events (session_id);
     CREATE TABLE IF NOT EXISTS vacancies (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       title TEXT NOT NULL,

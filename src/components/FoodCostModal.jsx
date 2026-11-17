@@ -1,7 +1,8 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useLang, useFoodCostOpen } from '@/context/AppContext';
-import { track } from '@/lib/track';
+import { leadSource } from '@/lib/track';
+import { useFormFunnel } from '@/lib/useFormFunnel';
 import Icon from './Icon';
 
 // Primary conversion action: a free food-cost analysis. Owners here buy from a
@@ -82,6 +83,7 @@ export default function FoodCostModal() {
     current_system: '', revenue_band: '',
   });
   const [state, setState] = useState('idle'); // idle | sending | done | error
+  const funnel = useFormFunnel('foodcost', open, lang);
 
   useEffect(() => {
     if (!open) { setState('idle'); }
@@ -100,18 +102,19 @@ export default function FoodCostModal() {
   const submit = async (e) => {
     e.preventDefault();
     const digits = form.phone.replace(/\D/g, '');
-    if (!/^998\d{9}$/.test(digits)) { setState('error'); return; }
+    if (!/^998\d{9}$/.test(digits)) { funnel.error('phone_invalid'); setState('error'); return; }
     setState('sending');
     try {
       const res = await fetch('/api/foodcost', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, lang, source: 'foodcost_modal' }),
+        body: JSON.stringify({ ...form, lang, source: leadSource('foodcost') }),
       });
       if (!res.ok) throw new Error('failed');
-      track('foodcost_submit', { system: form.current_system || null }, lang);
+      funnel.success();
       setState('done');
     } catch (_) {
+      funnel.error('network');
       setState('error');
     }
   };
@@ -136,36 +139,36 @@ export default function FoodCostModal() {
           <div className="modal-inner">
             <h3 className="modal-title">{c.title}</h3>
             <p className="modal-sub">{c.sub}</p>
-            <form onSubmit={submit} className="modal-form">
+            <form onSubmit={submit} className="modal-form" onFocusCapture={funnel.onFocusCapture}>
               <label>
                 <span>{c.phone}</span>
                 <input
-                  type="tel" required value={form.phone} onChange={set('phone')}
+                  type="tel" name="phone" required value={form.phone} onChange={set('phone')}
                   placeholder="+998 90 123 45 67" inputMode="tel"
                 />
               </label>
               <label>
                 <span>{c.venue} <em>({c.optional})</em></span>
-                <input type="text" value={form.venue} onChange={set('venue')} />
+                <input type="text" name="venue" value={form.venue} onChange={set('venue')} />
               </label>
               <label>
                 <span>{c.contact} <em>({c.optional})</em></span>
-                <input type="text" value={form.contact} onChange={set('contact')} />
+                <input type="text" name="contact" value={form.contact} onChange={set('contact')} />
               </label>
               <label>
                 <span>{c.venuesCount} <em>({c.optional})</em></span>
-                <input type="number" min="1" value={form.venues_count} onChange={set('venues_count')} />
+                <input type="number" name="venues_count" min="1" value={form.venues_count} onChange={set('venues_count')} />
               </label>
               <label>
                 <span>{c.system} <em>({c.optional})</em></span>
-                <select value={form.current_system} onChange={set('current_system')}>
+                <select name="current_system" value={form.current_system} onChange={set('current_system')}>
                   <option value="">—</option>
                   {SYSTEMS.map((s) => <option key={s.v} value={s.v}>{s.l}</option>)}
                 </select>
               </label>
               <label>
                 <span>{c.revenue} <em>({c.optional})</em></span>
-                <select value={form.revenue_band} onChange={set('revenue_band')}>
+                <select name="revenue_band" value={form.revenue_band} onChange={set('revenue_band')}>
                   <option value="">—</option>
                   {REVENUE.map((r) => <option key={r} value={r}>{r}</option>)}
                 </select>

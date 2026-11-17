@@ -2,7 +2,8 @@
 import { useState, useEffect } from 'react';
 import { useLang, useDemoOpen } from '@/context/AppContext';
 import { I18N } from '@/lib/i18n';
-import { track } from '@/lib/track';
+import { leadSource } from '@/lib/track';
+import { useFormFunnel } from '@/lib/useFormFunnel';
 import Icon from './Icon';
 
 const MODAL_I18N = {
@@ -10,6 +11,7 @@ const MODAL_I18N = {
     title: 'Book a demo.', sub: '30 min. No slides. Real product.',
     name: 'Full name', phone: 'Phone', company: 'Venue / company',
     submit: 'Request demo', done: 'Got it.', doneSub: "We'll call you within one business day.", close: 'Close',
+    err: "Couldn't send. Please call +998 94 114 3232 or try again.",
     whatYouGet: 'What you get',
     points: [
       'Live walkthrough of your 3 most-wanted modules',
@@ -22,6 +24,7 @@ const MODAL_I18N = {
     title: 'Заказать демо.', sub: '30 минут. Без слайдов. Живой продукт.',
     name: 'Имя', phone: 'Телефон', company: 'Заведение / компания',
     submit: 'Запросить демо', done: 'Принято.', doneSub: 'Перезвоним в течение рабочего дня.', close: 'Закрыть',
+    err: 'Не удалось отправить. Позвоните +998 94 114 3232 или попробуйте ещё раз.',
     whatYouGet: 'Что входит',
     points: [
       'Живая демонстрация 3 нужных вам модулей',
@@ -34,6 +37,7 @@ const MODAL_I18N = {
     title: 'Demo buyurtma.', sub: '30 daqiqa. Slaydlarsiz. Jonli mahsulot.',
     name: 'Ism', phone: 'Telefon', company: 'Muassasa / kompaniya',
     submit: "Demo so'rash", done: 'Qabul qilindi.', doneSub: "Bir ish kuni ichida qo'ng'iroq qilamiz.", close: 'Yopish',
+    err: "Yuborib bo'lmadi. +998 94 114 3232 raqamiga qo'ng'iroq qiling yoki qayta urinib ko'ring.",
     whatYouGet: 'Nimani olasiz',
     points: [
       "3 eng kerakli modulingizni jonli ko'rsatish",
@@ -46,6 +50,7 @@ const MODAL_I18N = {
     title: 'Демо буюртма.', sub: '30 дақиқа. Слайдларсиз. Жонли маҳсулот.',
     name: 'Исм', phone: 'Телефон', company: 'Муассаса / компания',
     submit: 'Демо сўраш', done: 'Қабул қилинди.', doneSub: 'Бир иш куни ичида қўнғироқ қиламиз.', close: 'Ёпиш',
+    err: 'Юбориб бўлмади. +998 94 114 3232 рақамига қўнғироқ қилинг ёки қайта уриниб кўринг.',
     whatYouGet: 'Нимани оласиз',
     points: [
       '3 энг керакли модулингизни жонли кўрсатиш',
@@ -58,6 +63,7 @@ const MODAL_I18N = {
     title: 'Demo buyurtpa.', sub: '30 minut. Slaydlarsız. Janlı ónim.',
     name: 'At', phone: 'Telefon', company: 'Muassasa / kompaniya',
     submit: 'Demo soraw', done: 'Qabıl etildi.', doneSub: 'Bir jumıs kúni ishinde qońıraw etemiz.', close: 'Japıw',
+    err: 'Jiberiw múmkin bolmadı. +998 94 114 3232 nomerine qońıraw etiń yamasa qaytadan urınıp kóriń.',
     whatYouGet: 'Ne alasız',
     points: [
       '3 eń kerekli modulińizdi janlı kórsetiw',
@@ -75,10 +81,11 @@ export default function DemoModal() {
   const l = MODAL_I18N[lang] || MODAL_I18N.en;
   const [form, setForm] = useState({ name: '', phone: '', company: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const funnel = useFormFunnel('demo', open, lang);
 
   useEffect(() => {
     if (!open) return;
-    track('demo_open', null, lang);
     const onKey = (e) => { if (e.key === 'Escape') setOpen(false); };
     document.addEventListener('keydown', onKey);
     document.body.style.overflow = 'hidden';
@@ -93,12 +100,22 @@ export default function DemoModal() {
   const submit = async (e) => {
     e.preventDefault();
     if (!form.name || !form.phone || !form.company) return;
-    await fetch('/api/demos', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...form, lang }),
-    }).catch(() => {});
-    setSubmitted(true);
+    // It used to show "Accepted" even when the request failed, so a visitor
+    // could leave thinking we had their number when we did not.
+    setFailed(false);
+    try {
+      const res = await fetch('/api/demos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, lang, source: leadSource('demo') }),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      funnel.success();
+      setSubmitted(true);
+    } catch (_) {
+      funnel.error('network');
+      setFailed(true);
+    }
   };
 
   return (
@@ -113,25 +130,26 @@ export default function DemoModal() {
               </div>
               <h3 className="modal-title">{l.title}</h3>
               <p className="modal-sub">{l.sub}</p>
-              <form className="modal-form" onSubmit={submit}>
+              <form className="modal-form" onSubmit={submit} onFocusCapture={funnel.onFocusCapture}>
                 <label className="field">
                   <span>{l.name} <em>*</em></span>
-                  <input type="text" required value={form.name}
+                  <input type="text" name="name" required value={form.name}
                     onChange={e => setForm({ ...form, name: e.target.value })}
                     placeholder="Dilnoza R."/>
                 </label>
                 <label className="field">
                   <span>{l.phone} <em>*</em></span>
-                  <input type="tel" required value={form.phone}
+                  <input type="tel" name="phone" required value={form.phone}
                     onChange={e => setForm({ ...form, phone: e.target.value })}
                     placeholder="+998 71 200 0000"/>
                 </label>
                 <label className="field">
                   <span>{l.company} <em>*</em></span>
-                  <input type="text" required value={form.company}
+                  <input type="text" name="company" required value={form.company}
                     onChange={e => setForm({ ...form, company: e.target.value })}
                     placeholder="Chinor Bistro"/>
                 </label>
+                {failed && <p className="modal-error">{l.err}</p>}
                 <button type="submit" className="btn btn-primary btn-lg" style={{ width: '100%', justifyContent: 'center', marginTop: 8 }}>
                   {l.submit} <Icon name="arrow" size={14}/>
                 </button>

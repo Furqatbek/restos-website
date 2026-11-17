@@ -1,7 +1,7 @@
 'use client';
 import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { DEMOS } from '@/lib/demos-i18n';
-import { track } from '@/lib/track';
+import { track, setLastCta } from '@/lib/track';
 
 const LangContext = createContext('en');
 const DemoContext = createContext(() => {});
@@ -42,8 +42,21 @@ export function AppProvider({ children, initialLang = 'en' }) {
     });
   }, []);
 
-  const openDemo = () => setDemoOpen(true);
-  const openFoodCost = () => setFoodCostOpen(true);
+  // `place` names the button ("hero", "pricing", …) so the funnel report and
+  // the lead's source show which one was clicked. onClick={openDemo} passes an
+  // event instead of a string; that counts as "other".
+  const openDemo = (place) => {
+    const p = typeof place === 'string' ? place : 'other';
+    setLastCta(p);
+    track('cta_click', { cta: 'demo', place: p }, lang);
+    setDemoOpen(true);
+  };
+  const openFoodCost = (place) => {
+    const p = typeof place === 'string' ? place : 'other';
+    setLastCta(p);
+    track('cta_click', { cta: 'foodcost', place: p }, lang);
+    setFoodCostOpen(true);
+  };
 
   return (
     <LangContext.Provider value={lang}>

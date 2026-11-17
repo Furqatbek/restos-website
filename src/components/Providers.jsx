@@ -2,6 +2,7 @@
 import { AppProvider } from '@/context/AppContext';
 import DemoModal from './DemoModal';
 import FoodCostModal from './FoodCostModal';
+import FunnelTracker from './FunnelTracker';
 
 export function Providers({ children, initialLang }) {
   return (
@@ -9,6 +10,7 @@ export function Providers({ children, initialLang }) {
       {children}
       <DemoModal/>
       <FoodCostModal/>
+      <FunnelTracker/>
     </AppProvider>
   );
 }

@@ -150,8 +150,8 @@ export default function Nav({ activePage = 'home' }) {
               </div>
             )}
           </button>
-          <button className="btn btn-outline nav-cta" onClick={openDemo}>{t.nav.demo}</button>
-          <button className="btn btn-primary nav-cta" onClick={openFoodCost}>{t.nav.foodcost}</button>
+          <button className="btn btn-outline nav-cta" onClick={() => openDemo('nav')}>{t.nav.demo}</button>
+          <button className="btn btn-primary nav-cta" onClick={() => openFoodCost('nav')}>{t.nav.foodcost}</button>
           <button
             className="nav-burger"
             aria-label={t.nav.menu}
@@ -200,10 +200,10 @@ export default function Nav({ activePage = 'home' }) {
           )}
 
           <div className="mm-actions">
-            <button className="btn btn-outline btn-lg" onClick={() => { closeMenu(); openDemo(); }}>
+            <button className="btn btn-outline btn-lg" onClick={() => { closeMenu(); openDemo('nav_mobile'); }}>
               {t.nav.demo}
             </button>
-            <button className="btn btn-primary btn-lg" onClick={() => { closeMenu(); openFoodCost(); }}>
+            <button className="btn btn-primary btn-lg" onClick={() => { closeMenu(); openFoodCost('nav_mobile'); }}>
               {t.nav.foodcost} <Icon name="arrow" size={14}/>
             </button>
           </div>
