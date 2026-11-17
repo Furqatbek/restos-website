@@ -87,9 +87,8 @@ export function generateMetadata({ params }) {
       description,
       creator: '@restosapp',
     },
-    icons: {
-      icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230f2d24'/><text x='32' y='48' font-family='Georgia,serif' font-style='italic' font-size='48' font-weight='400' text-anchor='middle' fill='%23e8b84d'>R</text></svg>",
-    },
+    // The favicon comes from app/icon.svg, served at a real URL. Google cannot
+    // show a data: URI in search results, so the old inline icon showed a globe.
   };
 }
 
@@ -111,8 +110,20 @@ const jsonLd = {
       '@type': 'Organization',
       '@id': `${BASE}/#organization`,
       name: 'RestOS',
+      // "restos" is also an ordinary word (French slang for restaurants, the
+      // Restos du Cœur charity). Spelling out the variants people type helps
+      // Google tie a search for the name to this company.
+      alternateName: ['Restos', 'RestOS Uzbekistan', 'restos.uz'],
       url: BASE,
-      logo: { '@type': 'ImageObject', url: `${BASE}/opengraph-image` },
+      description:
+        'Restaurant and cafe management system from Tashkent, Uzbekistan: POS, kitchen display, inventory and food cost, delivery, payments, loyalty and finance.',
+      foundingDate: '2026',
+      foundingLocation: { '@type': 'Place', name: 'Tashkent, Uzbekistan' },
+      founder: [
+        { '@type': 'Person', name: 'Boris Vasylev', jobTitle: 'CEO' },
+        { '@type': 'Person', name: 'Furqat Saydamadov', jobTitle: 'CTO' },
+      ],
+      logo: { '@type': 'ImageObject', url: `${BASE}/logo.png`, width: 512, height: 512 },
       sameAs: ['https://instagram.com/restos.uz', 'https://t.me/restos_blog'],
       contactPoint: {
         '@type': 'ContactPoint',
@@ -126,13 +137,10 @@ const jsonLd = {
       '@type': 'WebSite',
       '@id': `${BASE}/#website`,
       url: BASE,
+      // Google takes the site name in results from here.
       name: 'RestOS',
+      alternateName: ['Restos', 'restos.uz'],
       publisher: { '@id': `${BASE}/#organization` },
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: { '@type': 'EntryPoint', urlTemplate: `${BASE}/blog?q={search_term_string}` },
-        'query-input': 'required name=search_term_string',
-      },
     },
     {
       '@type': 'SoftwareApplication',
