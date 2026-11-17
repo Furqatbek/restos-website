@@ -16,13 +16,13 @@ describe('POST /api/newsletter', () => {
 
   test('stores email lowercased', async () => {
     await POST(req('/api/newsletter', { method: 'POST', body: { email: 'Owner@Bistro.UZ' } }));
-    const rows = await (await GET()).json();
+    const rows = await (await GET(req('/api/newsletter'))).json();
     expect(rows[0].email).toBe('owner@bistro.uz');
   });
 
   test('stores lang', async () => {
     await POST(req('/api/newsletter', { method: 'POST', body: { email: 'a@b.com', lang: 'ru' } }));
-    const rows = await (await GET()).json();
+    const rows = await (await GET(req('/api/newsletter'))).json();
     expect(rows[0].lang).toBe('ru');
   });
 
@@ -60,13 +60,13 @@ describe('POST /api/newsletter', () => {
 
 describe('GET /api/newsletter', () => {
   test('returns empty array initially', async () => {
-    expect(await (await GET()).json()).toEqual([]);
+    expect(await (await GET(req('/api/newsletter'))).json()).toEqual([]);
   });
 
   test('returns all subscribers', async () => {
     await POST(req('/api/newsletter', { method: 'POST', body: { email: 'a@x.com' } }));
     await POST(req('/api/newsletter', { method: 'POST', body: { email: 'b@x.com' } }));
-    const data = await (await GET()).json();
+    const data = await (await GET(req('/api/newsletter'))).json();
     expect(data).toHaveLength(2);
   });
 });

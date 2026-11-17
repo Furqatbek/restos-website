@@ -1,5 +1,6 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
+import { isAdmin, unauthorized } from '@/lib/admin';
 import db from '@/lib/db';
 import { publishToTelegram } from '@/lib/telegram';
 
@@ -7,6 +8,7 @@ import { publishToTelegram } from '@/lib/telegram';
 // Useful for posts that were published before Telegram was configured,
 // since the auto-trigger only fires on the draft -> published transition.
 export async function POST(req, { params }) {
+  if (!isAdmin(req)) return unauthorized();
   const post = db.prepare('SELECT * FROM posts WHERE id = ?').get(params.id);
   if (!post) {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });

@@ -22,6 +22,7 @@ module.exports = async function globalSetup() {
     cwd: path.resolve(__dirname, '../../..'),
     env: {
       ...process.env,
+      ADMIN_TOKEN: process.env.E2E_ADMIN_TOKEN || 'e2e-admin-token-0123456789',
       DATABASE_PATH: DB_PATH,
       TELEGRAM_BOT_TOKEN: '',
       TELEGRAM_CHANNEL_ID: '',
@@ -39,5 +40,5 @@ module.exports = async function globalSetup() {
     if (line.includes('error') || line.includes('Error')) process.stderr.write('[e2e-server] ' + line);
   });
 
-  await waitForServer(`http://localhost:${PORT}/api/demos`);
+  await waitForServer(`http://localhost:${PORT}/api/health`);
 };

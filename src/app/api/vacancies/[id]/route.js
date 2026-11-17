@@ -1,14 +1,17 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
+import { isAdmin, unauthorized } from '@/lib/admin';
 import db from '@/lib/db';
 
 export async function GET(req, { params }) {
   const row = db.prepare('SELECT * FROM vacancies WHERE id = ?').get(params.id);
+  if (row && row.status !== 'open' && !isAdmin(req)) return NextResponse.json({ error: 'Not found' }, { status: 404 });
   if (!row) return NextResponse.json({ error: 'Not found' }, { status: 404 });
   return NextResponse.json(row);
 }
 
 export async function PUT(req, { params }) {
+  if (!isAdmin(req)) return unauthorized();
   const existing = db.prepare('SELECT * FROM vacancies WHERE id = ?').get(params.id);
   if (!existing) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
@@ -32,6 +35,7 @@ export async function PUT(req, { params }) {
 }
 
 export async function DELETE(req, { params }) {
+  if (!isAdmin(req)) return unauthorized();
   const existing = db.prepare('SELECT * FROM vacancies WHERE id = ?').get(params.id);
   if (!existing) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 

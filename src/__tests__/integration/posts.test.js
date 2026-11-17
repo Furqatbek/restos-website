@@ -253,3 +253,22 @@ describe('DELETE /api/posts/:id', () => {
     expect(res.status).toBe(404);
   });
 });
+
+describe('posts without the owner token', () => {
+  test('cannot create, edit, delete or broadcast', async () => {
+    const { id } = await create();
+    expect((await CREATE(req('/api/posts', { method: 'POST', body: VALID, admin: false }))).status).toBe(401);
+    expect((await PUT(req(`/api/posts/${id}`, { method: 'PUT', body: { title: 'x' }, admin: false }), { params: { id: String(id) } })).status).toBe(401);
+    expect((await DELETE(req(`/api/posts/${id}`, { method: 'DELETE', admin: false }), { params: { id: String(id) } })).status).toBe(401);
+    expect((await TG(req(`/api/posts/${id}/telegram`, { method: 'POST', admin: false }), { params: { id: String(id) } })).status).toBe(401);
+    expect(publishToTelegram).not.toHaveBeenCalled();
+  });
+
+  test('see published posts only', async () => {
+    const draft = await create();
+    await create({ ...VALID, title: 'Live one', status: 'published' });
+    const list = await (await LIST(req('/api/posts?status=draft', { admin: false }))).json();
+    expect(list.map((p) => p.status)).toEqual(['published']);
+    expect((await GET(req(`/api/posts/${draft.id}`, { admin: false }), { params: { id: String(draft.id) } })).status).toBe(404);
+  });
+});

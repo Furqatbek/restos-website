@@ -1,5 +1,6 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
+import { isAdmin, unauthorized } from '@/lib/admin';
 import db from '@/lib/db';
 import { notifyFoodCost } from '@/lib/telegram';
 
@@ -55,7 +56,8 @@ export async function POST(req) {
   return NextResponse.json({ ok: true, id: result.lastInsertRowid }, { status: 201 });
 }
 
-export async function GET() {
+export async function GET(req) {
+  if (!isAdmin(req)) return unauthorized();
   const rows = db.prepare('SELECT * FROM foodcost_requests ORDER BY id DESC').all();
   return NextResponse.json(rows);
 }

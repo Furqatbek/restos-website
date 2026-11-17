@@ -6,8 +6,12 @@
 
 const BASE = process.env.E2E_BASE_URL || 'http://localhost:3001';
 
-async function api(path, { method = 'GET', body } = {}) {
-  const opts = { method, headers: { 'Content-Type': 'application/json' } };
+// global-setup starts the server with this token; reads of leads and writes
+// of content need it.
+const TOKEN = process.env.E2E_ADMIN_TOKEN || 'e2e-admin-token-0123456789';
+
+async function api(path, { method = 'GET', body, admin = true } = {}) {
+  const opts = { method, headers: { 'Content-Type': 'application/json', ...(admin ? { Authorization: `Bearer ${TOKEN}` } : {}) } };
   if (body) opts.body = JSON.stringify(body);
   const res = await fetch(`${BASE}${path}`, opts);
   return { status: res.status, body: await res.json() };
@@ -22,6 +26,11 @@ describe('E2E — /api/demos', () => {
     expect(status).toBe(200);
     expect(body.ok).toBe(true);
     expect(body.id).toBeGreaterThan(0);
+  });
+
+  test('GET without the owner token is refused', async () => {
+    const { status } = await api('/api/demos', { admin: false });
+    expect(status).toBe(401);
   });
 
   test('GET returns demo requests list', async () => {

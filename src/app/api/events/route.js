@@ -1,5 +1,6 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
+import { isAdmin, unauthorized } from '@/lib/admin';
 import db from '@/lib/db';
 
 const ALLOWED_TYPES = new Set([
@@ -30,6 +31,7 @@ export async function POST(req) {
 }
 
 export async function GET(req) {
+  if (!isAdmin(req)) return unauthorized();
   const { searchParams } = new URL(req.url);
   const type = searchParams.get('type');
   const limit = Math.min(parseInt(searchParams.get('limit') || '500'), 1000);

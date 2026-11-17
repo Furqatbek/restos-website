@@ -1,5 +1,6 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
+import { isAdmin, unauthorized } from '@/lib/admin';
 import db from '@/lib/db';
 import { publishToTelegram } from '@/lib/telegram';
 import { slugify, uniqueSlug } from '@/lib/slugify';
@@ -7,7 +8,8 @@ import { slugify, uniqueSlug } from '@/lib/slugify';
 export async function GET(req) {
   const { searchParams } = new URL(req.url);
   const lang = searchParams.get('lang');
-  const status = searchParams.get('status');
+  // Drafts and archived posts are the owner's; the public sees published only.
+  const status = isAdmin(req) ? searchParams.get('status') : 'published';
   const featured = searchParams.get('featured');
   const limit = Math.min(parseInt(searchParams.get('limit') || '100'), 500);
 
@@ -25,6 +27,7 @@ export async function GET(req) {
 }
 
 export async function POST(req) {
+  if (!isAdmin(req)) return unauthorized();
   const {
     title, slug, excerpt, body, category, glyph = 'R', color = 'b1',
     read_time = 5, lang = 'en', featured = false,

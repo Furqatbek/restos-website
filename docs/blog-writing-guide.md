@@ -13,10 +13,16 @@ Posts are created via the `POST /api/posts` endpoint. Publishing a post
 ## Minimal post
 
 Only `title` is required. Everything else has sensible defaults.
+> **Every write needs the owner token.** Set it once in your shell:
+> `export ADMIN_TOKEN=...` (the value of `ADMIN_TOKEN` in `/opt/restos/.env.local`).
+> Without it the API answers 401. Reading drafts needs it too; the public
+> sees published posts only.
+
 
 ```bash
 curl -X POST https://restos.uz/api/posts \
   -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $ADMIN_TOKEN" \
   -d '{
     "title": "Как снизить фудкост в ресторане",
     "excerpt": "Три привычки учёта, которые окупаются за месяц.",
@@ -32,6 +38,7 @@ curl -X POST https://restos.uz/api/posts \
 ```bash
 curl -X POST https://restos.uz/api/posts \
   -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $ADMIN_TOKEN" \
   -d '{
     "title": "Как снизить фудкост в ресторане",
     "excerpt": "Три привычки учёта, которые окупаются за месяц.",
@@ -88,6 +95,7 @@ post does **not** re-fire Telegram.
 ```bash
 curl -X PUT https://restos.uz/api/posts/7 \
   -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $ADMIN_TOKEN" \
   -d '{ "meta_title": "Better title", "keywords": "фудкост, ресторан" }'
 ```
 
@@ -97,7 +105,8 @@ Posts published before Telegram was configured won't have fired. Push one
 manually:
 
 ```bash
-curl -X POST https://restos.uz/api/posts/7/telegram
+curl -X POST https://restos.uz/api/posts/7/telegram \
+  -H "Authorization: Bearer $ADMIN_TOKEN"
 ```
 
 ## SEO checklist per post

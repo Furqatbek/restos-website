@@ -1,5 +1,6 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
+import { isAdmin, unauthorized } from '@/lib/admin';
 import db from '@/lib/db';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -28,7 +29,8 @@ export async function POST(req) {
   }
 }
 
-export async function GET() {
+export async function GET(req) {
+  if (!isAdmin(req)) return unauthorized();
   const rows = db
     .prepare('SELECT * FROM newsletter ORDER BY id DESC')
     .all();
