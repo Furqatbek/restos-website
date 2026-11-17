@@ -67,6 +67,9 @@ function migrate(db) {
     -- The funnel report reads events by date and groups them by visit.
     CREATE INDEX IF NOT EXISTS idx_events_created ON events (created_at);
     CREATE INDEX IF NOT EXISTS idx_events_session ON events (session_id);
+    -- Visit statistics carry no IP address (see lib/privacy.js); clear the
+    -- ones stored before that rule.
+    UPDATE events SET ip = NULL WHERE ip IS NOT NULL;
     CREATE TABLE IF NOT EXISTS vacancies (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       title TEXT NOT NULL,

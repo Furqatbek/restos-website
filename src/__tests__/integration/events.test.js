@@ -99,3 +99,22 @@ describe('funnel events', () => {
     expect((await GET(req('/api/events', { admin: false }))).status).toBe(401);
   });
 });
+
+describe('privacy of visit statistics', () => {
+  const db = require('@/lib/db').default;
+
+  test('stores no IP address', async () => {
+    await POST(req('/api/events', { method: 'POST', body: { event_type: 'page_view', session_id: 'p1' }, headers: { 'X-Forwarded-For': '203.0.113.9' } }));
+    const row = db.prepare("SELECT ip FROM events WHERE session_id = 'p1'").get();
+    expect(row.ip).toBeNull();
+  });
+
+  test('prunes statistics older than the stated retention', async () => {
+    const { pruneEvents } = require('@/app/api/events/route');
+    db.prepare("INSERT INTO events (event_type, session_id, created_at) VALUES ('page_view', 'old', datetime('now', '-14 months'))").run();
+    db.prepare("INSERT INTO events (event_type, session_id, created_at) VALUES ('page_view', 'new', datetime('now', '-1 months'))").run();
+    pruneEvents();
+    const left = db.prepare("SELECT session_id FROM events WHERE session_id IN ('old','new')").all().map((r) => r.session_id);
+    expect(left).toEqual(['new']);
+  });
+});

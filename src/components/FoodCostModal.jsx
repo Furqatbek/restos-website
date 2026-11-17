@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useLang, useFoodCostOpen } from '@/context/AppContext';
 import { leadSource } from '@/lib/track';
 import { useFormFunnel } from '@/lib/useFormFunnel';
+import FormConsent from './FormConsent';
 import Icon from './Icon';
 
 // Primary conversion action: a free food-cost analysis. Owners here buy from a
@@ -179,6 +180,7 @@ export default function FoodCostModal() {
               <button className="btn btn-primary btn-lg" type="submit" disabled={state === 'sending'}>
                 {state === 'sending' ? c.sending : c.submit} <Icon name="arrow" size={14}/>
               </button>
+              <FormConsent/>
             </form>
           </div>
         )}

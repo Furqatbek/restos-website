@@ -4,6 +4,7 @@ import { useLang, useDemoOpen } from '@/context/AppContext';
 import { I18N } from '@/lib/i18n';
 import { leadSource } from '@/lib/track';
 import { useFormFunnel } from '@/lib/useFormFunnel';
+import FormConsent from './FormConsent';
 import Icon from './Icon';
 
 const MODAL_I18N = {
@@ -156,6 +157,7 @@ export default function DemoModal() {
                 <div style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--muted)', textAlign: 'center' }}>
                   {t.hero.trust}
                 </div>
+                <FormConsent/>
               </form>
             </div>
             <div className="modal-aside">

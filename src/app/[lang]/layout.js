@@ -7,12 +7,10 @@ import { LOCALE } from '@/lib/locale-extras';
 import { LOCALES, DEFAULT_LOCALE, HTML_LANG, OG_LOCALE, isLocale } from '@/lib/locale';
 import { offerLowPrice, offerHighPrice, priceRangeLabel, setupFeeSentence } from '@/lib/pricing';
 import '../globals.css';
+import { META_PIXEL_ID } from '@/lib/analytics-config';
 
 const GA_ID = 'G-2992TGBM5Y';
-// Meta (Instagram/Facebook) pixel, from Events Manager → Data sources. Empty
-// means off. When set, lib/track.js reports Lead and Contact to it, so an
-// Instagram campaign can be optimised for phone numbers rather than clicks.
-const META_PIXEL_ID = '';
+// Meta pixel ID lives in lib/analytics-config.js (the privacy policy reads it too).
 const BASE = 'https://restos.uz';
 
 const instrumentSerif = Instrument_Serif({

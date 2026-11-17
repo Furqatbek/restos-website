@@ -723,3 +723,16 @@ a { color: inherit; text-decoration: none; }
 .tm-venue { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
 /* The approval note under the /clients grid — a quiet footnote, not a claim. */
 .clients-note { margin: 40px auto 0; max-width: 64ch; text-align: center; font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+/* Privacy policy and other legal text: plain, readable, one column. */
+.legal .legal-section { max-width: 760px; margin-bottom: 40px; }
+.legal h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(26px, 3vw, 34px); color: var(--forest); letter-spacing: -0.01em; margin: 0 0 12px; }
+.legal p, .legal li { font-size: 17px; line-height: 1.7; color: var(--ink-soft); }
+.legal p { margin: 0 0 12px; }
+.legal ul { margin: 0; padding-left: 22px; }
+.legal li { margin-bottom: 8px; }
+.page-hero h1 + .lede { text-wrap: pretty; }
+.footer-bottom a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.form-consent { font-size: 12px; line-height: 1.5; color: var(--muted); text-align: center; margin: 0; }
+.form-consent a { color: inherit; text-decoration: underline; }
+.modal-form > .form-consent { grid-column: 1 / -1; }

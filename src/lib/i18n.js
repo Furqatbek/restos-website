@@ -10,7 +10,7 @@ export const I18N = {
       subtitle:"One system. Twelve modules. Zero spreadsheets.",
       cta_primary:"Free food-cost check",
       cta_secondary:"Book demo",
-      trust:"No obligation · Live in 48h · Your hardware"
+      trust:"No obligation · Live in 48h · 30 days free"
     },
     modules:{
       eyebrow:"12 modules. 1 system.",
@@ -33,7 +33,7 @@ export const I18N = {
       subtitle:"Одна система. Двенадцать модулей. Ноль таблиц.",
       cta_primary:"Бесплатный разбор фудкоста",
       cta_secondary:"Демо",
-      trust:"Без обязательств · Запуск за 48 ч · На вашем железе"
+      trust:"Без обязательств · Запуск за 48 ч · 30 дней бесплатно"
     },
     modules:{
       eyebrow:"12 модулей. 1 система.",
@@ -56,7 +56,7 @@ export const I18N = {
       subtitle:"Bitta tizim. O'n ikki modul. Jadvallarsiz.",
       cta_primary:"Bepul food-cost tahlili",
       cta_secondary:"Demo olish",
-      trust:"Majburiyatsiz · 48 soatda · O'z uskunangizda"
+      trust:"Majburiyatsiz · 48 soatda · 30 kun bepul"
     },
     modules:{
       eyebrow:"12 modul. 1 tizim.",
@@ -79,7 +79,7 @@ export const I18N = {
       subtitle:"Битта тизим. Ўн иккита модул. Жадвалларсиз.",
       cta_primary:"Бепул food-cost таҳлили",
       cta_secondary:"Демо олиш",
-      trust:"Мажбуриятсиз · 48 соатда · Ўз ускунангизда"
+      trust:"Мажбуриятсиз · 48 соатда · 30 кун бепул"
     },
     modules:{
       eyebrow:"12 модул. 1 тизим.",
@@ -102,7 +102,7 @@ export const I18N = {
       subtitle:"Bir sistema. On eki modul. Kestesiz.",
       cta_primary:"Tegin food-cost analizi",
       cta_secondary:"Demo alıw",
-      trust:"Májbúriyatsız · 48 saatta · Óz úskenińizde"
+      trust:"Májbúriyatsız · 48 saatta · 30 kúnlik sınaw"
     },
     modules:{
       eyebrow:"12 modul. 1 sistema.",

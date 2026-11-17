@@ -2,6 +2,7 @@ import db from '@/lib/db';
 import { LOCALES, DEFAULT_LOCALE, HTML_LANG, isLocale } from '@/lib/locale';
 import { allLandingParams, landingAlternates, LANDING_UPDATED } from '@/lib/landing-pages';
 import { MODULE_ORDER, MODULES, MODULES_UPDATED, isIndexable } from '@/lib/module-pages';
+import { PRIVACY_LANGS, PRIVACY_UPDATED } from '@/lib/privacy';
 
 const BASE = 'https://restos.uz';
 
@@ -95,5 +96,15 @@ export default function sitemap() {
     }),
   );
 
-  return [...staticRoutes, ...landingRoutes, ...moduleRoutes, ...postRoutes];
+  // Privacy policy: only the languages it is written in (others show Uzbek).
+  const privacyLanguages = Object.fromEntries(PRIVACY_LANGS.map((l) => [HTML_LANG[l], `${BASE}/${l}/privacy`]));
+  const privacyRoutes = PRIVACY_LANGS.map((l) => ({
+    url: `${BASE}/${l}/privacy`,
+    lastModified: new Date(PRIVACY_UPDATED),
+    changeFrequency: 'yearly',
+    priority: 0.2,
+    alternates: { languages: privacyLanguages },
+  }));
+
+  return [...staticRoutes, ...landingRoutes, ...moduleRoutes, ...privacyRoutes, ...postRoutes];
 }

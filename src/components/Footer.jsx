@@ -87,7 +87,9 @@ export default function Footer() {
         <div className="footer-bottom">
           <span>{f.copyright}</span>
           <span className="footer-made">{madeBy(f.madeBy)}</span>
-          <span>{f.legal}</span>
+          {/* "Terms" and "DPA" were listed here as plain text, but no such pages
+              exist. The privacy policy does. */}
+          <Link href={localePath(lang, '/privacy')}>{f.legal}</Link>
         </div>
       </div>
     </footer>
