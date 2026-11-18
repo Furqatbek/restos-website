@@ -43,7 +43,7 @@ function renderHtml(r, days, link) {
   const bar = (p) => `<span class="bar" style="width:${Math.max(p, 0.5)}%"></span>`;
   const steps = r.steps.map((s) => `<tr><td>${esc(s.label)}</td><td class="n">${s.count}</td><td class="n">${s.ofVisits}%</td><td class="n">${s.ofPrevious}%</td><td class="w">${bar(s.ofVisits)}</td></tr>`).join('');
   const forms = Object.entries(r.forms).map(([name, f]) => [
-    name === 'demo' ? 'Demo request' : 'Food-cost check', f.opened, f.started, f.sent, f.gaveUpBlank, f.gaveUp, f.errored,
+    ({ demo: 'Demo request', foodcost: 'Food-cost check', help: '"Not sure where to start?" card' })[name] || name, f.opened, f.started, f.sent, f.gaveUpBlank, f.gaveUp, f.errored,
   ]);
 
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">

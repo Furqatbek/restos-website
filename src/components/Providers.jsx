@@ -3,6 +3,7 @@ import { AppProvider } from '@/context/AppContext';
 import DemoModal from './DemoModal';
 import FoodCostModal from './FoodCostModal';
 import FunnelTracker from './FunnelTracker';
+import HelpPopup from './HelpPopup';
 
 export function Providers({ children, initialLang }) {
   return (
@@ -11,6 +12,7 @@ export function Providers({ children, initialLang }) {
       <DemoModal/>
       <FoodCostModal/>
       <FunnelTracker/>
+      <HelpPopup/>
     </AppProvider>
   );
 }

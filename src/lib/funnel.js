@@ -75,7 +75,7 @@ export function buildFunnel(rows) {
       const d = e.data;
       if (e.event_type === 'contact_click') inc(contacts, d.method || 'other');
       if (e.event_type === 'cta_click') inc(ctas, `${d.cta || '?'} · ${d.place || '?'}`);
-      if (e.event_type === 'generate_lead') inc(ctaLeads, `${d.form === 'demo' ? 'demo' : 'foodcost'} · ${d.cta || '?'}`);
+      if (e.event_type === 'generate_lead') inc(ctaLeads, `${d.form || '?'} · ${d.cta || '?'}`);
       if (e.event_type === 'form_open') { forms[d.form] ||= { opened: 0, started: 0, sent: 0, gaveUp: 0, gaveUpBlank: 0, errored: 0 }; forms[d.form].opened += 1; }
       if (e.event_type === 'form_start' && forms[d.form]) forms[d.form].started += 1;
       if (e.event_type === 'generate_lead' && forms[d.form]) forms[d.form].sent += 1;

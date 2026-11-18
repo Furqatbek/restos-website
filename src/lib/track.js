@@ -65,10 +65,21 @@ export function leadSource(form) {
   ].filter(Boolean).join('; ');
 }
 
+// Did the visitor already reach for contact in this visit? The help card
+// (components/HelpPopup.jsx) stays away if so.
+const ENGAGING = new Set(['cta_click', 'contact_click', 'form_open', 'generate_lead']);
+export function isEngaged() {
+  return store('session')?.getItem('restos-engaged') === '1';
+}
+
 // Our names → Meta's standard events. Anything else goes as a custom event.
 const META = { generate_lead: 'Lead', contact_click: 'Contact' };
 
 export function track(event_type, data, lang, { beacon = false } = {}) {
+  // The help card's own opening does not count as the visitor reaching out.
+  if (ENGAGING.has(event_type) && !(event_type === 'form_open' && data?.form === 'help')) {
+    store('session')?.setItem('restos-engaged', '1');
+  }
   try {
     const body = JSON.stringify({ event_type, data, lang, session_id: getSessionId() });
     if (beacon && navigator.sendBeacon) {

@@ -43,8 +43,11 @@ export async function notifyFoodCost(lead) {
     return;
   }
 
+  // The "not sure where to start?" card sends just a phone number through
+  // this same path; say so, so nobody prepares a food-cost analysis for it.
+  const help = String(lead.source || '').startsWith('form=help');
   const lines = [
-    '\u{1F9EE} <b>Food-cost analysis request</b>',
+    help ? '\u{1F64B} <b>Call me back (help card)</b>' : '\u{1F9EE} <b>Food-cost analysis request</b>',
     '',
     `\u{1F4DE} <code>${esc(lead.phone)}</code>`,
   ];
@@ -54,6 +57,7 @@ export async function notifyFoodCost(lead) {
   if (lead.current_system) lines.push(`\u{2699} now on: ${esc(lead.current_system)}`);
   if (lead.revenue_band)   lines.push(`\u{1F4B0} ${esc(lead.revenue_band)}`);
   if (lead.lang)           lines.push(`\u{1F310} ${esc(lead.lang)}`);
+  if (lead.source)         lines.push(`\u{1F517} ${esc(lead.source)}`);
 
   try {
     const res = await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {

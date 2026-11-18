@@ -50,7 +50,8 @@ const T = {
       { h2: "Qanday ma'lumot to'playmiz", list: [
         "Demo so'rovi shakli: ismingiz, telefon raqamingiz, muassasa nomi, til, shuningdek sizni qaysi sahifa, tugma yoki reklama olib kelgani. Siz bilan bog'lanib, RestOS'ni ko'rsatish uchun.",
         "Fudkost tekshiruvi shakli: telefon raqamingiz (majburiy), ixtiyoriy ravishda muassasa nomi, aloqa uchun ism, filiallar soni, hozirgi tizim va aylanma oralig'i. Tekshiruvni tayyorlash va siz bilan bog'lanish uchun.",
-        "Ikkala shaklda ham: IP manzilingiz va brauzer turi — spamdan himoyalanish uchun.",
+        "\"Nimadan boshlashni bilmayapsizmi?\" kartochkasi: faqat telefon raqamingiz. Sizga qo'ng'iroq qilish uchun.",
+        "Barcha shakllarda: IP manzilingiz va brauzer turi — spamdan himoyalanish uchun.",
         "Tashrif statistikasi: qaysi sahifalarni ochganingiz, sahifani qanchalik pastga aylantirganingiz, qaysi tugmalarni bosganingiz, shaklning qaysi qadamiga yetganingiz (yozgan matningiz emas), sizni qayerdan kelganingiz (reklama havolasi yoki boshqa sayt) va til. Bularga ism, telefon yoki IP manzil biriktirilmaydi. Saytning qayeri tushunarsizligini bilish uchun.",
         "Instagram yoki Facebook reklamamizdagi shakl orqali so'rov yuborsangiz, Meta bizga ismingiz, telefon raqamingiz va shakldagi javoblaringizni beradi. Siz bilan bog'lanish uchun.",
       ] },
@@ -104,7 +105,8 @@ const T = {
       { h2: 'Какие данные мы собираем', list: [
         'Форма заявки на демо: имя, номер телефона, название заведения, язык, а также какая страница, кнопка или реклама привела вас на сайт. Чтобы связаться с вами и показать RestOS.',
         'Форма проверки фудкоста: номер телефона (обязательно), по желанию — название заведения, имя для связи, число точек, текущая система и диапазон оборота. Чтобы подготовить проверку и связаться с вами.',
-        'В обеих формах: ваш IP-адрес и тип браузера — для защиты от спама.',
+        'Карточка «Не знаете, с чего начать?»: только номер телефона. Чтобы перезвонить вам.',
+        'Во всех формах: ваш IP-адрес и тип браузера — для защиты от спама.',
         'Статистика посещений: какие страницы вы открыли, насколько прокрутили страницу, какие кнопки нажали, до какого шага формы дошли (но не то, что вы ввели), откуда пришли (рекламная ссылка или другой сайт) и язык. К этим данным не привязаны имя, телефон или IP-адрес. Чтобы понимать, где сайт непонятен.',
         'Если вы отправите заявку через форму в нашей рекламе в Instagram или Facebook, Meta передаст нам ваше имя, номер телефона и ответы в форме. Чтобы связаться с вами.',
       ] },
@@ -158,7 +160,8 @@ const T = {
       { h2: 'What we collect', list: [
         'Demo request form: your name, phone number, venue name, language, and which page, button or ad brought you to the site. To contact you and show you RestOS.',
         'Food-cost check form: your phone number (required) and, if you choose, venue name, contact name, number of venues, current system and revenue range. To prepare the check and contact you.',
-        'Both forms: your IP address and browser type, to protect against spam.',
+        'The "Not sure where to start?" card: your phone number only. To call you back.',
+        'All forms: your IP address and browser type, to protect against spam.',
         'Visit statistics: which pages you opened, how far you scrolled, which buttons you pressed, how far you got in a form (never what you typed), where you came from (an ad link or another site) and your language. No name, phone number or IP address is attached. To learn where the site is unclear.',
         'If you send a request through a form in our Instagram or Facebook ads, Meta passes us your name, phone number and your answers in that form. To contact you.',
       ] },
