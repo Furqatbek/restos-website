@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 import db from '@/lib/db';
 import { isAdmin, unauthorized } from '@/lib/admin';
 import { buildFunnel } from '@/lib/funnel';
+import { outcomesBySource } from '@/lib/leads';
 
 // Owner-only report: where visitors leave without leaving a phone number.
 // Open in a browser:  https://restos.uz/api/funnel?key=ADMIN_TOKEN&days=30
@@ -17,6 +18,8 @@ export function GET(req) {
               WHERE created_at >= datetime('now', ?) ORDER BY id`)
     .all(`-${days} days`);
   const report = buildFunnel(rows);
+  // Where the leads ended up, from the lead board (/api/leads).
+  report.outcomes = outcomesBySource(days);
 
   if (searchParams.get('format') === 'json') return NextResponse.json({ days, ...report });
   // Period links keep the rest of the query (the key, if it came that way).
@@ -92,6 +95,10 @@ nav a{margin-right:12px;color:#0f2d24}.wrap{overflow-x:auto}
 <h2>Where visits came from</h2>
 <p>From the ad link's utm tags, Instagram/Facebook click ids, or the referring site.</p>
 <div class="wrap">${table(['Source / medium / campaign', 'Visits', 'Called or wrote', 'Leads', 'Leads %'], r.sources.map((s) => [s.source, s.visits, s.contacts, s.leads, `${s.conversion}%`]))}</div>
+
+<h2>What became of the leads</h2>
+<p>From the lead board: how many leads each source brought and how many became clients. Update the board and this fills in.</p>
+<div class="wrap">${table(['Source', 'Leads', 'Became clients', 'Declined', 'Still open'], (r.outcomes || []).map((o) => [o.source, o.leads, o.won, o.lost, o.open]))}</div>
 
 <h2>First page of the visit</h2>
 <div class="wrap">${table(['Page', 'Visits', 'Leads', 'Leads %'], r.landings.map((s) => [s.page, s.visits, s.leads, `${s.conversion}%`]))}</div>

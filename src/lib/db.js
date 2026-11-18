@@ -130,6 +130,16 @@ function migrate(db) {
   if (!has('meta_description')) db.exec('ALTER TABLE posts ADD COLUMN meta_description TEXT');
   if (!has('keywords')) db.exec('ALTER TABLE posts ADD COLUMN keywords TEXT');
 
+  // Lead board (lib/leads.js): each lead carries where it is in the pipeline
+  // and the owner's notes. Existing leads start as 'new'.
+  for (const table of ['demo_requests', 'foodcost_requests']) {
+    const lc = db.prepare(`PRAGMA table_info(${table})`).all();
+    const lhas = (name) => lc.some((c) => c.name === name);
+    if (!lhas('status')) db.exec(`ALTER TABLE ${table} ADD COLUMN status TEXT DEFAULT 'new'`);
+    if (!lhas('notes')) db.exec(`ALTER TABLE ${table} ADD COLUMN notes TEXT`);
+    if (!lhas('status_at')) db.exec(`ALTER TABLE ${table} ADD COLUMN status_at DATETIME`);
+  }
+
   // Backfill slugs for any posts missing one (transliterated from title).
   const missing = db.prepare("SELECT id, title FROM posts WHERE slug IS NULL OR slug = ''").all();
   if (missing.length) {
