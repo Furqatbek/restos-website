@@ -112,6 +112,7 @@ const jsonLd = {
       '@type': 'Organization',
       '@id': `${BASE}/#organization`,
       name: 'RestOS',
+      legalName: 'ISTIQLOL TECH MCHJ',
       // "restos" is also an ordinary word (French slang for restaurants, the
       // Restos du Cœur charity). Spelling out the variants people type helps
       // Google tie a search for the name to this company.

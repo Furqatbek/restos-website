@@ -16,7 +16,7 @@ export const STATS_RETENTION_MONTHS = 13;
 export const LEAD_RETENTION_YEARS = 3;
 
 // Fill in once registered: the legal name and taxpayer number (STIR / ИНН).
-export const OPERATOR = { legalName: '', stir: '' };
+export const OPERATOR = { legalName: 'ISTIQLOL TECH MCHJ', stir: '' };
 
 const PHONE = '+998 94 114 3232';
 const TELEGRAM = '@furqaty';
