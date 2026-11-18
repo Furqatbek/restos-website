@@ -2,7 +2,7 @@ export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import { isAdmin, unauthorized } from '@/lib/admin';
 import db from '@/lib/db';
-import { STATS_RETENTION_MONTHS } from '@/lib/privacy';
+import { pruneOldData } from '@/lib/retention';
 
 // Funnel events (see lib/track.js and components/FunnelTracker.jsx), plus the
 // older ones whose rows are still in the table.
@@ -41,16 +41,13 @@ export async function POST(req) {
     .prepare('INSERT INTO events (event_type, data, lang, session_id, ip) VALUES (?, ?, ?, ?, NULL)')
     .run(event_type, dataJson, String(lang).slice(0, 8), session_id ? String(session_id).slice(0, 64) : null);
 
-  // Keep statistics for the period the privacy policy states. Pruning on a
-  // small share of inserts is enough at this traffic.
-  if (Math.random() < 0.01) pruneEvents();
 
   return NextResponse.json({ ok: true, id: result.lastInsertRowid });
 }
 
+// Kept for tests and manual use; lib/retention.js runs it on a schedule.
 export function pruneEvents() {
-  return db.prepare("DELETE FROM events WHERE created_at < datetime('now', ?)")
-    .run(`-${STATS_RETENTION_MONTHS} months`).changes;
+  return pruneOldData().events;
 }
 
 export async function GET(req) {

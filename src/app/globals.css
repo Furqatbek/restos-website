@@ -736,3 +736,5 @@ a { color: inherit; text-decoration: none; }
 .form-consent { font-size: 12px; line-height: 1.5; color: var(--muted); text-align: center; margin: 0; }
 .form-consent a { color: inherit; text-decoration: underline; }
 .modal-form > .form-consent { grid-column: 1 / -1; }
+.newsletter .newsletter-tg { margin-top: 8px; padding: 14px 26px; border-radius: 999px; background: var(--gold); color: var(--forest); font-weight: 600; font-size: 15px; text-decoration: none; transition: background .15s; }
+.newsletter .newsletter-tg:hover { background: #f0c868; }

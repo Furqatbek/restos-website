@@ -1,4 +1,4 @@
-import { privacyContent, PRIVACY_LANGS, STATS_RETENTION_MONTHS, LEAD_RETENTION_YEARS } from '@/lib/privacy';
+import { privacyContent, PRIVACY_LANGS, STATS_RETENTION_MONTHS, LEAD_RETENTION_MONTHS } from '@/lib/privacy';
 
 describe('privacy policy', () => {
   const all = PRIVACY_LANGS.map((l) => [l, privacyContent(l)]);
@@ -14,7 +14,7 @@ describe('privacy policy', () => {
     for (const [, c] of all) {
       const text = JSON.stringify(c);
       expect(text).toContain(String(STATS_RETENTION_MONTHS));
-      expect(text).toContain(String(LEAD_RETENTION_YEARS));
+      expect(text).toContain(String(LEAD_RETENTION_MONTHS));
     }
   });
 

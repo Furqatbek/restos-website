@@ -47,23 +47,9 @@ describe('E2E — /api/demos', () => {
 });
 
 describe('E2E — /api/newsletter', () => {
-  const email = `e2e-${Date.now()}@test.com`;
-
-  test('POST subscribes email', async () => {
-    const { status, body } = await api('/api/newsletter', { method: 'POST', body: { email } });
-    expect(status).toBe(200);
-    expect(body.ok).toBe(true);
-    expect(body.duplicate).toBeUndefined();
-  });
-
-  test('POST returns duplicate:true on second subscribe', async () => {
-    const { body } = await api('/api/newsletter', { method: 'POST', body: { email } });
-    expect(body.duplicate).toBe(true);
-  });
-
-  test('POST rejects invalid email', async () => {
-    const { status } = await api('/api/newsletter', { method: 'POST', body: { email: 'bad' } });
-    expect(status).toBe(400);
+  test('POST is closed: the signup was replaced by the Telegram channel', async () => {
+    const { status } = await api('/api/newsletter', { method: 'POST', body: { email: `e2e-${Date.now()}@test.com` } });
+    expect(status).toBe(410);
   });
 });
 

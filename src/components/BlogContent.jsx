@@ -16,11 +16,10 @@ const BLOG_I18N = {
     latestTitleEm: 'the floor.',
     noPosts: 'No posts yet.',
     noFeatured: 'No featured post yet.',
-    newsEyebrow: 'Newsletter',
-    newsTitle: 'One margin lever a month.',
-    newsDesc: 'We send one email a month: a single P&L lever, the data behind it, and a one-page playbook to pull it. No fluff.',
-    newsPlaceholder: 'you@restaurant.com',
-    newsCta: 'Subscribe',
+    newsEyebrow: 'Telegram',
+    newsTitle: 'Follow us on Telegram.',
+    newsDesc: 'New articles and practical notes for restaurant owners, in our Telegram channel.',
+    newsCta: 'Subscribe on Telegram',
   },
   ru: {
     eyebrow: 'Записная книжка оператора',
@@ -33,11 +32,10 @@ const BLOG_I18N = {
     latestTitleEm: 'с пола.',
     noPosts: 'Материалов пока нет.',
     noFeatured: 'Главного материала пока нет.',
-    newsEyebrow: 'Рассылка',
-    newsTitle: 'Один рычаг маржи в месяц.',
-    newsDesc: 'Раз в месяц — один рычаг P&L, цифры за ним и одностраничный плейбук. Без воды.',
-    newsPlaceholder: 'you@restaurant.com',
-    newsCta: 'Подписаться',
+    newsEyebrow: 'Telegram',
+    newsTitle: 'Мы в Telegram.',
+    newsDesc: 'Новые статьи и практичные заметки для владельцев ресторанов — в нашем Telegram-канале.',
+    newsCta: 'Подписаться в Telegram',
   },
   uz: {
     eyebrow: 'Operator daftari',
@@ -50,11 +48,10 @@ const BLOG_I18N = {
     latestTitleEm: 'yangi.',
     noPosts: 'Hozircha maqolalar yo\'q.',
     noFeatured: 'Asosiy maqola hali yo\'q.',
-    newsEyebrow: 'Yangiliklar',
-    newsTitle: 'Oyiga bitta marja richagi.',
-    newsDesc: 'Oyiga bir xat: bitta P&L richag, ortidagi raqamlar. Suvsiz.',
-    newsPlaceholder: 'you@restaurant.com',
-    newsCta: 'Obuna',
+    newsEyebrow: 'Telegram',
+    newsTitle: "Biz Telegram'da.",
+    newsDesc: 'Restoran egalari uchun yangi maqolalar va amaliy maslahatlar — Telegram kanalimizda.',
+    newsCta: "Telegram'da obuna bo'lish",
   },
   'uz-cyr': {
     eyebrow: 'Оператор дафтари',
@@ -67,11 +64,10 @@ const BLOG_I18N = {
     latestTitleEm: 'янги.',
     noPosts: 'Ҳозирча мақолалар йўқ.',
     noFeatured: 'Асосий мақола ҳали йўқ.',
-    newsEyebrow: 'Янгиликлар',
-    newsTitle: 'Ойига битта маржа ричаги.',
-    newsDesc: 'Ойига бир хат. Сувсиз.',
-    newsPlaceholder: 'you@restaurant.com',
-    newsCta: 'Обуна',
+    newsEyebrow: 'Telegram',
+    newsTitle: "Биз Telegram'да.",
+    newsDesc: 'Ресторан эгалари учун янги мақолалар ва амалий маслаҳатлар — Telegram каналимизда.',
+    newsCta: "Telegram'да обуна бўлиш",
   },
   kaa: {
     eyebrow: 'Operator dápteri',
@@ -84,11 +80,10 @@ const BLOG_I18N = {
     latestTitleEm: 'jańa.',
     noPosts: 'Házir maqalalar joq.',
     noFeatured: 'Bas maqala hálde joq.',
-    newsEyebrow: 'Pochta',
-    newsTitle: 'Ayına bir marja rıshagı.',
-    newsDesc: 'Ayına bir xat. Suwsız.',
-    newsPlaceholder: 'you@restaurant.com',
-    newsCta: 'Jazılıw',
+    newsEyebrow: 'Telegram',
+    newsTitle: "Biz Telegram'damız.",
+    newsDesc: 'Restoran iyeleri ushın jańa maqalalar hám ámeliy keńesler — Telegram kanalımızda.',
+    newsCta: "Telegram'da jazılıw",
   },
 };
 
@@ -99,8 +94,6 @@ const BLOG_I18N = {
 export default function BlogContent({ initialPosts = [], initialFeatured = null, initialLang }) {
   const lang = useLang();
   const B = BLOG_I18N[lang] || BLOG_I18N.en;
-  const [email, setEmail] = useState('');
-  const [newsState, setNewsState] = useState('idle');
   const [posts, setPosts] = useState(initialPosts);
   const [featured, setFeatured] = useState(initialFeatured);
   const [loading, setLoading] = useState(false);
@@ -189,33 +182,11 @@ export default function BlogContent({ initialPosts = [], initialFeatured = null,
             <div style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--gold)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>{B.newsEyebrow}</div>
             <h3>{B.newsTitle}</h3>
             <p>{B.newsDesc}</p>
-            <form onSubmit={async (e) => {
-              e.preventDefault();
-              if (!email || newsState === 'loading') return;
-              setNewsState('loading');
-              try {
-                await fetch('/api/newsletter', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ email, lang }),
-                });
-                setNewsState('done');
-              } catch (_) {
-                setNewsState('error');
-              }
-            }}>
-              {newsState === 'done' ? (
-                <p style={{ color: 'var(--gold)', fontFamily: 'var(--mono)', fontSize: 13 }}>✓ {B.newsCta}</p>
-              ) : (
-                <>
-                  <input type="email" placeholder={B.newsPlaceholder} required
-                    value={email} onChange={e => setEmail(e.target.value)}/>
-                  <button type="submit" disabled={newsState === 'loading'}>
-                    {newsState === 'loading' ? '…' : B.newsCta}
-                  </button>
-                </>
-              )}
-            </form>
+            {/* This was an email signup promising "one email a month", but no email
+                was ever sent. The Telegram channel is where new articles go. */}
+            <a className="newsletter-tg" href="https://t.me/restos_blog" target="_blank" rel="noopener">
+              {B.newsCta}
+            </a>
           </div>
         </div>
       </section>
