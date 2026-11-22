@@ -93,6 +93,7 @@ export default function LandingPage({ params }) {
     name: page.h1,
     description: page.description,
     serviceType: page.keyword,
+    ...(page.image ? { image: `${BASE}${page.image.src}` } : {}),
     inLanguage: lang,
     provider: { '@id': `${BASE}/#organization` },
     areaServed: [
@@ -127,6 +128,13 @@ export default function LandingPage({ params }) {
             </Link>
             <a className="btn btn-outline btn-lg" href="tel:+998941143232">+998 94 114 3232</a>
           </div>
+          {page.image && (
+            <figure className="landing-shot">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={page.image.src} width={page.image.width} height={page.image.height}
+                alt={page.image.alt} fetchPriority="high" decoding="async"/>
+            </figure>
+          )}
         </div>
       </section>
 

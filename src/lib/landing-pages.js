@@ -3,7 +3,11 @@
 // route, sitemap, and static params pick them up automatically.
 //
 // Structure: LANDING_PAGES[lang][slug] = { keyword, title, description,
-//   eyebrow, h1, lede, sections: [{ h2, body }], faqs: [[q, a]] }
+//   eyebrow, h1, lede, image: { src, width, height, alt },
+//   sections: [{ h2, body }], faqs: [[q, a]] }
+// `image` is a real screenshot of the product (public/images/product, taken
+// from the live demos): search engines show a picture beside a result only
+// when the page has an actual image, and read its alt text.
 // `body` and answers are plain text (rendered as paragraphs).
 
 import { MONTHLY_UZS } from './pricing';
@@ -27,6 +31,7 @@ export const LANDING_PAGES = {
       eyebrow: 'POS система',
       h1: 'POS система для кафе и ресторанов',
       lede: 'Касса, которая учится за одну смену, работает без интернета и связывает зал, кухню и склад в одну систему. Запуск за 48 часов, касса работает на iPad, Android-планшете или ПК.',
+      image: { src: '/images/product/pos-ru.webp', width: 1228, height: 684, alt: 'POS-касса RestOS на планшете: меню, счёт стола и итог' },
       sections: [
         {
           h2: 'Быстрые продажи без обучения',
@@ -59,6 +64,7 @@ export const LANDING_PAGES = {
       eyebrow: 'Автоматизация ресторана',
       h1: 'Автоматизация ресторана от кассы до P&L',
       lede: 'Двенадцать модулей в одной системе управления. Включайте по мере роста: одно меню, один склад, одна правда о вашем бизнесе.',
+      image: { src: '/images/product/inventory-ru.webp', width: 1228, height: 742, alt: 'Склад и фудкост в RestOS: остатки продуктов, маржа и оповещения' },
       sections: [
         {
           h2: 'Что значит автоматизировать ресторан',
@@ -91,6 +97,7 @@ export const LANDING_PAGES = {
       eyebrow: 'Складской учёт',
       h1: 'Программа складского учёта для ресторана',
       lede: 'Остатки, техкарты и себестоимость, которые считаются сами. Каждая продажа списывает ингредиенты — без ручной инвентаризации по ночам.',
+      image: { src: '/images/product/inventory-ru.webp', width: 1228, height: 742, alt: 'Программа складского учёта RestOS: остатки, фудкост и оповещения о заканчивающихся продуктах' },
       sections: [
         {
           h2: 'Автоматическое списание по техкартам',
@@ -121,6 +128,7 @@ export const LANDING_PAGES = {
       eyebrow: 'POS tizimi',
       h1: 'Kafe va restoranlar uchun POS tizimi',
       lede: 'Bir smenada o‘rganiladigan, internetsiz ishlaydigan va zal, oshxona hamda omborni bitta tizimga bog‘laydigan kassa. 48 soatda ishga tushadi, kassa iPad, Android planshet yoki kompyuterda ishlaydi.',
+      image: { src: '/images/product/pos-uz.webp', width: 1228, height: 746, alt: 'RestOS POS-kassasi planshetda: menyu, stol hisobi va jami summa' },
       sections: [
         {
           h2: 'O‘rgatishsiz tez savdo',
@@ -149,6 +157,7 @@ export const LANDING_PAGES = {
       eyebrow: 'Restoran avtomatizatsiyasi',
       h1: 'Restoran avtomatizatsiyasi — kassadan P&L gacha',
       lede: 'Bitta tizimda o‘n ikkita modul. O‘sishingizga qarab yoqing: bitta menyu, bitta ombor, biznesingiz haqida bitta haqiqat.',
+      image: { src: '/images/product/inventory-uz.webp', width: 1228, height: 742, alt: "RestOS'da ombor va fudkost: mahsulot qoldiqlari, marja va ogohlantirishlar" },
       sections: [
         {
           h2: 'Restoranni avtomatlashtirish nima beradi',
@@ -181,6 +190,7 @@ export const LANDING_PAGES = {
       eyebrow: 'Kafe uchun dastur',
       h1: 'Kafe uchun dastur — hammasi bitta tizimda',
       lede: 'Kassa, ombor, QR-menyu va sodiqlik — kafengizni bitta oynadan boshqaring. Alohida beshta obuna o‘rniga bitta tizim.',
+      image: { src: '/images/product/pos-uz.webp', width: 1228, height: 746, alt: 'Kafe uchun dastur RestOS: kassa ekrani — menyu, hisob va jami summa' },
       sections: [
         {
           h2: 'Tez kassa va QR-menyu',
