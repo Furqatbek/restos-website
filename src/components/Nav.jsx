@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useLang, useOpenDemo, useDemoOpen, useOpenFoodCost } from '@/context/AppContext';
 import { I18N } from '@/lib/i18n';
 import { localePath, isLocale } from '@/lib/locale';
-import { landingList, SOLUTIONS_LABEL } from '@/lib/landing-pages';
+import { landingList, landingSwitchPath, SOLUTIONS_LABEL } from '@/lib/landing-pages';
 import Icon from './Icon';
 
 const LANGS = [
@@ -85,7 +85,9 @@ export default function Nav({ activePage = 'home' }) {
     setMenuOpen(false);
     const parts = (pathname || '/').split('/');
     const rest = isLocale(parts[1]) ? '/' + parts.slice(2).join('/') : (pathname || '/');
-    router.push(localePath(l, rest || '/'));
+    // Landing pages have different addresses per language (or none).
+    const landing = isLocale(parts[1]) && parts.length === 3 && landingSwitchPath(parts[1], l, parts[2]);
+    router.push(landing || localePath(l, rest || '/'));
   };
 
   const isHome = activePage === 'home';

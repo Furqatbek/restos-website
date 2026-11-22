@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { LOCALES, DEFAULT_LOCALE } from '@/lib/locale';
+import { landingRedirect } from '@/lib/landing-pages';
 
 // Detect the best locale from cookie, then Accept-Language, then default.
 function detectLocale(request) {
@@ -26,7 +27,20 @@ export function middleware(request) {
   const hasLocale = LOCALES.some(
     (l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`),
   );
-  if (hasLocale) return NextResponse.next();
+  if (hasLocale) {
+    // A landing page under the wrong language prefix: send it, permanently,
+    // to where it lives instead of a 404.
+    const [, lang, slug, ...more] = pathname.split('/');
+    if (slug && !more.length) {
+      const to = landingRedirect(lang, slug);
+      if (to) {
+        const url = request.nextUrl.clone();
+        url.pathname = to;
+        return NextResponse.redirect(url, 308);
+      }
+    }
+    return NextResponse.next();
+  }
 
   // Redirect locale-less page paths to the detected locale.
   const locale = detectLocale(request);

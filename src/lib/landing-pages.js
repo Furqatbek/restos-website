@@ -232,6 +232,29 @@ const EQUIVALENTS = [
   },
 ];
 
+// Landing pages exist in one language each, under that language's prefix.
+// Asked for one under another prefix (/uz/pos-sistema-..., which the language
+// switcher used to produce and Google reported as 404), say where it lives:
+// the translation in the requested language if there is one, otherwise the
+// page in its own language. Null when the address is fine or not a landing page.
+export function landingRedirect(lang, slug) {
+  if (LANDING_PAGES[lang]?.[slug]) return null;
+  const home = Object.keys(LANDING_PAGES).find((l) => LANDING_PAGES[l][slug]);
+  if (!home) return null;
+  const group = EQUIVALENTS.find((g) => g[home] === slug);
+  if (group?.[lang]) return `/${lang}/${group[lang]}`;
+  return `/${home}/${slug}`;
+}
+
+// Where the language switcher should go from a landing page: its translation,
+// or that language's homepage when there is none.
+export function landingSwitchPath(fromLang, toLang, slug) {
+  if (!LANDING_PAGES[fromLang]?.[slug]) return null;
+  if (LANDING_PAGES[toLang]?.[slug]) return `/${toLang}/${slug}`;
+  const group = EQUIVALENTS.find((g) => g[fromLang] === slug);
+  return group?.[toLang] ? `/${toLang}/${group[toLang]}` : `/${toLang}`;
+}
+
 // hreflang map for a landing page: { 'ru': url, 'uz': url, 'x-default': url }.
 // Returns null when the page has no translation, so it stays self-canonical
 // rather than claiming alternates that do not exist.

@@ -49,8 +49,13 @@ export default function OgImage() {
           <div style={{ color: '#e8b84d', fontSize: 22, fontFamily: 'sans-serif', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
             OS for hospitality
           </div>
-          <div style={{ color: '#faf7f2', fontSize: 68, fontStyle: 'italic', lineHeight: 1.1, letterSpacing: '-1px' }}>
-            Sell more.<br />Waste less.<br />Go home early.
+          {/* The renderer (satori) refuses a block with several children unless
+              it is display:flex — "<br/>" lines made this route return 500 on
+              every request, which Search Console reported as a server error. */}
+          <div style={{ display: 'flex', flexDirection: 'column', color: '#faf7f2', fontSize: 68, fontStyle: 'italic', lineHeight: 1.1, letterSpacing: '-1px' }}>
+            <span>Sell more.</span>
+            <span>Waste less.</span>
+            <span>Go home early.</span>
           </div>
         </div>
 
