@@ -57,8 +57,8 @@ COPY --from=builder /app/package.json    ./
 # jsconfig needed for @/ alias resolution at runtime via node_modules
 COPY --from=builder /app/jsconfig.json   ./
 
-# Empty public dir (Next.js expects it)
-RUN mkdir -p ./public
+# Static files served as-is (product screenshots for the landing pages).
+COPY --from=builder /app/public          ./public
 
 # SQLite data dir owned by app user
 RUN mkdir -p ./data && chown nextjs:nodejs ./data
@@ -68,6 +68,6 @@ USER nextjs
 EXPOSE 3000
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=20s --retries=3 \
-  CMD node -e "fetch('http://localhost:3000/api/demos').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+  CMD node -e "fetch('http://localhost:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
 
 CMD ["node_modules/.bin/next", "start"]
