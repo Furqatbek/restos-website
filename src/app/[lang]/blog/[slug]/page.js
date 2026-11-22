@@ -1,5 +1,5 @@
 export const dynamic = 'force-dynamic';
-import { notFound, redirect } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import Link from 'next/link';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
@@ -104,12 +104,15 @@ export default function BlogPost({ params }) {
 
   const routeLang = isLocale(params.lang) ? params.lang : DEFAULT_LOCALE;
 
-  // Legacy numeric link → redirect to the keyword slug URL (same browse locale).
-  if (/^\d+$/.test(String(params.slug)) && post.slug) {
-    redirect(localePath(routeLang, `/blog/${post.slug}`));
+  // A post exists in one language. Opened by id (/blog/5) or under another
+  // language's prefix (/en/blog/<russian post>), send it permanently to its
+  // own address. Serving it with only a canonical hint left these addresses in
+  // Search Console as "alternate page with canonical tag".
+  const cLang = canonicalLang(post);
+  if (post.slug && (routeLang !== cLang || String(params.slug) !== post.slug)) {
+    permanentRedirect(localePath(cLang, `/blog/${post.slug}`));
   }
 
-  const cLang = canonicalLang(post);
   const canonical = `${BASE}/${cLang}/blog/${post.slug}`;
   const related = relatedLanding(cLang, post);
   const more = relatedPosts(post);
