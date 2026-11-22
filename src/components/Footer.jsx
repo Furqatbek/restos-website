@@ -57,7 +57,7 @@ export default function Footer() {
               at a time, so without this its HTML linked only the first one and
               Google reached the rest only through each other. */}
           <div className="footer-modules">
-            <h4>{f.product}</h4>
+            <h2 className="footer-h">{f.product}</h2>
             <ul>
               {MODULE_ORDER.map((key) => (
                 <li key={key}><Link href={localePath(lang, `/modules/${moduleSlug(key)}`)}>{(LOCALE[lang] || LOCALE.en).modules[key].title}</Link></li>
@@ -66,7 +66,7 @@ export default function Footer() {
           </div>
           {solutions.length > 0 && (
             <div>
-              <h4>{SOLUTIONS_LABEL[lang] || SOLUTIONS_LABEL.en}</h4>
+              <h2 className="footer-h">{SOLUTIONS_LABEL[lang] || SOLUTIONS_LABEL.en}</h2>
               <ul>
                 {solutions.map((s) => (
                   <li key={s.slug}><Link href={localePath(lang, `/${s.slug}`)}>{s.label}</Link></li>
@@ -75,7 +75,7 @@ export default function Footer() {
             </div>
           )}
           <div>
-            <h4>{f.company}</h4>
+            <h2 className="footer-h">{f.company}</h2>
             <ul>
               {f.companyLinks.map((x, i) => {
                 const hrefs = ['/about', '/clients', '/careers', '/blog'];
@@ -84,7 +84,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h4>{f.contact}</h4>
+            <h2 className="footer-h">{f.contact}</h2>
             <ul>
               <li><a href="tel:+998941143232">+998 94 114 3232</a></li>
               <li>

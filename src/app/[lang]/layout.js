@@ -18,7 +18,8 @@ const instrumentSerif = Instrument_Serif({
   variable: '--font-serif', display: 'swap',
 });
 const inter = Inter({ subsets: ['latin', 'cyrillic'], variable: '--font-sans', display: 'swap' });
-const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap' });
+// Only small labels use the mono face; not worth delaying the first paint for.
+const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap', preload: false });
 
 export function generateStaticParams() {
   return LOCALES.map((lang) => ({ lang }));
@@ -212,9 +213,12 @@ export default function RootLayout({ children, params }) {
         </Providers>
         {/* Google Analytics — loaded after the page is interactive so it
             doesn't block render / hurt Core Web Vitals */}
+        {/* The tiny queue below is defined early so events are kept; the
+            180 KB library itself waits until the page has finished loading,
+            so it no longer blocks the phone's main thread while the page draws. */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
         <Script id="ga-init" strategy="afterInteractive">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${GA_ID}');`}
