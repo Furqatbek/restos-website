@@ -49,7 +49,11 @@ export function generateMetadata({ params }) {
   // Live for visitors, hidden from search until it has real written content.
   // `follow` stays on so links from here (to the indexed landing pages and to
   // other modules) still pass through. See the rule in lib/module-pages.js.
-  meta.robots = indexable ? { index: true, follow: true } : { index: false, follow: true };
+  // Setting robots here replaces the layout's, so restate the preview
+  // allowances there too, or Google shows these pages with no image.
+  meta.robots = indexable
+    ? { index: true, follow: true, googleBot: { index: true, follow: true, 'max-snippet': -1, 'max-image-preview': 'large', 'max-video-preview': -1 } }
+    : { index: false, follow: true };
   return meta;
 }
 
