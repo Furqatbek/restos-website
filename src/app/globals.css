@@ -119,9 +119,10 @@ a { color: inherit; text-decoration: none; }
 /* HERO */
 .hero { position: relative; padding: 80px 0 60px; overflow: hidden; }
 .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; background: var(--cream-2); border: 1px solid var(--line); font-size: 12px; letter-spacing: 0.02em; color: var(--ink-soft); font-family: var(--mono); text-transform: uppercase; }
+h1.hero-eyebrow { margin: 0; font-weight: 400; line-height: 1.4; }
 .hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 99px; background: var(--terra); box-shadow: 0 0 0 3px rgba(217,119,87,0.2); }
-.hero h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(48px, 8vw, 104px); line-height: 0.98; letter-spacing: -0.025em; margin: 24px 0 0; color: var(--forest); text-wrap: balance; }
-.hero h1 .em { font-style: italic; color: var(--terra); }
+.hero .hero-title { font-family: var(--serif); font-weight: 400; font-size: clamp(48px, 8vw, 104px); line-height: 0.98; letter-spacing: -0.025em; margin: 24px 0 0; color: var(--forest); text-wrap: balance; }
+.hero .hero-title .em { font-style: italic; color: var(--terra); }
 .hero-sub { max-width: 540px; margin-top: 28px; font-size: 18px; line-height: 1.55; color: var(--ink-soft); text-wrap: pretty; }
 .hero-ctas { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
 .hero-trust { margin-top: 20px; font-size: 13px; color: var(--muted); font-family: var(--mono); }

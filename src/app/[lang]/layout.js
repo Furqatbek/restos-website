@@ -35,7 +35,7 @@ export function generateMetadata({ params }) {
   const t = I18N[lang] || I18N.en;
   const L = LOCALE[lang] || LOCALE.en;
   const title = t.siteTitle || I18N.en.siteTitle;
-  const description = `${t.hero?.subtitle || ''} ${L.footer?.tagline || ''}`.trim();
+  const description = `RestOS: ${L.footer?.tagline || ''} ${t.hero?.subtitle || ''}`.trim();
 
   return {
     metadataBase: new URL(BASE),

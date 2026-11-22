@@ -32,12 +32,15 @@ export default function Hero() {
       <div className="wrap">
         <div className="hero-grid">
           <div>
-            <span className="hero-eyebrow"><span className="dot"/>{t.hero.eyebrow}</span>
-            <h1>
+            {/* The H1 is what search engines read as the page's subject: the
+                name and what it is ("RestOS · Restoran boshqaruv tizimi").
+                The slogan below keeps the big type but is not the heading. */}
+            <h1 className="hero-eyebrow"><span className="dot"/>RestOS · {t.hero.eyebrow}</h1>
+            <p className="hero-title">
               {t.hero.title_1}<br/>
               {t.hero.title_2}<br/>
               <span className="em">{t.hero.title_3}</span>
-            </h1>
+            </p>
             <p className="hero-sub">{t.hero.subtitle}</p>
             <div className="hero-ctas">
               <button className="btn btn-primary btn-lg" onClick={() => openFoodCost('hero')}>

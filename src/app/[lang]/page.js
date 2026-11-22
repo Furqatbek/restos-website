@@ -22,7 +22,8 @@ export function generateMetadata({ params }) {
     lang,
     path: '',
     title: t.siteTitle || I18N.en.siteTitle,
-    description: `${t.hero?.subtitle || ''} ${L.footer?.tagline || ''}`.trim(),
+    // Name first: this is the snippet under the name in search results.
+    description: `RestOS: ${L.footer?.tagline || ''} ${t.hero?.subtitle || ''}`.trim(),
   });
 }
 
