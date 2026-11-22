@@ -5,6 +5,7 @@ import { LOCALE } from '@/lib/locale-extras';
 import { localePath } from '@/lib/locale';
 import { landingList, SOLUTIONS_LABEL } from '@/lib/landing-pages';
 import Icon from './Icon';
+import { MODULE_ORDER, moduleSlug } from '@/lib/module-pages';
 
 const TELEGRAM_CONTACT = 'furqaty';
 const DEV_SITE_URL = 'https://www.istech.uz';
@@ -51,6 +52,17 @@ export default function Footer() {
                 <Icon name="telegram" size={18}/>
               </a>
             </div>
+          </div>
+          {/* Every page links every module page. The homepage shows one module
+              at a time, so without this its HTML linked only the first one and
+              Google reached the rest only through each other. */}
+          <div className="footer-modules">
+            <h4>{f.product}</h4>
+            <ul>
+              {MODULE_ORDER.map((key) => (
+                <li key={key}><Link href={localePath(lang, `/modules/${moduleSlug(key)}`)}>{(LOCALE[lang] || LOCALE.en).modules[key].title}</Link></li>
+              ))}
+            </ul>
           </div>
           {solutions.length > 0 && (
             <div>
