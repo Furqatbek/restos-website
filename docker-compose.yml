@@ -24,7 +24,9 @@ services:
     volumes:
       - ./nginx/restos.conf:/etc/nginx/conf.d/restos.conf:ro
       - /etc/letsencrypt:/etc/letsencrypt:ro
-      - certbot_webroot:/var/www/certbot:ro
+      # A plain host folder (not a named volume) so certbot on the host can
+      # write Let's Encrypt challenges here and renew without stopping nginx.
+      - /var/www/certbot:/var/www/certbot:ro
     depends_on:
       app:
         condition: service_healthy
@@ -35,7 +37,6 @@ services:
 
 volumes:
   sqlite_data:
-  certbot_webroot:
 
 networks:
   web:
